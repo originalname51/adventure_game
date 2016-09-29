@@ -11,4 +11,4 @@ This is a readme for the adventure project.
 
 5. Type "make"
 
-6. Run program. It will say "Hello World."
+6. Run program. It will say "Hello World." Congrats.
