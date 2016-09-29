@@ -6,4 +6,4 @@ This is a readme.
 4. This will compile on flip with command "cmake build ."
 5. Type "make"
 6. Run program. It will say "Hello World."
-7. Profit!
+7. Profit
