@@ -1,5 +1,5 @@
 # finalAdventureProject
-This is a readme.
+This is a readme for the adventure project.
 
 1. give me your github name so I can add you as a contributor.
 
