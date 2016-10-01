@@ -13,4 +13,4 @@ This is a readme for the adventure project.
 
 6. Run program. It will say "Hello World." Congrats.
 
-7. Let's try another merge.
+7. Let's try another merge
