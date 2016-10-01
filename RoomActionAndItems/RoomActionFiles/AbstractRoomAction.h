@@ -12,6 +12,7 @@ class AbstractRoomAction {
 public:
     virtual ActionResults Throw() =0;
     virtual ActionResults North() =0;
+    virtual ~AbstractRoomAction() =0;
 };
 
 
