@@ -11,7 +11,7 @@ class ActionResults {
 private:
     const std::string room;
 public:
-    ActionResults(std::string r) : room(r){};
-    const std::string getRoom(){return room;};
+    ActionResults(std::string r);
+    const std::string getRoom();
 };
 #endif //FINALADVENTUREPROJECT_ACTIONRESULTS_H

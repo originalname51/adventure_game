@@ -4,3 +4,5 @@
 
 #include "ActionResults.h"
 
+ActionResults::ActionResults(std::string r) : room(r){};
+const std::string ActionResults::getRoom(){return room;};

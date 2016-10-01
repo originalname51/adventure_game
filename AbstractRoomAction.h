@@ -6,10 +6,12 @@
 #define FINALADVENTUREPROJECT_ABSTRACTROOMACTION_H
 
 
+#include "ActionResults.h"
+
 class AbstractRoomAction {
 public:
-    virtual void Throw();
-
+    virtual ActionResults Throw() =0;
+    virtual ActionResults North() =0;
 };
 
 

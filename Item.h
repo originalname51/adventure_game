@@ -12,9 +12,9 @@ private:
     const std::string description;
     const std::string location;
 public:
-    Item(std::string d, std::string l) : description(d), location(l) {};
-    std::string getDescription(){return description;};
-    std::string getLocation(){return location;};
+    Item(std::string d, std::string l);
+    std::string getDescription();
+    std::string getLocation();
 };
 
 

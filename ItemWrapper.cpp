@@ -3,4 +3,6 @@
 //
 
 #include "ItemWrapper.h"
-
+ItemWrapper::ItemWrapper(Item item, std::string l) : classItem(item), location(l){};
+std::string ItemWrapper::getLocation(){return location;}
+void ItemWrapper::setLocation(std::string l){location = l;}

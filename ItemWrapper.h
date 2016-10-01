@@ -12,11 +12,9 @@ private:
     const Item  classItem;
     std::string location;
 public:
-    ItemWrapper(Item item, std::string l) : classItem(item){
-        location = l;
-    };
-    std::string getLocation(){return location;};
-    void setLocation(std::string l){location = l;};
+    ItemWrapper(Item item, std::string l);
+    std::string getLocation();
+    void setLocation(std::string l);
 };
 
 
