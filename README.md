@@ -13,4 +13,8 @@ This is a readme for the adventure project.
 
 6. Run program. It will say "Hello World." Congrats.
 
-7. Let's try another merge
+TO DO: Remove the comment below...
+7. Adding a test item on the dev branch. Will merge to master shortly.
+=======
+8. Let's try another merge
+
