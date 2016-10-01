@@ -6,7 +6,7 @@
 #define FINALADVENTUREPROJECT_ABSTRACTROOMACTION_H
 
 
-#include "ActionResults.h"
+#include "../ActionResults.h"
 
 class AbstractRoomAction {
 public:
