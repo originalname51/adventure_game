@@ -7,6 +7,8 @@
 #include "AbstractRoomAction.h"
 
 class PodiumRoomAction : public AbstractRoomAction{
+public:
+    PodiumRoomAction();
     ActionResults Throw();
     ActionResults North();
     virtual ~PodiumRoomAction();

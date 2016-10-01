@@ -3,12 +3,13 @@
 //
 
 #include "PodiumRoomAction.h"
-ActionResults Throw(){
-    ActionResults returnAction = ActionResults("main");
+ActionResults PodiumRoomAction::Throw(){
+    ActionResults returnAction = ActionResults("In Podim Room");
     return returnAction;
 }
-ActionResults North(){
-    ActionResults returnAction = ActionResults("main");
+ActionResults PodiumRoomAction::North(){
+    ActionResults returnAction = ActionResults("In Podium Room");
     return returnAction;
 }
+PodiumRoomAction::PodiumRoomAction() {};
 PodiumRoomAction::~PodiumRoomAction() {};

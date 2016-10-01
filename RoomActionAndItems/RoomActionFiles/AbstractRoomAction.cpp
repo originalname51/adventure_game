@@ -3,4 +3,4 @@
 //
 
 #include "AbstractRoomAction.h"
-
+AbstractRoomAction::~AbstractRoomAction(){};
