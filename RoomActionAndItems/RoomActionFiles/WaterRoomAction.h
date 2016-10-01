@@ -8,6 +8,7 @@
 #include "AbstractRoomAction.h"
 
 class WaterRoomAction  : public AbstractRoomAction{
+public:
     WaterRoomAction();
     ActionResults Throw();
     ActionResults North();
