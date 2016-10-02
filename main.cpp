@@ -2,6 +2,7 @@
 #include "RoomActionAndItems/RoomActionFiles/AbstractRoomAction.h"
 #include "RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h"
 #include "RoomActionAndItems/RoomActionFiles/WaterRoomAction.h"
+#include "RoomActionAndItems/Action.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -17,4 +18,5 @@ int main() {
         std::cout << act->North().getRoom() << "\n";
         free(act);
     }
+    Action myAction(NORTH);
 }
