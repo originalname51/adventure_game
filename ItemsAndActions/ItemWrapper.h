@@ -8,13 +8,13 @@
 #include "Action.h"
 
 enum itemLocation { PODIUM_ROOM_FLOOR,
-    PODIUM_ROOM, WATER_ROOM_FLOOR, WATER_ROOM_UNDERWATER, GO_NORTH };
+    PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH };
 
 class ItemWrapper {
 
 private:
-    itemLocation location;
     const Item   classItem;
+    itemLocation location;
     const Action defaultAction;
 
 public:

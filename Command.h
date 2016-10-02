@@ -12,12 +12,11 @@
 
 class Command {
 private:
-    const Action action;
-    const itemType actedOn;
+    const actions action;
     const itemType mainItem;
+    const itemType actedOn;
 public:
     Command(actions act, itemType it);
     Command(actions act, itemType it, itemType actOn);
-
 };
 #endif //FINALADVENTUREPROJECT_COMMAND_H
