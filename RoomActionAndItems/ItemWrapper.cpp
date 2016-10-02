@@ -3,7 +3,8 @@
 //
 
 #include "ItemWrapper.h"
-ItemWrapper::ItemWrapper(Item item, item_location l, Action d) : classItem(item), location(l)
+ItemWrapper::ItemWrapper(Item item, itemLocation l, Action d) : classItem(item), location(l)
 , defaultAction(d){};
-item_location ItemWrapper::getLocation(){return location;}
-void ItemWrapper::setLocation(item_location l){location = l;}
+itemLocation ItemWrapper::getLocation(){return location;}
+void ItemWrapper::setLocation(itemLocation l){location = l;}
+Action ItemWrapper::getDefaultAction(){return defaultAction;}

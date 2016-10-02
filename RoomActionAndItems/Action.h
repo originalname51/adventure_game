@@ -5,11 +5,11 @@
 #ifndef FINALADVENTUREPROJECT_ACTION_H
 #define FINALADVENTUREPROJECT_ACTION_H
 
-enum actions { NORTH, THROW };
+enum actions { GO, THROW };
 
 class Action {
 private:
-    actions act;
+    const actions act;
 public:
     Action(actions a);
     actions getAction();

@@ -3,5 +3,8 @@
 //
 
 #include "Command.h"
-//Command::Command(Action act, ItemWrapper it) : action(act), mainItem(it), actedOn(Item(),PODIUM_ROOM_FLOOR){};
+/*
+ItemWrapper
+Command::Command(Action act, ItemWrapper it) : action(act), mainItem(it),
+                                               actedOn((("hi,",WATER), PODIUM_ROOM_FLOOR) NORTH) {};*/
 Command::Command(Action act, ItemWrapper it,ItemWrapper actOn) : action(act), mainItem(it), actedOn(actOn){} ;

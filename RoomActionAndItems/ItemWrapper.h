@@ -7,18 +7,21 @@
 #include "Item.h"
 #include "Action.h"
 
-enum item_location { PODIUM_ROOM_FLOOR, PODIUM_ROOM, WATER_ROOM_FLOOR, WATER_ROOM_UNDERWATER };
+enum itemLocation { PODIUM_ROOM_FLOOR,
+    PODIUM_ROOM, WATER_ROOM_FLOOR, WATER_ROOM_UNDERWATER, GO_NORTH };
 
 class ItemWrapper {
-private:
-    const Item    classItem;
-    item_location location;
-    const Action defaultAction;
-public:
-    ItemWrapper(Item item, item_location l, Action d);
-    item_location getLocation();
-    void setLocation(item_location l);
 
+private:
+    itemLocation location;
+    const Item   classItem;
+    const Action defaultAction;
+
+public:
+    ItemWrapper(Item item, itemLocation l, Action d);
+    itemLocation getLocation();
+    void setLocation(itemLocation l);
+    Action  getDefaultAction();
 };
 
 

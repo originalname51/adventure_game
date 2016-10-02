@@ -6,7 +6,7 @@
 #define FINALADVENTUREPROJECT_ITEM_H
 #include <iostream>
 
-enum itemType { WATER, SHIH_TZU, NON_EXIST };
+enum itemType { NORTH, WATER, SHIH_TZU, NON_EXIST };
 
 class Item {
 private:
@@ -16,7 +16,6 @@ public:
     Item(std::string d, itemType type);
     std::string getDescription();
     itemType getItemType();
-
 };
 
 

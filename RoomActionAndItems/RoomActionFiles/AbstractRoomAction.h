@@ -10,6 +10,7 @@
 #include "../Action.h"
 #include "../Item.h"
 #include "../ItemWrapper.h"
+#include "../../Command.h"
 #include <vector>
 
 class AbstractRoomAction {
@@ -17,7 +18,7 @@ protected:
     const int    MIN_ACTIONS = 2;
     const int    MAX_ACTIONS = 3;
     std::vector<ItemWrapper> *itemList;
-
+    Command                  *commands;
 public:
     virtual ActionResults Throw() =0;
     virtual ActionResults North() =0;
