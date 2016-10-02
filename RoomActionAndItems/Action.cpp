@@ -4,4 +4,7 @@
 
 #include "Action.h"
 Action::Action(actions a) : act(a){};
-actions getAction();
+
+actions Action::getAction() {
+    return act;
+}

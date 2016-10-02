@@ -5,16 +5,20 @@
 #ifndef FINALADVENTUREPROJECT_ITEMWRAPPER_H
 #define FINALADVENTUREPROJECT_ITEMWRAPPER_H
 #include "Item.h"
+#include "Action.h"
 
+enum item_location { PODIUM_ROOM_FLOOR, PODIUM_ROOM, WATER_ROOM_FLOOR, WATER_ROOM_UNDERWATER };
 
 class ItemWrapper {
 private:
-    const Item  classItem;
-    std::string location;
+    const Item    classItem;
+    item_location location;
+    const Action defaultAction;
 public:
-    ItemWrapper(Item item, std::string l);
-    std::string getLocation();
-    void setLocation(std::string l);
+    ItemWrapper(Item item, item_location l, Action d);
+    item_location getLocation();
+    void setLocation(item_location l);
+
 };
 
 
