@@ -20,13 +20,8 @@ private:
 
 public:
     ItemTable();
-    ItemWrapper*  getValue(itemType const &value) {
-        return items.find(value)->second;
-        assert(false); //will break if no value assigned.
-    }
+    ItemWrapper*  getValue(itemType const &value);
     ~ItemTable();
-
-
 };
 
 

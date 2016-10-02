@@ -9,6 +9,10 @@ ItemTable::ItemTable(){
 
 
 }
+ItemWrapper*  ItemTable::getValue(itemType const &value) {
+return items.find(value)->second;
+assert(false); //will break if no value assigned.
+}
 
 void ItemTable::populateMap(){
     ItemWrapper *it = new ItemWrapper(Item("Water", WATER),
