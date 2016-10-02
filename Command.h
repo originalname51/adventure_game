@@ -18,5 +18,9 @@ private:
 public:
     Command(actions act, itemType it);
     Command(actions act, itemType it, itemType actOn);
+    actions  getAction();
+    itemType getMainItem();
+    itemType getActedOnItem();
+    ~Command();
 };
 #endif //FINALADVENTUREPROJECT_COMMAND_H

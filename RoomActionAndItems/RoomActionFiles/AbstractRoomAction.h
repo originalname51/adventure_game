@@ -11,12 +11,13 @@
 #include "../../ItemsAndActions/Item.h"
 #include "../../ItemsAndActions/ItemWrapper.h"
 #include "../../Command.h"
+#include "../../ItemsAndActions/ItemTable.h"
 #include <vector>
 
 class AbstractRoomAction {
 protected:
-    std::vector<ItemWrapper> *itemList;
-    Command                  *commands;
+    ItemTable  *itemList;
+    Command    *commands;
 public:
     virtual ActionResults Throw() =0;
     virtual ActionResults North() =0;

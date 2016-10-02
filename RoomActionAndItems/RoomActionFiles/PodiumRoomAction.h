@@ -9,11 +9,12 @@
 #include "AbstractRoomAction.h"
 #include "../../ItemsAndActions/Action.h"
 #include "../../Command.h"
+#include "../../ItemsAndActions/ItemTest.h"
 #include <assert.h>
 
 class PodiumRoomAction : public AbstractRoomAction{
 public:
-    PodiumRoomAction(std::vector<ItemWrapper> *iList, Command commands);
+    PodiumRoomAction(ItemTable *iList, Command *commands);
     ActionResults Throw();
     ActionResults North();
     virtual ~PodiumRoomAction();

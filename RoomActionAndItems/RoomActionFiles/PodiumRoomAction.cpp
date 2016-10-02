@@ -12,8 +12,9 @@ ActionResults PodiumRoomAction::North(){
     ActionResults returnAction = ActionResults("In Podium Room");
     return returnAction;
 }
-PodiumRoomAction::PodiumRoomAction(std::vector<ItemWrapper> *iList, Command c) {
+
+PodiumRoomAction::PodiumRoomAction(ItemTable *iList, Command *c) {
         itemList = iList;
-        commands = &c;
+        commands = c;
 };
 PodiumRoomAction::~PodiumRoomAction() {};
