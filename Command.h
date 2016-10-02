@@ -6,18 +6,18 @@
 #define FINALADVENTUREPROJECT_COMMAND_H
 
 
-#include "RoomActionAndItems/Action.h"
-#include "RoomActionAndItems/Item.h"
-#include "RoomActionAndItems/ItemWrapper.h"
+#include "ItemsAndActions/Action.h"
+#include "ItemsAndActions/Item.h"
+#include "ItemsAndActions/ItemWrapper.h"
 
 class Command {
 private:
     const Action action;
-    const ItemWrapper actedOn;
-    const ItemWrapper mainItem;
+    const itemType actedOn;
+    const itemType mainItem;
 public:
-//    Command(Action act, ItemWrapper it);
-    Command(Action act, ItemWrapper it, ItemWrapper actOn);
+    Command(actions act, itemType it);
+    Command(actions act, itemType it, itemType actOn);
 
 };
 #endif //FINALADVENTUREPROJECT_COMMAND_H

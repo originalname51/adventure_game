@@ -6,17 +6,15 @@
 #define FINALADVENTUREPROJECT_ABSTRACTROOMACTION_H
 
 
-#include "../ActionResults.h"
-#include "../Action.h"
-#include "../Item.h"
-#include "../ItemWrapper.h"
+#include "../../ItemsAndActions/ActionResults.h"
+#include "../../ItemsAndActions/Action.h"
+#include "../../ItemsAndActions/Item.h"
+#include "../../ItemsAndActions/ItemWrapper.h"
 #include "../../Command.h"
 #include <vector>
 
 class AbstractRoomAction {
 protected:
-    const int    MIN_ACTIONS = 2;
-    const int    MAX_ACTIONS = 3;
     std::vector<ItemWrapper> *itemList;
     Command                  *commands;
 public:

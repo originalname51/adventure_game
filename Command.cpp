@@ -3,8 +3,6 @@
 //
 
 #include "Command.h"
-/*
-ItemWrapper
-Command::Command(Action act, ItemWrapper it) : action(act), mainItem(it),
-                                               actedOn((("hi,",WATER), PODIUM_ROOM_FLOOR) NORTH) {};*/
-Command::Command(Action act, ItemWrapper it,ItemWrapper actOn) : action(act), mainItem(it), actedOn(actOn){} ;
+
+Command::Command(actions act, itemType it) :  action(act), mainItem(it), actedOn(NON_EXIST){};
+Command::Command(actions act, itemType it, itemType actOn) : action(act), mainItem(it), actedOn(actOn){} ;;

@@ -7,7 +7,7 @@
 
 #include <vector>
 #include "AbstractRoomAction.h"
-#include "../Action.h"
+#include "../../ItemsAndActions/Action.h"
 #include "../../Command.h"
 #include <assert.h>
 

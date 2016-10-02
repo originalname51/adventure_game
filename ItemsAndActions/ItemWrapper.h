@@ -18,6 +18,7 @@ private:
     const Action defaultAction;
 
 public:
+    ItemWrapper(Item item, itemLocation l);
     ItemWrapper(Item item, itemLocation l, Action d);
     itemLocation getLocation();
     void setLocation(itemLocation l);
