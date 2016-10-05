@@ -6,8 +6,12 @@
 
 ItemWrapper::ItemWrapper(Item item, itemLocation l) : classItem(item), location(l),
 defaultAction(Action(NOTHING)){};
+
 ItemWrapper::ItemWrapper(Item item, itemLocation l, Action d) : classItem(item), location(l)
 , defaultAction(d){};
+
 itemLocation ItemWrapper::getLocation(){return location;}
+
 void ItemWrapper::setLocation(itemLocation l){location = l;}
+
 Action ItemWrapper::getDefaultAction(){return defaultAction;}

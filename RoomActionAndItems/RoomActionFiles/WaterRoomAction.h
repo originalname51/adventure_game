@@ -5,7 +5,7 @@
 #ifndef FINALADVENTUREPROJECT_WATERROOMACTION_H
 #define FINALADVENTUREPROJECT_WATERROOMACTION_H
 
-#include "AbstractRoomAction.h"
+#include "../AbstractRoomAction.h"
 
 class WaterRoomAction  : public AbstractRoomAction{
 public:

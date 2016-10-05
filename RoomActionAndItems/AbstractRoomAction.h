@@ -6,12 +6,12 @@
 #define FINALADVENTUREPROJECT_ABSTRACTROOMACTION_H
 
 
-#include "../../ItemsAndActions/ActionResults.h"
-#include "../../ItemsAndActions/Action.h"
-#include "../../ItemsAndActions/Item.h"
-#include "../../ItemsAndActions/ItemWrapper.h"
-#include "../../Command.h"
-#include "../../ItemsAndActions/ItemTable.h"
+#include "ActionResults.h"
+#include "../ItemsAndActions/Action.h"
+#include "../ItemsAndActions/Item.h"
+#include "../ItemsAndActions/ItemWrapper.h"
+#include "../Command.h"
+#include "../ItemsAndActions/ItemTable.h"
 #include <vector>
 
 class AbstractRoomAction {

@@ -6,7 +6,7 @@
 #define FINALADVENTUREPROJECT_PODIUMROOMACTION_H
 
 #include <vector>
-#include "AbstractRoomAction.h"
+#include "../AbstractRoomAction.h"
 #include "../../ItemsAndActions/Action.h"
 #include "../../Command.h"
 #include "../../ItemsAndActions/ItemTest.h"

@@ -4,12 +4,13 @@
 
 #include "PodiumRoomAction.h"
 ActionResults PodiumRoomAction::Throw(){
-    ActionResults returnAction = ActionResults("In Podium Room");
-
+    room START_ROOM  = CURRENT;
+    ActionResults returnAction = ActionResults(START_ROOM, "In Podium Room");
     return returnAction;
 }
 ActionResults PodiumRoomAction::North(){
-    ActionResults returnAction = ActionResults("In Podium Room");
+    room START_ROOM  = CURRENT;
+    ActionResults returnAction = ActionResults(START_ROOM, "In Podium Room");
     return returnAction;
 }
 

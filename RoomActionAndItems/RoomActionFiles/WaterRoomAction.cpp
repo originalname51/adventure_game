@@ -5,11 +5,15 @@
 #include "WaterRoomAction.h"
 WaterRoomAction::WaterRoomAction(){};
 ActionResults WaterRoomAction::Throw(){
-    ActionResults returnAction = ActionResults("In Water Room");
+
+    room r  = CURRENT;
+    ActionResults returnAction = ActionResults(r, "In Podium Room");
     return returnAction;
 }
 ActionResults WaterRoomAction::North(){
-    ActionResults returnAction = ActionResults("In Water Room");
+
+    room r  = CURRENT;
+    ActionResults returnAction = ActionResults(r, "In Podium Room");
     return returnAction;
 }
 WaterRoomAction::~WaterRoomAction(){};
