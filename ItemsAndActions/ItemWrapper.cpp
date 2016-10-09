@@ -5,13 +5,17 @@
 #include "ItemWrapper.h"
 
 ItemWrapper::ItemWrapper(Item item, itemLocation l) : classItem(item), location(l),
-defaultAction(Action(NOTHING)){};
+defaultAction(Action(NOTHING)), state(DEFAULT){}
 
 ItemWrapper::ItemWrapper(Item item, itemLocation l, Action d) : classItem(item), location(l)
-, defaultAction(d){};
+, defaultAction(d), state(DEFAULT){}
 
 itemLocation ItemWrapper::getLocation(){return location;}
 
 void ItemWrapper::setLocation(itemLocation l){location = l;}
 
 Action ItemWrapper::getDefaultAction(){return defaultAction;}
+
+itemState ItemWrapper::getState(){return state;}
+
+void ItemWrapper::setState(itemState s){state =s;}
