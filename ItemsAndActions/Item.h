@@ -6,7 +6,7 @@
 #define FINALADVENTUREPROJECT_ITEM_H
 #include <iostream>
 
-enum itemType { NORTH, WATER, SHIH_TZU, NON_EXIST };
+enum itemType { NORTH, WATER, SHIH_TZU, NON_EXIST};
 
 class Item {
 private:

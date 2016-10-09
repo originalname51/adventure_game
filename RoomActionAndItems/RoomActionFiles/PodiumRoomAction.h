@@ -13,10 +13,21 @@
 #include <assert.h>
 
 class PodiumRoomAction : public AbstractRoomAction{
+private:
+    ItemTable * items;
+    Command  * command;
 public:
     PodiumRoomAction(ItemTable *iList, Command *commands);
-    ActionResults Throw();
-    ActionResults North();
+    ActionResults  Throw() ;
+    ActionResults     Go() ;
+    ActionResults    Look();
+    ActionResults    Rest();
+    ActionResults   Touch();
+    ActionResults    Pick();
+    ActionResults    Drop();
+    ActionResults     Use();
+    ActionResults    Open();
+    ActionResults   Close();
     virtual ~PodiumRoomAction();
 };
 

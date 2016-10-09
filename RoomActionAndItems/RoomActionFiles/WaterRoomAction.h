@@ -10,8 +10,16 @@
 class WaterRoomAction  : public AbstractRoomAction{
 public:
     WaterRoomAction();
-    ActionResults Throw();
-    ActionResults North();
+    ActionResults  Throw() ;
+    ActionResults     Go() ;
+    ActionResults    Look();
+    ActionResults    Rest();
+    ActionResults   Touch();
+    ActionResults    Pick();
+    ActionResults    Drop();
+    ActionResults     Use();
+    ActionResults    Open();
+    ActionResults   Close();
     virtual ~WaterRoomAction();
 
 };

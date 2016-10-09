@@ -3,19 +3,46 @@
 //
 
 #include "PodiumRoomAction.h"
-ActionResults PodiumRoomAction::Throw(){
-    room START_ROOM  = CURRENT;
-    ActionResults returnAction = ActionResults(START_ROOM, "In Podium Room");
-    return returnAction;
-}
-ActionResults PodiumRoomAction::North(){
-    room START_ROOM  = CURRENT;
-    ActionResults returnAction = ActionResults(START_ROOM, "In Podium Room");
-    return returnAction;
-}
+PodiumRoomAction::PodiumRoomAction(ItemTable *iList, Command *commands) : items(iList), command(commands){}
 
-PodiumRoomAction::PodiumRoomAction(ItemTable *iList, Command *c) {
-        itemList = iList;
-        commands = c;
-};
+ActionResults  PodiumRoomAction::Throw(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults     PodiumRoomAction::Go(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults    PodiumRoomAction::Look(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults    PodiumRoomAction::Rest(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults   PodiumRoomAction::Touch(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults    PodiumRoomAction::Pick(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults    PodiumRoomAction::Drop(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults     PodiumRoomAction::Use(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults    PodiumRoomAction::Open(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
+ActionResults   PodiumRoomAction::Close(){
+    std::string filler="filler";
+    return ActionResults(CURRENT, filler);
+}
 PodiumRoomAction::~PodiumRoomAction() {};
