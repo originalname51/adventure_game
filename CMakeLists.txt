@@ -1,17 +1,20 @@
 cmake_minimum_required(VERSION 2.8.11)
+
 project(finalAdventureProject)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
-set(RESOURCES_PATH "${PROJECT_SOURCE_DIR}/resources/")
-configure_file ("configuration.h.in""${PROJECT_BINARY_DIR}/configuration.h")
+set(RESOURCES_PATH "${PROJECT_SOURCE_DIR}/RoomDescriptions/")
+
+configure_file ("configuration.h.in" "${PROJECT_BINARY_DIR}/configuration.h")
+
 include_directories("${PROJECT_BINARY_DIR}")
 
-set(SOURCE_FILES main.cpp RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h Room.cpp Room.h)
+set(SOURCE_FILES main.cpp RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h Rooms/Room.cpp Rooms/Room.h Rooms/StartRoom.cpp Rooms/StartRoom.h)
 add_executable(finalAdventureProject ${SOURCE_FILES})
 
 project(ITEM_TEST)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
-set(SOURCE_FILES RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h ItemsAndActions/ItemTest.cpp ItemsAndActions/ItemTest.h Room.cpp Room.h)
+set(SOURCE_FILES RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h ItemsAndActions/ItemTest.cpp ItemsAndActions/ItemTest.h Rooms/Room.cpp Rooms/Room.h)
 add_executable(ITEM_TEST ${SOURCE_FILES})

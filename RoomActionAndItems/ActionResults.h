@@ -5,7 +5,7 @@
 #ifndef FINALADVENTUREPROJECT_ACTIONRESULTS_H
 #define FINALADVENTUREPROJECT_ACTIONRESULTS_H
 #include <iostream>
-#include "../Room.h"
+#include "../Rooms/Room.h"
 
 enum specialEffects{ZAP, BOP, ICE, NONE};
 class ActionResults {

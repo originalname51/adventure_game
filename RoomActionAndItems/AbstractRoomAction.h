@@ -22,7 +22,7 @@ public:
     virtual ActionResults  Throw() =0;
     virtual ActionResults     Go() =0;
     virtual ActionResults    Look()=0;
-            ActionResults   Help();
+    ActionResults   Help();
     virtual ActionResults    Rest()=0;
     virtual ActionResults   Touch()=0;
     virtual ActionResults    Pick()=0;
