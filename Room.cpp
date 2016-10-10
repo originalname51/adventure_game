@@ -29,11 +29,9 @@ Room::Room(std::string room) {
             }
         }
     }
-    std::cout << updatedDescription;
-    std::cout << defaultDescription;
 }
 
 std::string Room::getDefault(){return defaultDescription;}
 
-std::string Room::getUpdated(){return defaultDescription;}
+std::string Room::getUpdated(){return updatedDescription;}
 
