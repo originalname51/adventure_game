@@ -3,6 +3,10 @@ project(finalAdventureProject)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
+set(RESOURCES_PATH "${PROJECT_SOURCE_DIR}/resources/")
+configure_file ("configuration.h.in""${PROJECT_BINARY_DIR}/configuration.h")
+include_directories("${PROJECT_BINARY_DIR}")
+
 set(SOURCE_FILES main.cpp RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h Room.cpp Room.h)
 add_executable(finalAdventureProject ${SOURCE_FILES})
 

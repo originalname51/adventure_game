@@ -1,7 +1,9 @@
 #include <iostream>
+#include "Room.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "\nHello back!" << std::endl;
+
+    Room r = Room("room");
+
     return 0;
 }
