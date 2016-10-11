@@ -10,7 +10,7 @@ configure_file ("configuration.h.in" "${PROJECT_BINARY_DIR}/configuration.h")
 
 include_directories("${PROJECT_BINARY_DIR}")
 
-set(SOURCE_FILES main.cpp RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h Rooms/Room.cpp Rooms/Room.h Rooms/StartRoom.cpp Rooms/StartRoom.h)
+set(SOURCE_FILES main.cpp RoomActionAndItems/AbstractRoomAction.cpp RoomActionAndItems/AbstractRoomAction.h RoomActionAndItems/ActionResults.cpp RoomActionAndItems/ActionResults.h ItemsAndActions/Item.cpp ItemsAndActions/Item.h ItemsAndActions/ItemWrapper.cpp ItemsAndActions/ItemWrapper.h RoomActionAndItems/RoomActionFiles/PodiumRoomAction.cpp RoomActionAndItems/RoomActionFiles/PodiumRoomAction.h RoomActionAndItems/RoomActionFiles/WaterRoomAction.cpp RoomActionAndItems/RoomActionFiles/WaterRoomAction.h ItemsAndActions/Action.cpp ItemsAndActions/Action.h Command.cpp Command.h ItemsAndActions/ItemTable.cpp ItemsAndActions/ItemTable.h Rooms/Room.cpp Rooms/Room.h Rooms/StartRoom.cpp Rooms/StartRoom.h Rooms/KeyRoom.cpp Rooms/KeyRoom.h RoomActionAndItems/RoomActionFiles/KeyRoomAction.cpp RoomActionAndItems/RoomActionFiles/KeyRoomAction.h)
 add_executable(finalAdventureProject ${SOURCE_FILES})
 
 project(ITEM_TEST)

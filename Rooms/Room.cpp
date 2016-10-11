@@ -20,16 +20,16 @@ void Room::parseData() {
     if (myfile.is_open()) {
         std::string line;
         while (getline(myfile, line)) {
-            if (line == "#UPDATED#") {
+            if (line == "#ROOM_STATE_1#") {
                 description = ROOM_STATE_1;
-            } else if (line == "#UPDATED_1#") {
+            } else if (line == "#ROOM_STATE_2#") {
                 description = ROOM_STATE_2;
             } else if (description == ROOM_STATE_0) {
-                defaultDescription += line;
-                defaultDescription += "\n";
+                rstate0 += line;
+                rstate0 += "\n";
             } else if (description == ROOM_STATE_1) {
-                updatedDescription += line;
-                updatedDescription += "\n";
+                rstate1 += line;
+                rstate1 += "\n";
             }
         }
     }
