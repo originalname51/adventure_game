@@ -111,6 +111,8 @@ bool Screen::displayText(std::string text) {
 
         // Display the message
         wrefresh(textScreen);
+
+        return true;
     }
     else{
         // Print the message
@@ -118,6 +120,8 @@ bool Screen::displayText(std::string text) {
 
         // Display the message
         wrefresh(animationScreen);
+
+        return true;
     }
 }
 
@@ -165,6 +169,8 @@ bool Screen::startAnimation() {
     wrefresh(animationScreen);
 
     animationMode = true;
+
+    return true;
 }
 
 bool Screen::endAnimation() {
@@ -182,6 +188,8 @@ bool Screen::endAnimation() {
     updateInfo();
 
     displayText(currentText);
+
+    return true;
 }
 
 bool Screen::testAnimation() {
