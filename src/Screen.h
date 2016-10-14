@@ -6,29 +6,47 @@
 #define FINALADVENTUREPROJECT_SCREEN_H
 
 #include <string>
+#include <curses.h>
+
+#define MAX_INPUT_LENGTH 100
+
 class Screen {
 private:
     int cursor[2];
     int screenSize[2];
-    void updateScreenSize();
     std::string currentRoom;
-    int score;
+    std::string score;
+    void updateScreenSize();
+    WINDOW *infoScreen;
+    WINDOW *textScreen;
+    WINDOW *inputScreen;
+
+    bool clearWindow(WINDOW *window);
+    void updateInfo();
+
 public:
+    // Constructors
+    Screen();
+    Screen(int startScore, std::string startRoom);
+
     // Mutators
-    setRoom(std::string roomName){currentRoom = roomName}
-    setScore(int newScore){score = newScore}
+    void setRoom(std::string roomName);
+    void setScore(int newScore);
 
     // General Functions
     bool displayText(std::string text);
-    bool displayQuestion(std::string question);
-    bool refreshScreen();
-    bool clearScreen();
+    std::string getInput();
 
     // Functions for animations
+    bool refreshScreen();
+    bool clearScreen();
     bool drawLine(int startLocation[], int length, int direction);
     bool drawCircle(int centerLocation[], int radius);
     bool drawRectangle(int topLeftLocation[], int width, int height);
     bool drawExplosion(int originLocation[]);
+
+    // Destructor
+    ~Screen();
 };
 
 

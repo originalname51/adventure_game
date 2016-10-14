@@ -4,10 +4,36 @@
 
 #include "Menu.h"
 
-int Menu::displayMenu() {
-    return 0;
+bool Menu::addMenuOption(std::string newOption) {
+    options += newOption + "\n";
+    return true;
 }
 
-std::vector<std::string> Menu::getMenuOptions() {
-    return std::vector<std::string>();
+Menu::Menu() {
+    options = "No menu items submitted.";
 }
+
+
+Menu::Menu(std::string fileName) {
+    // Open the file for reading
+    std::ifstream inputFile;
+
+    inputFile.open(fileName);
+
+    std::string input = "";
+
+    // Read each line of the file into the menu option string
+
+    if(inputFile){
+        while( std::getline(inputFile, input, '\n') ){
+            options.append(input);
+            options.append("\n");
+        }
+        inputFile.close();
+    }
+    else {
+        options = "Nothing was loaded.";
+    }
+}
+
+

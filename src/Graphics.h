@@ -9,23 +9,33 @@
 
 #include <string>
 #include <vector>
-#include "Menu.h"
+#include <iostream>
+//#include "Menu.h"
 #include "Animation.h"
 #include "Screen.h"
 
 class Graphics {
 private:
-    Menu startMenu;
-    Menu saveMenu;
+    // Menu startMenu;
+    // Menu saveMenu;
     std::vector<Animation *> animations;
     Screen screen;
+    bool DEBUG;
 public:
+    // Default Constructor
+    Graphics();
+
+    // Preferred Constructor
+    Graphics(int startScore, std::string startRoom);
+    // Graphics(int startScore, std::string startRoom, std::string startMenuFileName, std::string saveMenuFileName);
+
+    // Public Methods
     void setRoom(std::string roomName);
     void setScore(int newScore);
-    int displayMenu(std::string menuName);
+    // int displayMenu(std::string menuName);
     bool animation(std::string animationName);
     bool displayText(std::string text);
-    std::string displayQuestion(std::string question);
+    std::string getInput();
 };
 
 

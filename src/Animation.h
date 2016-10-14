@@ -7,15 +7,16 @@
 
 
 #include <string>
+#include "Screen.h"
 
 class Animation {
 protected:
     std::string name;
     std::string description;
 public:
-    std::string getName(){return name}
-    std::string getDescription(){return description}
-    virtual bool displayAnimation(Screen screen);
+    std::string getName(){return name;}
+    std::string getDescription(){return description;}
+    virtual bool displayAnimation(Screen screen) = 0;
 };
 
 
