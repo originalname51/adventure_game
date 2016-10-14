@@ -16,10 +16,13 @@ private:
     int screenSize[2];
     std::string currentRoom;
     std::string score;
+    std::string currentText;
     void updateScreenSize();
     WINDOW *infoScreen;
     WINDOW *textScreen;
     WINDOW *inputScreen;
+    WINDOW *animationScreen;
+    bool animationMode;
 
     bool clearWindow(WINDOW *window);
     void updateInfo();
@@ -38,12 +41,11 @@ public:
     std::string getInput();
 
     // Functions for animations
+    bool startAnimation();
+    bool endAnimation();
     bool refreshScreen();
     bool clearScreen();
-    bool drawLine(int startLocation[], int length, int direction);
-    bool drawCircle(int centerLocation[], int radius);
-    bool drawRectangle(int topLeftLocation[], int width, int height);
-    bool drawExplosion(int originLocation[]);
+    bool testAnimation();
 
     // Destructor
     ~Screen();

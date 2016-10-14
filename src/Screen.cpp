@@ -2,6 +2,7 @@
 // Created by mpalmer on 10/10/2016.
 //
 
+#include <unistd.h>
 #include "Screen.h"
 
 
@@ -18,6 +19,7 @@ Screen::Screen() {
     initscr();
     // raw();
     refresh();
+    start_color();
 
     // Get the current size of the screen
     updateScreenSize();
@@ -26,19 +28,23 @@ Screen::Screen() {
     infoScreen = newwin(3, screenSize[1], 0, 0);
     textScreen = newwin((screenSize[0] - 6), screenSize[1], 3, 0);
     inputScreen = newwin(3, screenSize[1], (screenSize[0] - 6), 0);
+
+    // Turn off animation mode
+    animationMode = false;
 }
 
 Screen::Screen(int startScore, std::string startRoom) {
     // Set the default values for all private methods
     cursor[0] = 0;  // Y
     cursor[1] = 0;  // X
-    score = startScore;
+    score = std::to_string(startScore);
     currentRoom = startRoom;
 
     // Initialize the ncurses screen
     initscr();
     // raw();
     refresh();
+    start_color();
 
     // Get the current size of the screen
     updateScreenSize();
@@ -47,6 +53,9 @@ Screen::Screen(int startScore, std::string startRoom) {
     infoScreen = newwin(3, screenSize[1], 0, 0);
     textScreen = newwin((screenSize[0] - 6), screenSize[1], 3, 0);
     inputScreen = newwin(3, screenSize[1], (screenSize[0] - 6), 0);
+
+    // Turn off animation mode
+    animationMode = false;
 }
 
 
@@ -87,14 +96,29 @@ void Screen::updateScreenSize() {
 }
 
 bool Screen::displayText(std::string text) {
-    // Remove any unwanted text
-    clearWindow(textScreen);
+    if(!animationMode){
+        // Update the info area
+        updateInfo();
 
-    // Print the message
-    wprintw(textScreen, text.c_str());
+        // Remove any unwanted text
+        clearWindow(textScreen);
 
-    // Display the message
-    wrefresh(textScreen);
+        // Save the message
+        currentText = text;
+
+        // Print the message
+        wprintw(textScreen, currentText.c_str());
+
+        // Display the message
+        wrefresh(textScreen);
+    }
+    else{
+        // Print the message
+        wprintw(animationScreen, text.c_str());
+
+        // Display the message
+        wrefresh(animationScreen);
+    }
 }
 
 std::string Screen::getInput() {
@@ -118,40 +142,78 @@ std::string Screen::getInput() {
 }
 
 bool Screen::refreshScreen() {
-    refresh();
+    wrefresh(animationScreen);
 
     return true;
 }
 
 bool Screen::clearScreen() {
-    return clear() != 0;
+    wclear(animationScreen);
+    return true;
 }
 
 
 // Functions for the Animation class
 
-bool Screen::drawLine(int *startLocation, int length, int direction) {
-    // TODO: Not implemented
+bool Screen::startAnimation() {
+    // Get the current size of the screen
+    updateScreenSize();
 
-    return false;
+    // Create the windows for the program
+    animationScreen = newwin(screenSize[0], screenSize[1], 0, 0);
+
+    wrefresh(animationScreen);
+
+    animationMode = true;
 }
 
-bool Screen::drawCircle(int *centerLocation, int radius) {
-    // TODO: Not implemented
+bool Screen::endAnimation() {
+    // Clear out the window's data structure
+    wclear(animationScreen);
+    wrefresh(animationScreen);
 
-    return false;
+    // Delete the window
+    delwin(animationScreen);
+
+    // Turn off animation mode
+    animationMode = false;
+
+    // Replace the screen contents
+    updateInfo();
+
+    displayText(currentText);
 }
 
-bool Screen::drawRectangle(int *topLeftLocation, int width, int height) {
-    // TODO: Not implemented
+bool Screen::testAnimation() {
+    std::string text = "Boom!";
+    // Animation mode assumed to be on
 
-    return false;
-}
+    // Clear the animation screen
+    clearScreen();
+    refreshScreen();
 
-bool Screen::drawExplosion(int *originLocation) {
-    // TODO: Not implemented
+    // Set up some colors
+    init_pair(1, COLOR_RED, COLOR_WHITE);
+    init_pair(2, COLOR_WHITE, COLOR_RED);
 
-    return false;
+    // Print some red text
+    for(int i = 0; i < 200; i++){
+        wattron(animationScreen, COLOR_PAIR(1));
+        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
+        refreshScreen();
+        wattroff(animationScreen, COLOR_PAIR(1));
+        usleep(1000);
+        wattron(animationScreen, COLOR_PAIR(2));
+        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
+        refreshScreen();
+        wattroff(animationScreen, COLOR_PAIR(2));
+        usleep(1000);
+    }
+
+    // Clear the screen
+    clearScreen();
+
+    return true;
 }
 
 
@@ -185,6 +247,10 @@ bool Screen::clearWindow(WINDOW *window) {
 
     return true;
 }
+
+
+
+
 
 
 

@@ -12,7 +12,7 @@ void Graphics::setScore(int newScore) {
     screen.setScore(newScore);
 }
 
-int Graphics::displayMenu(std::string menuName) {
+/*int Graphics::displayMenu(std::string menuName) {
     std::string menuOptions = "";
     if(menuName == "start") {
         menuOptions = startMenu.getMenuOptions();
@@ -30,7 +30,7 @@ int Graphics::displayMenu(std::string menuName) {
         }
         return -1;
     }
-}
+}*/
 
 bool Graphics::animation(std::string animationName) {
     if(animationName == "explosion"){
@@ -66,11 +66,11 @@ Graphics::Graphics(int startScore, std::string startRoom) : screen(startScore, s
     // TODO: Create the menus
 }
 
-Graphics::Graphics(int startScore, std::string startRoom, std::string startMenuFileName, std::string saveMenuFileName) :
+/*Graphics::Graphics(int startScore, std::string startRoom, std::string startMenuFileName, std::string saveMenuFileName) :
         screen(startScore, startRoom), startMenu(startMenuFileName), saveMenu(saveMenuFileName){
     // TODO: Create the animations array
 
     // TODO: Create the menus
-}
+}*/
 
 
