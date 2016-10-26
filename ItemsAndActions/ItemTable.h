@@ -17,6 +17,7 @@ private:
     ItemList items;
     static const ItemTable gameItems;
     void populateMap();
+    void GreenRoomOne();
 
 public:
     ItemTable();

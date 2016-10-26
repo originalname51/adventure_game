@@ -12,3 +12,48 @@ ActionResults AbstractRoomAction::Help(){
     return  ActionResults(CURRENT, help);
 
 }
+ActionResults * AbstractRoomAction::Action() {
+
+    ActionResults * action;
+
+    switch(commands->getAction()) {
+        case GO:
+            action = Go();
+            break;
+        case THROW:
+            action = Throw();
+            break;
+        case LOOK:
+            action = Look();
+            break;
+        case REST:
+            action = Rest();
+            break;
+        case TOUCH:
+            action = Touch();
+            break;
+        case PICK:
+            action = Pick();
+            break;
+        case DROP:
+            action = Drop();
+            break;
+        case USE:
+            action = Use();
+            break;
+        case OPEN:
+            action = Open();
+            break;
+        case CLOSE:
+            action = Close();
+            break;
+        case NOTHING:
+     //       action = Nothing();
+            break;
+        default:
+            assert(false); //blow up program is no relevant action.
+            break;
+
+    }
+    return action;
+}
