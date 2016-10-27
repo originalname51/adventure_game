@@ -20,7 +20,7 @@ ActionResults  *  KeyRoomAction::Throw() {
     switch(commands->getMainItem()) {
         case FOX_TOKEN :
                 if (getIsGooseHere()) {
-                information = "You throw the fox token at the goose. "
+                information = "You throw the fox token at the goose. fox "
                         "You see faint translucent tendrils reach out of the rock,"
                         "trying to attach to the goose token, as if"
                         "attempting to surround and consume it. The tendrils dissapear in a puff"
@@ -62,8 +62,7 @@ ActionResults  *  KeyRoomAction::Throw() {
             if(commands->getActedOnItem() == NOTHING) {
                 information = "The bean token falls to the ground listless.";
             }
-
-    }
+       }
 }
 
 bool KeyRoomAction::itemInRoom(itemType item) const {
@@ -76,7 +75,6 @@ bool KeyRoomAction::isBeanToken() const {
                  itemList->getValue(BEAN_TOKEN)->getLocation()
                  == itemList->getValue(PLAYER)->getLocation();
 }
-
 
 bool KeyRoomAction::getIsGooseHere() const {
     return commands->getActedOnItem() == GOOSE_TOKEN &&
