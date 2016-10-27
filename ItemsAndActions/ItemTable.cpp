@@ -16,22 +16,25 @@ assert(false); //will break if no value assigned.
 
 void ItemTable::populateMap(){
 
-    /* NORTH, WATER, SHIH_TZU, NON_EXIST */
-    ItemWrapper *north = new ItemWrapper(Item("North", NORTH),
-                                         GO_NORTH);
+    GreenRoomOne();
 
-    ItemWrapper *water = new ItemWrapper(Item("Water", WATER),
-                                      PODIUM_ROOM_FLOOR, Action(THROW));
-
-    ItemWrapper *shih_tzu = new ItemWrapper(Item("SHIH_TZU", SHIH_TZU),
-                                       WATER_ROOM_UNDERWATER, Action(THROW));
-
-    /* NORTH, WATER, SHIH_TZU, NON_EXIST */
-    items[NORTH]     = north;
-    items[WATER]     = water;
-    items[SHIH_TZU]  = shih_tzu;
+    ItemWrapper *      Player = new ItemWrapper(Item("PLAYER", PLAYER), G_ROOM1_SIDE1);
 
 }
+void ItemTable::GreenRoomOne(){
+
+    ItemWrapper *       foxToken = new ItemWrapper(Item("Fox Token", FOX_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper *      beanToken = new ItemWrapper(Item("Bean Token", BEAN_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper *     gooseToken = new ItemWrapper(Item("Goose Token", GOOSE_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper * gRoomTokenDoor = new ItemWrapper(Item("Token Door", TOKEN_DOOR), G_ROOM1_TOKEN_DOOR);
+
+    items[FOX_TOKEN]   = foxToken;
+    items[BEAN_TOKEN]  = beanToken;
+    items[GOOSE_TOKEN] = gooseToken;
+    items[TOKEN_DOOR]  = gRoomTokenDoor;
+}
+
+
 
 ItemTable::~ItemTable(){
     for(auto i : items){

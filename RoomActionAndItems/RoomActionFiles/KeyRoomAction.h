@@ -6,8 +6,34 @@
 #define ITEM_TEST_KEYROOMACTION_H
 
 
-class KeyRoomAction {
+#include "../ActionResults.h"
+#include "../../Command.h"
+#include "../AbstractRoomAction.h"
 
+class KeyRoomAction: public AbstractRoomAction {
+
+public:
+    KeyRoomAction();
+    KeyRoomAction(ItemTable *iList, Command *commands);
+
+private:
+    ActionResults  *   Throw();
+    ActionResults  *      Go();
+    ActionResults  *    Look();
+    ActionResults  *    Rest();
+    ActionResults  *   Touch();
+    ActionResults  *    Pick();
+    ActionResults  *    Drop();
+    ActionResults  *     Use();
+    ActionResults  *    Open();
+    ActionResults  *   Close();
+    ActionResults  * Nothing();
+
+    bool getIsGooseHere() const;
+
+    bool isBeanToken() const;
+
+    bool itemInRoom(itemType item) const;
 };
 
 
