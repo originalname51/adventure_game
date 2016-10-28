@@ -5,8 +5,8 @@
 #ifndef FINALADVENTUREPROJECT_ITEM_H
 #define FINALADVENTUREPROJECT_ITEM_H
 #include <iostream>
+#include "ItemWrapper.h"
 
-enum itemType {PLAYER, NORTH, WATER, SHIH_TZU, NON_EXIST, FOX_TOKEN,BEAN_TOKEN,GOOSE_TOKEN,TOKEN_DOOR};
 
 class Item {
 private:

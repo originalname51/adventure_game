@@ -19,3 +19,11 @@ Action ItemWrapper::getDefaultAction(){return defaultAction;}
 itemState ItemWrapper::getState(){return state;}
 
 void ItemWrapper::setState(itemState s){state =s;}
+
+void ItemWrapper::setItemName(std::string item) {
+    itemName = item;
+}
+
+std::string ItemWrapper::getItemName() {
+    return itemName;
+}

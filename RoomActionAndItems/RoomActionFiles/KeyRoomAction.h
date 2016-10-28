@@ -34,6 +34,8 @@ private:
     bool isBeanToken() const;
 
     bool itemInRoom(itemType item) const;
+
+    bool hasAToken() const;
 };
 
 
