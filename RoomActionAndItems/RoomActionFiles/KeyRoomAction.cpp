@@ -6,6 +6,26 @@
 
 KeyRoomAction::KeyRoomAction(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
 
+ActionResults *KeyRoomAction::Close() {
+
+    return new ActionResults(CURRENT, "No action taken.");
+}
+
+ActionResults *KeyRoomAction::Open() {
+
+    return new ActionResults(CURRENT, "No action taken.");
+}
+
+ActionResults *KeyRoomAction::Touch() {
+
+return new ActionResults(CURRENT, "No action taken.");
+}
+
+
+ActionResults *KeyRoomAction::Rest() {
+    return new ActionResults(CURRENT,"You get some much needed shut eye.");
+}
+
 ActionResults *KeyRoomAction::Throw() {
 
     std::string information;
@@ -13,8 +33,8 @@ ActionResults *KeyRoomAction::Throw() {
     if (itemList->getValue(commands->getMainItem())->getLocation() != BACKPACK) {
         information = "You can not throw an item that you do not currently "
                 "have in your backpack. Pick up item in order to throw it.";
-        ActionResults *results = new ActionResults(CURRENT, information);
-        return results;
+        return new ActionResults(CURRENT, information);
+
     }
 
     switch (commands->getMainItem()) {
@@ -65,7 +85,7 @@ ActionResults *KeyRoomAction::Throw() {
             }
     }
 
-    return NULL;
+    return new ActionResults(CURRENT, information);
 }
 
 ActionResults *KeyRoomAction::Look() {
@@ -97,6 +117,8 @@ ActionResults *KeyRoomAction::Look() {
             break;
         }
         default : {
+            information = "You look at the  " + itemList->getValue(commands->getMainItem())->getItemName() + ". "
+                "It looks nice.";
 
         }
     }
@@ -107,34 +129,42 @@ ActionResults *KeyRoomAction::Look() {
 
 ActionResults *KeyRoomAction::Go() {
 
-
-    ActionResults *results;
-
     if (commands->getMainItem() == NORTH) {
-        results = new ActionResults(KEY_ROOM, "You go north.");
+        return new ActionResults(KEY_ROOM, "You go north.");
     }
     if (commands->getMainItem() == SOUTH) {
-        results = new ActionResults(KEY_ROOM, "You go south.");
+        return new ActionResults(KEY_ROOM, "You go south.");
     }
     if (commands->getMainItem() == EAST) {
-        results = new ActionResults(KEY_ROOM, "You go east.");
+        return new ActionResults(KEY_ROOM, "You go east.");
     }
     if (commands->getMainItem() == WEST) {
-        results = new ActionResults(KEY_ROOM, "You go west.");
+        return new ActionResults(KEY_ROOM, "You go west.");
     }
 
-    return results;
+    return new ActionResults(CURRENT,"");
 }
 
 ActionResults  *    KeyRoomAction::Drop() {
     std::string information;
     itemType item = commands->getMainItem();
 
+    if(itemList->getValue(item)->getLocation() == BACKPACK) {
+        dropItem(item);
+        information = "Dropped the item " + itemList->getValue(item)->getItemName();
+    } else {
+        information = "Can not drop an item that isn't in your back pack.";
+    }
+
+    return new ActionResults(CURRENT, information);
+}
+
+void KeyRoomAction::dropItem(const itemType &item) const {
+    itemList->getValue(item)->setLocation(itemList->getValue(PLAYER)->getLocation());
 }
 
 ActionResults *KeyRoomAction::Use() {
     std::string information;
-
     itemType item = commands->getMainItem();
 
     switch(item) {
@@ -157,6 +187,7 @@ ActionResults *KeyRoomAction::Use() {
         }
     return new ActionResults(itemList->getValue(PLAYER)->getLocation(), information);
     }
+
 
 void KeyRoomAction::takeBoat() const {
     if (itemList->getValue(PLAYER)->getLocation() == G_ROOM1_SIDE1) {

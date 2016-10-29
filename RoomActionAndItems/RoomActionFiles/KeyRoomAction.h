@@ -5,7 +5,6 @@
 #ifndef ITEM_TEST_KEYROOMACTION_H
 #define ITEM_TEST_KEYROOMACTION_H
 
-
 #include "../ActionResults.h"
 #include "../../Command.h"
 #include "../AbstractRoomAction.h"
@@ -19,13 +18,13 @@ private:
     ActionResults  *   Throw();
     ActionResults  *      Go();
     ActionResults  *    Look();
-//    ActionResults  *    Rest();
-//   ActionResults  *   Touch();
+    ActionResults  *    Rest();
+    ActionResults  *   Touch();
     ActionResults  *    Pick();
     ActionResults  *    Drop();
     ActionResults  *     Use();
-//    ActionResults  *    Open();
-//    ActionResults  *   Close();
+    ActionResults  *    Open();
+    ActionResults  *   Close();
     ActionResults  * Nothing();
 
     bool getIsGooseHere() const;
@@ -43,6 +42,8 @@ private:
     void resetTokens() const;
 
     void takeBoat() const;
+
+    void dropItem(const itemType &item) const;
 };
 
 
