@@ -19,7 +19,7 @@ int main() {
         parser *commandObj = new parser;
         //This is where we'll get the string from Matt's console
         //Replace string with object from console
-        std::string commandIn("look at white pillar");
+        std::string commandIn("use rope on white pillar");
 
         cout << "Testing parser values before and after..." << endl;
         cout << "Command in main function: " << commandIn << endl;

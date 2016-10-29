@@ -84,7 +84,29 @@ void parser::getSubject(parser *parser1) {
     }
 }
 void parser::getObject(parser *parser1) {
-
+    if(parser1->cmdVector[2] == "")
+    {
+        parser1->object = "";
+        return;
+    }else if(parser1->cmdVector[2] == "on"){
+        if (cmdVector[3] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
+            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
+            cout << "setting subject value to " << cmdVector[4] << endl;
+            parser1->object = cmdVector[4];
+            return;
+        }
+        parser1->object = parser1->cmdVector[3];
+        return;
+    }else if(parser1->cmdVector[3] == "on") {
+        if (cmdVector[4] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
+            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
+            cout << "setting subject value to " << cmdVector[4] << endl;
+            parser1->object = cmdVector[5];
+            return;
+        }
+        parser1->object = parser1->cmdVector[4];
+        return;
+    }
 }
 void parser::printHelp() {
     cout << "Command options and structure" << endl
@@ -109,5 +131,5 @@ void parser::printHelp() {
          << "=> Pretty sure you know what this one does..." << endl
          << endl;
     return;
-};
+}
 
