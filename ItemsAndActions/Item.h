@@ -6,8 +6,21 @@
 #define FINALADVENTUREPROJECT_ITEM_H
 #include <iostream>
 
-enum itemType {PLAYER, NORTH, SOUTH, EAST, WEST,
-    WATER, SHIH_TZU, NON_EXIST, FOX_TOKEN,BEAN_TOKEN,G_BOAT,GOOSE_TOKEN,TOKEN_DOOR, NOTHING};
+enum itemType {
+    //Basic Types of "Items" needed.
+    PLAYER, NORTH, SOUTH, EAST, WEST, NOTHING,
+
+    //Items not used for anything currently.
+    WATER, SHIH_TZU, NON_EXIST,
+
+    //Items in "Green Room One"
+    FOX_TOKEN, BEAN_TOKEN, G_BOAT, GOOSE_TOKEN, TOKEN_DOOR,
+
+    //Three Key Room Items
+    GREEN_KEY, WHITE_KEY, BLUE_KEY
+
+};
+
 class Item {
 private:
     const std::string description;

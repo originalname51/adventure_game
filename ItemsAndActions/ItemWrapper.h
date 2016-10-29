@@ -7,9 +7,15 @@
 #include "Item.h"
 #include "Action.h"
 
-enum itemLocation { PODIUM_ROOM_FLOOR,
+enum itemLocation {
+
+    THREE_KEY_ROOM,
+
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
-    G_ROOM1_SIDE1, G_ROOM1_SIDE2,G_ROOM1_TOKEN_DOOR, BACKPACK,CURRENT, KEY_ROOM };
+
+    G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM1_TOKEN_DOOR,
+
+    BACKPACK,CURRENT, KEY_ROOM };
 
 
 

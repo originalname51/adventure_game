@@ -20,7 +20,7 @@ protected:
     Command    *commands;
 public:
     AbstractRoomAction(ItemTable * iTable, Command * command);
-    virtual ActionResults * Action() = 0;
+    virtual ActionResults * Action();
     virtual ActionResults  * Throw() =0;
     virtual ActionResults   *  Go() =0;
     virtual ActionResults  *  Look()=0;

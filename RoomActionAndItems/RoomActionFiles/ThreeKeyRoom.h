@@ -6,8 +6,27 @@
 #define ITEM_TEST_THREEKEYROOM_H
 
 
-class ThreeKeyRoom {
+#include "../AbstractRoomAction.h"
 
+class ThreeKeyRoom : public AbstractRoomAction{
+
+public:
+    ThreeKeyRoom(ItemTable *iList, Command *commands);
+
+private:
+    ActionResults  *   Throw();
+    ActionResults  *      Go();
+    ActionResults  *    Look();
+    ActionResults  *    Rest();
+    ActionResults  *   Touch();
+    ActionResults  *    Pick();
+    ActionResults  *    Drop();
+    ActionResults  *     Use();
+    ActionResults  *    Open();
+    ActionResults  *   Close();
+//    ActionResults  * Nothing();
+
+    bool isDoorOpen(const itemType &key) const;
 };
 
 

@@ -20,8 +20,7 @@ ActionResults * AbstractRoomAction::Action() {
 
     switch(commands->getAction()) {
         case GO:
-            action = Go();
-            break;
+            return Go();
         case THROW:
             action = Throw();
             break;
