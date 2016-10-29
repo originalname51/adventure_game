@@ -25,9 +25,17 @@ public:
     string object;
     vector<string> cmdVector;
 
+    //Initial constructor and desctructor
     parser();
     ~parser();
+
+    //Print list of possible commands
+    void printHelp();
+
+    //Parse a string object passed in from the console
     void parse(parser *parser1, std::string commandIn);
+
+    //Get each piece of the command
     void getVerb(parser *parser1);
     void getSubject(parser *parser1);
     void getObject(parser *parser1);
