@@ -5,28 +5,36 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <iosfwd>
+
+//#include <../../boost_1_62_0/boost/tokenizer.hpp>
 #include <string>
+#include <sstream>
 #include <stdlib.h>
 #include <iostream>
-#include <sstream>
 #include <vector>
+#include <iterator>
+using namespace std;
 
 class parser {
 
 public:
 
-    std::string cmd;
-    std::string verb;
-    std::string subject;
-    std::string object;
+    string cmd;
+    string verb;
+    string subject;
+    string object;
+    vector<string> cmdVector;
 
     parser();
-    void setCommandIn(parser parser1, std::string commandIn);
-    std::string getCommand(void);
-    void getVerb();
-    void getSubject();
-    void getObject();
+    ~parser();
+    void parse(parser *parser1, std::string commandIn);
+    void getVerb(parser *parser1);
+    void getSubject(parser *parser1);
+    void getObject(parser *parser1);
+
+private:
+    vector<string> splitCommand(parser *parser1);
+    string stringToLower(string input);
 };
 
 
