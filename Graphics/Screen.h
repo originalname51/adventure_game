@@ -14,7 +14,7 @@
 class Screen {
 private:
     int cursor[2];
-    int screenSize[2];
+    int screenSize[2];          /* 0 = Y, 1 = X */
     std::string currentRoom;
     std::string score;
     std::string currentText;
@@ -37,8 +37,14 @@ public:
     Screen(int startScore, std::string startRoom);
 
     // Accessors
-    int getScreenSizeX(){ return screenSize[1]; }
-    int getScreenSizeY(){ return screenSize[0]; }
+    int getScreenSizeX(){
+        updateScreenSize();
+        return screenSize[1];
+    }
+    int getScreenSizeY(){
+        updateScreenSize();
+        return screenSize[0];
+    }
 
     // Mutators
     void setRoom(std::string roomName);

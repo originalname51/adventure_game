@@ -13,6 +13,7 @@
 //#include "Menu.h"
 #include "Animation.h"
 #include "Screen.h"
+#include "GameTitle.h"
 
 class Graphics {
 private:
@@ -20,7 +21,6 @@ private:
     // Menu saveMenu;
     std::vector<Animation *> animations;
     Screen screen;
-    bool DEBUG;
 public:
     // Default Constructor
     Graphics();

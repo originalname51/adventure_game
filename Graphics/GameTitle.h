@@ -12,7 +12,11 @@
 #include "Screen.h"
 
 #define FRAMES_PER_SECOND 24
-#define MICROSECOND 1000000
+#define MICROSECONDS_PER_SECOND 1000000
+#define LEFT 0
+#define RIGHT 1
+#define DOWN 1
+#define UP 0
 
 struct word{
     std::string text;
@@ -33,6 +37,7 @@ private:
     void moveInText(Screen &screen, int color);
     void drawBorder(Screen &screen, int color);
     void wipeTitle(Screen &screen, int color1, int color2);
+    int calculateNewPosition(int currentPos, int animationLength, int start, int finish, bool direction);
 
 public:
     // Constructor
