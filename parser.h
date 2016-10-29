@@ -28,11 +28,13 @@ public:
     parser();
     ~parser();
     void parse(parser *parser1, std::string commandIn);
+    void getVerb(parser *parser1);
+    void getSubject(parser *parser1);
+    void getObject(parser *parser1);
+
+private:
     vector<string> splitCommand(parser *parser1);
     string stringToLower(string input);
-    void getVerb();
-    void getSubject();
-    void getObject();
 };
 
 

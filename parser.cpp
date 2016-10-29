@@ -11,12 +11,9 @@ void parser::parse(parser *parser1, string commandIn) {
 
     parser1->cmdVector = parser1->splitCommand(parser1);
 
-//    cout << "parser1.cmd value: " << parser1->cmd << endl;
-//    cout << "Below is each element of the command vector:" << endl;
-//    for(unsigned i; i < parser1->cmdVector.size(); i++){
-//        cout << "parser1.cmdVector value[" << i << "]:" << parser1->cmdVector[i] << endl;
-//    }
-
+    parser1->getVerb(parser1);
+    parser1->getSubject(parser1);
+    if((parser1->cmdVector.size()) > 2)parser1->getObject(parser1);
 
 }
 
@@ -48,5 +45,17 @@ string parser::stringToLower(string input) {
 
 parser::~parser() {
     cout << "Parser deconstruction successful." << endl;
+}
+
+void parser::getVerb(parser *parser1) {
+
+}
+
+void parser::getSubject(parser *parser1) {
+
+}
+
+void parser::getObject(parser *parser1) {
+
 };
 
