@@ -14,6 +14,7 @@ Screen::Screen() {
     cursor[1] = 0;  // X
     score = "0";
     currentRoom = " ";
+    colorCounter = 1;
 
     // Initialize the ncurses screen
     initscr();
@@ -39,6 +40,7 @@ Screen::Screen(int startScore, std::string startRoom) {
     cursor[1] = 0;  // X
     score = std::to_string(startScore);
     currentRoom = startRoom;
+    colorCounter = 1;
 
     // Initialize the ncurses screen
     initscr();
@@ -146,12 +148,14 @@ std::string Screen::getInput() {
 }
 
 bool Screen::refreshScreen() {
+    updateScreenSize();
     wrefresh(animationScreen);
 
     return true;
 }
 
 bool Screen::clearScreen() {
+    updateScreenSize();
     wclear(animationScreen);
     return true;
 }
@@ -192,8 +196,55 @@ bool Screen::endAnimation() {
     return true;
 }
 
+int Screen::createColor(short foregroundColor, short backgroundColor) {
+    init_pair(static_cast<short>(colorCounter), foregroundColor, backgroundColor);
+
+    colorCounter++;
+
+    return colorCounter;
+}
+
+bool Screen::turnAttrOn(int attribute) {
+    wattron(animationScreen, attribute);
+
+    return true;
+}
+
+bool Screen::turnAttrOff(int attribute) {
+    wattroff(animationScreen, attribute);
+
+    return true;
+}
+
+bool Screen::printString(std::string text, int y, int x) {
+    char letter[1];
+
+    // Check for valid start coordinates
+    if(y > getScreenSizeY() || x > getScreenSizeX()){
+        return false;
+    }
+    else {
+        // Ensure that printed text is not off the screen
+        for(unsigned int i = 0; i < text.length(); i++){
+            letter[0] = text[i];
+            mvwprintw(animationScreen, y, x, letter);
+
+            // Move the x position
+            x++;
+
+            // Check for a valid x
+            if(x > getScreenSizeX()){
+                break;
+            }
+        }
+        return true;
+    }
+}
+
 bool Screen::testAnimation() {
     std::string text = "Boom!";
+    int colorPair1 = -1;
+    int colorPair2 = -1;
     // Animation mode assumed to be on
 
     // Clear the animation screen
@@ -201,20 +252,20 @@ bool Screen::testAnimation() {
     refreshScreen();
 
     // Set up some colors
-    init_pair(1, COLOR_RED, COLOR_WHITE);
-    init_pair(2, COLOR_WHITE, COLOR_RED);
+    colorPair1 = createColor(COLOR_RED, COLOR_WHITE);
+    colorPair2 = createColor(COLOR_WHITE, COLOR_RED);
 
     // Print some red text
     for(int i = 0; i < 200; i++){
-        wattron(animationScreen, COLOR_PAIR(1));
+        wattron(animationScreen, COLOR_PAIR(colorPair1));
         mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
         refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(1));
+        wattroff(animationScreen, COLOR_PAIR(colorPair1));
         usleep(1000);
-        wattron(animationScreen, COLOR_PAIR(2));
+        wattron(animationScreen, COLOR_PAIR(colorPair2));
         mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
         refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(2));
+        wattroff(animationScreen, COLOR_PAIR(colorPair2));
         usleep(1000);
     }
 
@@ -255,13 +306,3 @@ bool Screen::clearWindow(WINDOW *window) {
 
     return true;
 }
-
-
-
-
-
-
-
-
-
-
