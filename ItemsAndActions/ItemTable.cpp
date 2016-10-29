@@ -18,7 +18,8 @@ void ItemTable::populateMap(){
 
     GreenRoomOne();
 
-    ItemWrapper *      Player = new ItemWrapper(Item("PLAYER", PLAYER), G_ROOM1_SIDE1);
+    ItemWrapper *      player = new ItemWrapper(Item("PLAYER", PLAYER), G_ROOM1_SIDE1);
+    items[PLAYER] = player;
 
 }
 void ItemTable::GreenRoomOne(){

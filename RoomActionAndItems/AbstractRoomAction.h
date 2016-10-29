@@ -19,7 +19,8 @@ protected:
     ItemTable  *itemList;
     Command    *commands;
 public:
-    ActionResults * AbstractRoomAction::Action();
+    AbstractRoomAction(ItemTable * iTable, Command * command);
+    virtual ActionResults * Action() = 0;
     virtual ActionResults  * Throw() =0;
     virtual ActionResults   *  Go() =0;
     virtual ActionResults  *  Look()=0;

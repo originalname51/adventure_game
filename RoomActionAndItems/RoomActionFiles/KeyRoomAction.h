@@ -13,20 +13,19 @@
 class KeyRoomAction: public AbstractRoomAction {
 
 public:
-    KeyRoomAction();
     KeyRoomAction(ItemTable *iList, Command *commands);
 
 private:
     ActionResults  *   Throw();
     ActionResults  *      Go();
     ActionResults  *    Look();
-    ActionResults  *    Rest();
-    ActionResults  *   Touch();
+//    ActionResults  *    Rest();
+//   ActionResults  *   Touch();
     ActionResults  *    Pick();
     ActionResults  *    Drop();
     ActionResults  *     Use();
-    ActionResults  *    Open();
-    ActionResults  *   Close();
+//    ActionResults  *    Open();
+//    ActionResults  *   Close();
     ActionResults  * Nothing();
 
     bool getIsGooseHere() const;
@@ -36,6 +35,14 @@ private:
     bool itemInRoom(itemType item) const;
 
     bool hasAToken() const;
+
+    bool foxEatsGoose() const;
+
+    bool gooseEatsBean() const;
+
+    void resetTokens() const;
+
+    void takeBoat() const;
 };
 
 

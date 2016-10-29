@@ -5,7 +5,7 @@
 #include "ItemWrapper.h"
 
 ItemWrapper::ItemWrapper(Item item, itemLocation l) : classItem(item), location(l),
-defaultAction(Action(NOTHING)), state(DEFAULT){}
+defaultAction(Action(NO_ACTION)), state(DEFAULT){}
 
 ItemWrapper::ItemWrapper(Item item, itemLocation l, Action d) : classItem(item), location(l)
 , defaultAction(d), state(DEFAULT){}

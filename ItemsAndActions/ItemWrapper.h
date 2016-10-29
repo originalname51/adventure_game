@@ -9,10 +9,9 @@
 
 enum itemLocation { PODIUM_ROOM_FLOOR,
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
-    G_ROOM1_SIDE1, G_ROOM1_SIDE2,G_ROOM1_TOKEN_DOOR, BACKPACK };
+    G_ROOM1_SIDE1, G_ROOM1_SIDE2,G_ROOM1_TOKEN_DOOR, BACKPACK,CURRENT, KEY_ROOM };
 
-enum itemType {PLAYER, NORTH, SOUTH, EAST, WEST,
-    WATER, SHIH_TZU, NON_EXIST, FOX_TOKEN,BEAN_TOKEN,GOOSE_TOKEN,TOKEN_DOOR};
+
 
 enum itemState { DEFAULT,
     SPECIAL, CHANGED, ON};
@@ -20,9 +19,9 @@ enum itemState { DEFAULT,
 class ItemWrapper {
 
 private:
-    const Item   classItem;
+    Item   classItem;
     itemLocation location;
-    const Action defaultAction;
+    Action defaultAction;
     itemState    state;
     std::string  itemName;
 

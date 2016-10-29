@@ -4,13 +4,13 @@
 
 #include "KeyRoomAction.h"
 
-KeyRoomAction::KeyRoomAction(ItemTable *iList, Command *commands) : itemList(iList), commands(commands) {}
+KeyRoomAction::KeyRoomAction(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
 
 ActionResults *KeyRoomAction::Throw() {
 
     std::string information;
 
-    if (commands->getMainItem() != BACKPACK) {
+    if (itemList->getValue(commands->getMainItem())->getLocation() != BACKPACK) {
         information = "You can not throw an item that you do not currently "
                 "have in your backpack. Pick up item in order to throw it.";
         ActionResults *results = new ActionResults(CURRENT, information);
@@ -34,6 +34,8 @@ ActionResults *KeyRoomAction::Throw() {
                     information = "Throwing the token does nothing";
                 }
             }
+            break;
+        default:
             break;
 
         case GOOSE_TOKEN:
@@ -124,6 +126,62 @@ ActionResults *KeyRoomAction::Go() {
     return results;
 }
 
+ActionResults  *    KeyRoomAction::Drop() {
+    std::string information;
+    itemType item = commands->getMainItem();
+
+}
+
+ActionResults *KeyRoomAction::Use() {
+    std::string information;
+
+    itemType item = commands->getMainItem();
+
+    switch(item) {
+        case G_BOAT :
+            information = "You take the boat.";
+            takeBoat();
+            if(foxEatsGoose()) {
+                information = "The fox token consumed the goose token."
+                        "all tokens have been reset. Try again!";
+                resetTokens();
+            }
+            else if(gooseEatsBean()) {
+                information = "The goose token consumed the bean token."
+                        "All tokens have been reset. Try again!";
+                resetTokens();
+            }
+            break;
+        default:
+            information = "This item can not be used here.";
+        }
+    return new ActionResults(itemList->getValue(PLAYER)->getLocation(), information);
+    }
+
+void KeyRoomAction::takeBoat() const {
+    if (itemList->getValue(PLAYER)->getLocation() == G_ROOM1_SIDE1) {
+                itemList->getValue(PLAYER)->setLocation(G_ROOM1_SIDE2);
+            }
+            else {
+                itemList->getValue(PLAYER)->setLocation(G_ROOM1_SIDE1);
+            }
+}
+
+void KeyRoomAction::resetTokens() const {
+    itemList->getValue(FOX_TOKEN)->setLocation(G_ROOM1_SIDE1);
+    itemList->getValue(GOOSE_TOKEN)->setLocation(G_ROOM1_SIDE1);
+    itemList->getValue(BEAN_TOKEN)->setLocation(G_ROOM1_SIDE1);
+}
+
+bool KeyRoomAction::gooseEatsBean() const {
+    return itemList->getValue(GOOSE_TOKEN)->getLocation() == itemList->getValue(BEAN_TOKEN)->getLocation()
+           && itemList->getValue(PLAYER)->getLocation() != itemList->getValue(BEAN_TOKEN)->getLocation();
+}
+
+bool KeyRoomAction::foxEatsGoose() const {
+    return itemList->getValue(FOX_TOKEN)->getLocation() == itemList->getValue(GOOSE_TOKEN)->getLocation()
+           && itemList->getValue(PLAYER)->getLocation() != itemList->getValue(GOOSE_TOKEN)->getLocation();
+}
 
 ActionResults *KeyRoomAction::Pick() {
     std::string information;

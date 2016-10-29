@@ -12,6 +12,8 @@ ActionResults AbstractRoomAction::Help(){
     return  ActionResults(CURRENT, help);
 
 }
+
+AbstractRoomAction::AbstractRoomAction(ItemTable *iList, Command *commands) : itemList(iList), commands(commands) {}
 ActionResults * AbstractRoomAction::Action() {
 
     ActionResults * action;
@@ -47,13 +49,13 @@ ActionResults * AbstractRoomAction::Action() {
         case CLOSE:
             action = Close();
             break;
-        case NOTHING:
+        case NO_ACTION:
      //       action = Nothing();
             break;
         default:
             assert(false); //blow up program is no relevant action.
             break;
-
+            return action;
     }
-    return action;
+    return new ActionResults(CURRENT,"Program is broken in Action() class");
 }

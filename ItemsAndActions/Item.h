@@ -5,9 +5,9 @@
 #ifndef FINALADVENTUREPROJECT_ITEM_H
 #define FINALADVENTUREPROJECT_ITEM_H
 #include <iostream>
-#include "ItemWrapper.h"
 
-
+enum itemType {PLAYER, NORTH, SOUTH, EAST, WEST,
+    WATER, SHIH_TZU, NON_EXIST, FOX_TOKEN,BEAN_TOKEN,G_BOAT,GOOSE_TOKEN,TOKEN_DOOR, NOTHING};
 class Item {
 private:
     const std::string description;
