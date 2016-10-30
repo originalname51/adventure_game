@@ -28,6 +28,10 @@ private:
 //    ActionResults  * Nothing();
 
     bool isDoorOpen(const itemType &key) const;
+
+    bool hasAKey() const;
+
+    void pickUpItem(const itemType &item, std::string &information) const;
 };
 
 

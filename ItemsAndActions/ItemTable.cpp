@@ -28,7 +28,7 @@ void ItemTable::populateMap(){
 
 void ItemTable::ThreeKeyRoom() {
 
-    ItemWrapper * greenKey = new ItemWrapper(Item("Green Key", GREEN_KEY), BACKPACK);
+    ItemWrapper * greenKey = new ItemWrapper(Item("Green Key", GREEN_KEY), THREE_KEY_ROOM);
     ItemWrapper * whiteKey = new ItemWrapper(Item("White Key", WHITE_KEY), THREE_KEY_ROOM);
     ItemWrapper *  blueKey = new ItemWrapper(Item("Blue Key", BLUE_KEY), THREE_KEY_ROOM);
 

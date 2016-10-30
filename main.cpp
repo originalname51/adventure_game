@@ -93,7 +93,7 @@ Room *newRoomFactory(itemLocation location, ItemTable *pTable) {
         case G_ROOM1_SIDE1:
         case G_ROOM1_SIDE2:
             return new GreenRoomOne("greenRoomOne", pTable, true);
-        case KEY_ROOM :
+        case THREE_KEY_ROOM :
             return new ThreeKeyRoom("keyroom",pTable, true);
         default:
             assert(false);
@@ -106,7 +106,7 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
         case G_ROOM1_SIDE1:
         case G_ROOM1_SIDE2:
             return new GreenRoomOneAction(iTable);
-        case KEY_ROOM :
+        case THREE_KEY_ROOM :
             return new ThreeKeyRoomAction(iTable);
         default:
             return new ThreeKeyRoomAction(iTable);

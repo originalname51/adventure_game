@@ -10,17 +10,17 @@ GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList) : AbstractRoomAction(iL
 
 ActionResults *GreenRoomOneAction::Close() {
 
-    return new ActionResults(CURRENT, "No action taken.");
+    return new ActionResults(CURRENT, "Nothing to Close.");
 }
 
 ActionResults *GreenRoomOneAction::Open() {
 
-    return new ActionResults(CURRENT, "No action taken.");
+    return new ActionResults(CURRENT, "You can't open that here.");
 }
 
 ActionResults *GreenRoomOneAction::Touch() {
 
-return new ActionResults(CURRENT, "No action taken.");
+return new ActionResults(CURRENT, "No touching.");
 }
 
 
@@ -174,12 +174,12 @@ ActionResults *GreenRoomOneAction::Use() {
             information = "You take the boat.";
             takeBoat();
             if(foxEatsGoose()) {
-                information = "The fox token consumed the goose token."
+                information = "You take the boat. The fox token consumed the goose token."
                         "all tokens have been reset. Try again!";
                 resetTokens();
             }
             else if(gooseEatsBean()) {
-                information = "The goose token consumed the bean token."
+                information = "You take the boat. The goose token consumed the bean token."
                         "All tokens have been reset. Try again!";
                 resetTokens();
             }

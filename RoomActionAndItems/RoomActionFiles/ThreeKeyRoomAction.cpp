@@ -54,8 +54,38 @@ ActionResults  *   ThreeKeyRoomAction::Touch(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
 ActionResults  *    ThreeKeyRoomAction::Pick(){
-    return new ActionResults(CURRENT,"Not implemented yet");
+    itemType item = commands->getMainItem();
+    std::string information;
+    switch(item) {
+        case GREEN_KEY :
+        case WHITE_KEY :
+        case BLUE_KEY :
+            if(!hasAKey()) {
+                pickUpItem(item, information);
+            } else {
+                information = "Can only have one key at a time.";
+            }
+        default:
+            if(itemList->getValue(item)->getLocation() == THREE_KEY_ROOM) {
+                pickUpItem(item, information);
+            } else {
+                information = "Can't pick item up, it's not in this room!";
+            }
+    }
+    return new ActionResults(CURRENT,information);
 }
+
+void ThreeKeyRoomAction::pickUpItem(const itemType &item, std::string &information) const {
+    itemList->getValue(item)->setLocation(BACKPACK);
+    information = "You pick up the " + itemList->getValue(item)->getItemName();
+}
+
+bool ThreeKeyRoomAction::hasAKey() const {
+    return itemList->getValue(GREEN_KEY)->getLocation() != BACKPACK
+           && itemList->getValue(WHITE_KEY)->getLocation() != BACKPACK
+           && itemList->getValue(BLUE_KEY)->getLocation() != BACKPACK;
+}
+
 ActionResults  *    ThreeKeyRoomAction::Drop(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
