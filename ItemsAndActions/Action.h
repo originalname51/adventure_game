@@ -4,8 +4,7 @@
 
 #ifndef FINALADVENTUREPROJECT_ACTION_H
 #define FINALADVENTUREPROJECT_ACTION_H
-
-enum actions { GO, THROW, NOTHING };
+enum actions { GO, THROW, LOOK, REST, TOUCH, PICK, DROP, USE, OPEN, CLOSE, NO_ACTION };
 
 class Action {
 private:

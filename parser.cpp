@@ -12,16 +12,19 @@ void parser::parse(parser *parser1, string commandIn) {
     parser1->cmdVector = parser1->splitCommand(parser1);
 
     parser1->getVerb(parser1);
+    parser1->getSubject(parser1);
 
     if(parser1->cmdVector.size() <= 0 || parser1->verb == "help") {
         parser1->printHelp();
         parser1->verb = "help";
     }
 
-
-    parser1->getSubject(parser1);
-    if((parser1->cmdVector.size()) > 2)parser1->getObject(parser1);
-
+    if((parser1->cmdVector.size()) >= 2)parser1->getObject(parser1);
+    //Test that values have been correctly assigned to command vector
+    cout << "Below is each element of the command vector:" << endl;
+    for(unsigned i = 0; i < parser1->cmdVector.size(); ++i){
+        cout << "parser1.cmdVector value[" << i << "]:" << parser1->cmdVector[i] << endl;
+    }
     return;
 }
 
@@ -42,7 +45,7 @@ string parser::stringToLower(string input) {
 
     for(unsigned i = 0; i < input.length(); i++) {
         if (isupper(input[i])) {
-            input[i] = tolower(input.at(i));
+            input[i] = tolower(input[i]);
         }
     }
     //cout << "From inside stringToLower " << input << endl;
@@ -56,7 +59,6 @@ void parser::getVerb(parser *parser1) {
 //    "Valid commands include:\n"
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
-    string verb;
     cout << "Setting verb value to " << parser1->cmdVector[0] << endl;
     parser1->verb = parser1->cmdVector[0];
 
@@ -132,4 +134,3 @@ void parser::printHelp() {
          << endl;
     return;
 }
-

@@ -12,26 +12,46 @@ ItemTable::ItemTable(){
 ItemWrapper*  ItemTable::getValue(itemType const &value) {
 return items.find(value)->second;
 assert(false); //will break if no value assigned.
+
 }
 
 void ItemTable::populateMap(){
 
-    /* NORTH, WATER, SHIH_TZU, NON_EXIST */
-    ItemWrapper *north = new ItemWrapper(Item("North", NORTH),
-                                         GO_NORTH);
 
-    ItemWrapper *water = new ItemWrapper(Item("Water", WATER),
-                                      PODIUM_ROOM_FLOOR, Action(THROW));
+    ItemWrapper *      player = new ItemWrapper(Item("PLAYER", PLAYER), THREE_KEY_ROOM);
+    items[PLAYER] = player;
 
-    ItemWrapper *shih_tzu = new ItemWrapper(Item("SHIH_TZU", SHIH_TZU),
-                                       WATER_ROOM_UNDERWATER, Action(THROW));
 
-    /* NORTH, WATER, SHIH_TZU, NON_EXIST */
-    items[NORTH]     = north;
-    items[WATER]     = water;
-    items[SHIH_TZU]  = shih_tzu;
+    GreenRoomOne();
+    ThreeKeyRoom();
+}
+
+void ItemTable::ThreeKeyRoom() {
+
+    ItemWrapper * greenKey = new ItemWrapper(Item("Green Key", GREEN_KEY), BACKPACK);
+    ItemWrapper * whiteKey = new ItemWrapper(Item("White Key", WHITE_KEY), THREE_KEY_ROOM);
+    ItemWrapper *  blueKey = new ItemWrapper(Item("Blue Key", BLUE_KEY), THREE_KEY_ROOM);
+
+    items[GREEN_KEY] = greenKey;
+    items[WHITE_KEY] = whiteKey;
+    items[BLUE_KEY]  = blueKey;
 
 }
+
+void ItemTable::GreenRoomOne(){
+
+    ItemWrapper *       foxToken = new ItemWrapper(Item("Fox Token", FOX_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper *      beanToken = new ItemWrapper(Item("Bean Token", BEAN_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper *     gooseToken = new ItemWrapper(Item("Goose Token", GOOSE_TOKEN), G_ROOM1_SIDE1);
+    ItemWrapper * gRoomTokenDoor = new ItemWrapper(Item("Token Door", TOKEN_DOOR), G_ROOM1_TOKEN_DOOR);
+
+    items[FOX_TOKEN]   = foxToken;
+    items[BEAN_TOKEN]  = beanToken;
+    items[GOOSE_TOKEN] = gooseToken;
+    items[TOKEN_DOOR]  = gRoomTokenDoor;
+}
+
+
 
 ItemTable::~ItemTable(){
     for(auto i : items){

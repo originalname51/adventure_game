@@ -19,17 +19,21 @@ protected:
     ItemTable  *itemList;
     Command    *commands;
 public:
-    virtual ActionResults  Throw() =0;
-    virtual ActionResults     Go() =0;
-    virtual ActionResults    Look()=0;
+    AbstractRoomAction(ItemTable * iTable, Command * command);
+    AbstractRoomAction(ItemTable * iTable);
+    virtual ActionResults * Action();
+    virtual ActionResults  * Throw() =0;
+    virtual ActionResults   *  Go() =0;
+    virtual ActionResults  *  Look()=0;
     ActionResults   Help();
-    virtual ActionResults    Rest()=0;
-    virtual ActionResults   Touch()=0;
-    virtual ActionResults    Pick()=0;
-    virtual ActionResults    Drop()=0;
-    virtual ActionResults     Use()=0;
-    virtual ActionResults    Open()=0;
-    virtual ActionResults   Close()=0;
+    virtual ActionResults   * Rest()=0;
+    virtual ActionResults   * Touch()=0;
+    virtual ActionResults   * Pick()=0;
+    virtual ActionResults   * Drop()=0;
+    virtual ActionResults   *  Use()=0;
+    virtual ActionResults  *  Open()=0;
+    virtual ActionResults *  Close()=0;
+    void setCommands(Command * com);
 
 
 
