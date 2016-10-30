@@ -44,11 +44,8 @@ int main() {
         playerCommand = "go NORTH";
         parser *commandObj = new parser;
         commandObj->parse(commandObj, playerCommand);
-        if(commandObj->item2){
-            command = new Command(commandObj->act,commandObj->item1);
-        }else{
-            command = new Command(commandObj->act,commandObj->item1,commandObj->item2);
-        }
+        command = commandObj->parse(commandObj, playerCommand);
+
 
 
         cout << "commandObj->act: " << commandObj->act << endl;

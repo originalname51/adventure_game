@@ -41,7 +41,7 @@ public:
     void printHelp();
 
     //Parse a string object passed in from the console
-    Command parse(parser *parser1, std::string commandIn);
+    Command* parse(parser *parser1, std::string commandIn);
 
     //Get each piece of the command
     void getVerb(parser *parser1);

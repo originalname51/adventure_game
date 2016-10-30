@@ -14,7 +14,7 @@ parser::parser() {
     Command command(actions, itemType);
     Command command(actions, itemType, itemType);
 };
-Command parser::parse(parser *parser1, string commandIn) {
+Command* parser::parse(parser *parser1, string commandIn) {
 
     parser1->cmd = parser1->stringToLower(commandIn);
 
@@ -40,12 +40,11 @@ Command parser::parse(parser *parser1, string commandIn) {
     if(!(parser1->object.empty())){
         item2 = itemMap.at(parser1->object);
         cout << "item2 value" << item2 << endl;
-        Command command1 = Command(act, item1, item2);
-        return command1;
+        return new Command(act, item1, item2);
     }else{
         cout << "item1 value" << item1 << endl;
-        Command command2 = Command(act, item1);
-        return command2;
+
+        return new Command(act, item1);
     }
 
 }
