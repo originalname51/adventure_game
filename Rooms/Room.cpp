@@ -9,11 +9,14 @@ Room::Room(){};
 Room::Room(std::string rn, ItemTable * itable, bool sld) {
 
     table = itable;
+    displayName = rn;
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();
 }
-
+std::string Room::getRoomName() {
+    return displayName;
+}
 void Room::parseData() {
     std::ifstream myfile(roomName);
     description description = ROOM_STATE_0;

@@ -132,19 +132,19 @@ ActionResults *GreenRoomOneAction::Look() {
 ActionResults *GreenRoomOneAction::Go() {
 
     if (commands->getMainItem() == NORTH) {
-        return new ActionResults(KEY_ROOM, "You go north.");
+        return new ActionResults(CURRENT, "You go north.");
     }
     if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(KEY_ROOM, "You go south.");
+        return new ActionResults(CURRENT, "You go south.");
     }
     if (commands->getMainItem() == EAST) {
-        return new ActionResults(KEY_ROOM, "You go east.");
+        return new ActionResults(CURRENT, "You go east.");
     }
     if (commands->getMainItem() == WEST) {
-        return new ActionResults(KEY_ROOM, "You go west.");
+        return new ActionResults(CURRENT, "The path is blocked.\n");
     }
 
-    return new ActionResults(CURRENT,"");
+    return new ActionResults(CURRENT,"You can't go there.");
 }
 
 ActionResults  *    GreenRoomOneAction::Drop() {
@@ -187,7 +187,7 @@ ActionResults *GreenRoomOneAction::Use() {
         default:
             information = "This item can not be used here.";
         }
-    return new ActionResults(itemList->getValue(PLAYER)->getLocation(), information);
+    return new ActionResults(CURRENT, information);
     }
 
 

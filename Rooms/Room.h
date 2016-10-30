@@ -31,11 +31,13 @@ protected:
     std::string roomName;
     ItemTable * table;
     bool showLongDescription;
+    std::string displayName;
     void parseData();
 public:
     Room();
     Room(std::string, ItemTable *iList, bool f);
     virtual std::string getDescription()=0;
+    std::string getRoomName();
 };
 
 

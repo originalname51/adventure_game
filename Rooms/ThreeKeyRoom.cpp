@@ -5,6 +5,7 @@
 #include "ThreeKeyRoom.h"
 ThreeKeyRoom::ThreeKeyRoom(std::string rn, ItemTable *iList, bool sld) {
     table = iList;
+    displayName = "The start room.";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();

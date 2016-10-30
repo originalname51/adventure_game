@@ -6,77 +6,99 @@
 #include "RoomActionAndItems/AbstractRoomAction.h"
 #include "RoomActionAndItems/RoomActionFiles/ThreeKeyRoomAction.h"
 #include "RoomActionAndItems/RoomActionFiles/GreenRoomOneAction.h"
-
+#include "Rooms/GreenRoomOne.h"
+#include "Graphics/Graphics.h"
 AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *pTable);
-
 Room *newRoomFactory(itemLocation location, ItemTable *pTable);
+void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
+
 
 int main() {
-
-
-    ItemTable *items = new ItemTable();
-
-    std::string KEYROOM = "keyroom";
-
-    Room    * room = new ThreeKeyRoom(KEYROOM, items, true);
-    parser  * parsingTool = new parser();
-
-    AbstractRoomAction * roomAction;
-
-    Command * command;
-
+    //initialize game.
     bool endGame = false;
-
+    ItemTable *items = new ItemTable();
+    //   Graphics graphics(0, "keyroom");
+    Room    * room = new ThreeKeyRoom("keyroom", items, true);
+    parser  * parsingTool = new parser();
+    AbstractRoomAction * roomAction;
+    Command * command;
     std::string playerCommand = "";
-
     ActionResults *actionResults;
-    roomAction = new ThreeKeyRoom(items);
+    int score = 0;
+
+
+ //  Display Game Title animation
+ //  graphics.animation(std::string("GameTitle"));
+
+
+//    graphics.displayText("Welcome to Private Keys Members Only. Please type"
+//                                 " a command. We are ignoring it.");
+    std::cout << "Welcome to Private Keys Members Only. Please type"
+            " a command. We are ignoring it.\n";
+
+    roomAction = new ThreeKeyRoomAction(items);
     std::cout << room->getDescription();
+
     while(!endGame) {
 
-        std::cout << "Please type in command. 'We are ignoring it.'" << std::endl;
-        std::cin >> playerCommand;
-        command = new Command(GO,WEST);
+        std::cin >> playerCommand; //delete this after fx and parser sorted out.
+        //command = parser.parse(playerCommand).
+        command = new Command(GO,WEST); //delete when parser is figured out.
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
-        if (actionResults->getRoom() != CURRENT) {
 
-            items->getValue(PLAYER)->setLocation(actionResults->getRoom());
+        //Display special effects as required.
+        if(actionResults->getSpecialEffect() != NONE) {
+            //Quick method that does a switch statement to figure out which special effect to call.
+        }
+
+        if (actionResults->getRoom() != CURRENT) {
+            //Room has changed, set up a new room and call description of it.
+            setPlayerLocation(items, actionResults);
+            free(room);
+            free(roomAction);
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
+            std::cout << room->getDescription();
+            /*graphics.displayText(room->getDescription());
+            graphics.setRoom(room->getRoomName());*/
 
+        } else {
+            /*
+          room not changed, inform user of status of his action.
+         graphics.displayText(actionResults->getReturnDescription()); */
+            std::cout << actionResults->getReturnDescription();
         }
-        items->getValue(PLAYER)->setLocation(actionResults->getRoom());
-            free(command);
-            command = new Command(GO,EAST);
-            roomAction->setCommands(command);
-        std::cout << actionResults->getReturnDescription();
+
+        free(command);
         free(actionResults);
-        actionResults = roomAction->Action();
-        std::cout << actionResults->getReturnDescription();
-        std::cout<< "executing command " + playerCommand;
-        endGame = true;
+
+        /*
+         * Here we will have logic to see if end game conditions have been met.
+         * */
+        endGame = false;
     }
+    //game over stuff goes here.
 
-
-
-//    std::cout << "Hello";
     free(roomAction);
-    free(actionResults);
     free(room);
     free(parsingTool);
-
+    return 0;
 }
+
+void setPlayerLocation(ItemTable *items, ActionResults *actionResults) { items->getValue(PLAYER)->setLocation(actionResults->getRoom()); }
 
 Room *newRoomFactory(itemLocation location, ItemTable *pTable) {
     switch(location) {
         case G_ROOM1_SIDE1:
         case G_ROOM1_SIDE2:
-            //return new ()
+            return new GreenRoomOne("greenRoomOne", pTable, true);
         case KEY_ROOM :
             return new ThreeKeyRoom("keyroom",pTable, true);
+        default:
+            assert(false);
+            break;
     }
-    assert(false);
 }
 
 AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
@@ -86,7 +108,9 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
             return new GreenRoomOneAction(iTable);
         case KEY_ROOM :
             return new ThreeKeyRoomAction(iTable);
+        default:
+            return new ThreeKeyRoomAction(iTable);
     }
-    assert(true);
+    assert(false);
 }
 
