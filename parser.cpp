@@ -5,7 +5,16 @@
 #include "parser.h"
 using namespace std;
 
-void parser::parse(parser *parser1, string commandIn) {
+parser::parser() {
+    loadActionMap();
+    loadItemMap();
+//    actions act = NO_ACTION;
+//    itemType item1 = NON_EXIST;
+//    itemType item2 = NON_EXIST;
+    Command command(actions, itemType);
+    Command command(actions, itemType, itemType);
+};
+Command parser::parse(parser *parser1, string commandIn) {
 
     parser1->cmd = parser1->stringToLower(commandIn);
 
@@ -19,17 +28,68 @@ void parser::parse(parser *parser1, string commandIn) {
         parser1->verb = "help";
     }
 
-    if((parser1->cmdVector.size()) >= 2)parser1->getObject(parser1);
+    if((parser1->cmdVector.size()) > 2)parser1->getObject(parser1);
     //Test that values have been correctly assigned to command vector
     cout << "Below is each element of the command vector:" << endl;
     for(unsigned i = 0; i < parser1->cmdVector.size(); ++i){
         cout << "parser1.cmdVector value[" << i << "]:" << parser1->cmdVector[i] << endl;
     }
-    return;
+
+    act = actionMap.at(parser1->verb);
+    item1 = itemMap.at(parser1->subject);
+    if(!(parser1->object.empty())){
+        item2 = itemMap.at(parser1->object);
+        cout << "item2 value" << item2 << endl;
+        Command command1 = Command(act, item1, item2);
+        return command1;
+    }else{
+        cout << "item1 value" << item1 << endl;
+        Command command2 = Command(act, item1);
+        return command2;
+    }
+
 }
 
-parser::parser(){};
 
+void parser::loadItemMap() {
+    static std::map< string, itemType > itemMap = {
+            {"player", PLAYER},
+            {"north", NORTH},
+            {"south", SOUTH},
+            {"east", EAST},
+            {"west", WEST},
+            {"nothing", NOTHING},
+            {"water", WATER},
+            {"shihtzu", SHIH_TZU},
+            {"nonexist", NON_EXIST},
+            {"foxtoken", FOX_TOKEN},
+            {"beantoken", BEAN_TOKEN},
+            {"boat", G_BOAT},
+            {"goosetoken", GOOSE_TOKEN},
+            {"tokendoor", TOKEN_DOOR},
+            {"greenkey", GREEN_KEY},
+            {"whitekey", WHITE_KEY},
+            {"bluekey", BLUE_KEY}
+
+    };
+}
+void parser::loadActionMap() {
+    static std::map< string, actions > actionMap = {
+            {"go", GO},
+            {"throw", THROW},
+            {"look", LOOK},
+            {"examine", LOOK},
+            {"rest", REST},
+            {"touch", TOUCH},
+            {"pickup", PICK},
+            {"drop", DROP},
+            {"use", USE},
+            {"open", OPEN},
+            {"close", OPEN},
+            {"", NO_ACTION}
+    };
+
+}
 vector<string> parser::splitCommand(parser *parser1) {
 
     stringstream ss(parser1->cmd);

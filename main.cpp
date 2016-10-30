@@ -21,7 +21,7 @@ int main() {
     Room    * room = new ThreeKeyRoom("keyroom", items, true);
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
-    Command * command;
+    Command *command;
     std::string playerCommand = "";
     ActionResults *actionResults;
     int score = 0;
@@ -40,16 +40,22 @@ int main() {
 
     while(!endGame) {
 
-        playerCommand = "go north"; //The getText function in graphics will pass a string object
+        //The getText function in graphics will pass a string object
+        playerCommand = "go NORTH";
         parser *commandObj = new parser;
         commandObj->parse(commandObj, playerCommand);
+        if(commandObj->item2){
+            command = new Command(commandObj->act,commandObj->item1);
+        }else{
+            command = new Command(commandObj->act,commandObj->item1,commandObj->item2);
+        }
 
-        cout << "commandObj->verb: " << commandObj->verb << endl;
-        cout << "commandObj->subject: " << commandObj->subject << endl;
-        cout << "commandObj->object: " << commandObj->object << endl;
-        //command = new Command(commandObj->verb, commandObj->subject); //This is the current form. We need to convert these
+
+        cout << "commandObj->act: " << commandObj->act << endl;
+        cout << "commandObj->item1: " << commandObj->item1 << endl;
+        //cout << "commandObj->item2: " << commandObj->item2 << endl;
         //string values to action and item types.
-        command = new Command(GO,WEST); //delete when parser is figured out.
+        //command = new Command(GO,WEST); //delete when parser is figured out.
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
@@ -78,6 +84,7 @@ int main() {
 
         free(command);
         free(actionResults);
+        free(commandObj);
 
         /*
          * Here we will have logic to see if end game conditions have been met.
