@@ -2,31 +2,33 @@
 // Created by rob on 10/10/16.
 //
 
-#include "KeyRoomAction.h"
+#include "GreenRoomOneAction.h"
 
-KeyRoomAction::KeyRoomAction(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
+GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
 
-ActionResults *KeyRoomAction::Close() {
+GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList) : AbstractRoomAction(iList) {}
 
-    return new ActionResults(CURRENT, "No action taken.");
-}
-
-ActionResults *KeyRoomAction::Open() {
+ActionResults *GreenRoomOneAction::Close() {
 
     return new ActionResults(CURRENT, "No action taken.");
 }
 
-ActionResults *KeyRoomAction::Touch() {
+ActionResults *GreenRoomOneAction::Open() {
+
+    return new ActionResults(CURRENT, "No action taken.");
+}
+
+ActionResults *GreenRoomOneAction::Touch() {
 
 return new ActionResults(CURRENT, "No action taken.");
 }
 
 
-ActionResults *KeyRoomAction::Rest() {
+ActionResults *GreenRoomOneAction::Rest() {
     return new ActionResults(CURRENT,"You get some much needed shut eye.");
 }
 
-ActionResults *KeyRoomAction::Throw() {
+ActionResults *GreenRoomOneAction::Throw() {
 
     std::string information;
 
@@ -88,7 +90,7 @@ ActionResults *KeyRoomAction::Throw() {
     return new ActionResults(CURRENT, information);
 }
 
-ActionResults *KeyRoomAction::Look() {
+ActionResults *GreenRoomOneAction::Look() {
 
     std::string information;
 
@@ -127,7 +129,7 @@ ActionResults *KeyRoomAction::Look() {
 
 }
 
-ActionResults *KeyRoomAction::Go() {
+ActionResults *GreenRoomOneAction::Go() {
 
     if (commands->getMainItem() == NORTH) {
         return new ActionResults(KEY_ROOM, "You go north.");
@@ -145,7 +147,7 @@ ActionResults *KeyRoomAction::Go() {
     return new ActionResults(CURRENT,"");
 }
 
-ActionResults  *    KeyRoomAction::Drop() {
+ActionResults  *    GreenRoomOneAction::Drop() {
     std::string information;
     itemType item = commands->getMainItem();
 
@@ -159,11 +161,11 @@ ActionResults  *    KeyRoomAction::Drop() {
     return new ActionResults(CURRENT, information);
 }
 
-void KeyRoomAction::dropItem(const itemType &item) const {
+void GreenRoomOneAction::dropItem(const itemType &item) const {
     itemList->getValue(item)->setLocation(itemList->getValue(PLAYER)->getLocation());
 }
 
-ActionResults *KeyRoomAction::Use() {
+ActionResults *GreenRoomOneAction::Use() {
     std::string information;
     itemType item = commands->getMainItem();
 
@@ -189,7 +191,7 @@ ActionResults *KeyRoomAction::Use() {
     }
 
 
-void KeyRoomAction::takeBoat() const {
+void GreenRoomOneAction::takeBoat() const {
     if (itemList->getValue(PLAYER)->getLocation() == G_ROOM1_SIDE1) {
                 itemList->getValue(PLAYER)->setLocation(G_ROOM1_SIDE2);
             }
@@ -198,23 +200,23 @@ void KeyRoomAction::takeBoat() const {
             }
 }
 
-void KeyRoomAction::resetTokens() const {
+void GreenRoomOneAction::resetTokens() const {
     itemList->getValue(FOX_TOKEN)->setLocation(G_ROOM1_SIDE1);
     itemList->getValue(GOOSE_TOKEN)->setLocation(G_ROOM1_SIDE1);
     itemList->getValue(BEAN_TOKEN)->setLocation(G_ROOM1_SIDE1);
 }
 
-bool KeyRoomAction::gooseEatsBean() const {
+bool GreenRoomOneAction::gooseEatsBean() const {
     return itemList->getValue(GOOSE_TOKEN)->getLocation() == itemList->getValue(BEAN_TOKEN)->getLocation()
            && itemList->getValue(PLAYER)->getLocation() != itemList->getValue(BEAN_TOKEN)->getLocation();
 }
 
-bool KeyRoomAction::foxEatsGoose() const {
+bool GreenRoomOneAction::foxEatsGoose() const {
     return itemList->getValue(FOX_TOKEN)->getLocation() == itemList->getValue(GOOSE_TOKEN)->getLocation()
            && itemList->getValue(PLAYER)->getLocation() != itemList->getValue(GOOSE_TOKEN)->getLocation();
 }
 
-ActionResults *KeyRoomAction::Pick() {
+ActionResults *GreenRoomOneAction::Pick() {
     std::string information;
 
     if (itemInRoom(commands->getMainItem()) ||
@@ -254,25 +256,25 @@ ActionResults *KeyRoomAction::Pick() {
 
 }
 
-bool KeyRoomAction::hasAToken() const {
+bool GreenRoomOneAction::hasAToken() const {
     return itemList->getValue(GOOSE_TOKEN)->getLocation() == BACKPACK
            || itemList->getValue(BEAN_TOKEN)->getLocation() == BACKPACK
            || itemList->getValue(FOX_TOKEN)->getLocation() == BACKPACK;
 }
 
 
-bool KeyRoomAction::itemInRoom(itemType item) const {
+bool GreenRoomOneAction::itemInRoom(itemType item) const {
     return itemList->getValue(item)->getLocation()
            == itemList->getValue(PLAYER)->getLocation();
 }
 
-bool KeyRoomAction::isBeanToken() const {
+bool GreenRoomOneAction::isBeanToken() const {
     return commands->getActedOnItem() == BEAN_TOKEN &&
            itemList->getValue(BEAN_TOKEN)->getLocation()
            == itemList->getValue(PLAYER)->getLocation();
 }
 
-bool KeyRoomAction::getIsGooseHere() const {
+bool GreenRoomOneAction::getIsGooseHere() const {
     return commands->getActedOnItem() == GOOSE_TOKEN &&
            itemList->getValue(GOOSE_TOKEN)->getLocation() == itemList->getValue(PLAYER)->getLocation();
 }

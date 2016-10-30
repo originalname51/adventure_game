@@ -14,6 +14,15 @@ ActionResults AbstractRoomAction::Help(){
 }
 
 AbstractRoomAction::AbstractRoomAction(ItemTable *iList, Command *commands) : itemList(iList), commands(commands) {}
+
+AbstractRoomAction::AbstractRoomAction(ItemTable * iList) : itemList(iList) {};
+
+
+void AbstractRoomAction::setCommands(Command * com) {
+    commands = com;
+
+}
+
 ActionResults * AbstractRoomAction::Action() {
 
     ActionResults * action;

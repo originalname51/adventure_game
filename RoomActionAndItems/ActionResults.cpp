@@ -10,11 +10,11 @@ ActionResults::ActionResults(itemLocation r, std::string t)
 ActionResults::ActionResults(itemLocation r, std::string t, specialEffects s)
         : returnRoom(r), returnText(t), special(s){};
 
-int ActionResults::getRoom(){
+itemLocation ActionResults::getRoom(){
     return returnRoom;
 }
 
-int ActionResults::getSpecialEffect(){
+specialEffects ActionResults::getSpecialEffect(){
     return special;
 }
 const std::string ActionResults::getReturnDescription(){

@@ -20,6 +20,7 @@ protected:
     Command    *commands;
 public:
     AbstractRoomAction(ItemTable * iTable, Command * command);
+    AbstractRoomAction(ItemTable * iTable);
     virtual ActionResults * Action();
     virtual ActionResults  * Throw() =0;
     virtual ActionResults   *  Go() =0;
@@ -32,6 +33,7 @@ public:
     virtual ActionResults   *  Use()=0;
     virtual ActionResults  *  Open()=0;
     virtual ActionResults *  Close()=0;
+    void setCommands(Command * com);
 
 
 

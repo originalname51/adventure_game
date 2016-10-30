@@ -8,10 +8,11 @@
 
 #include "../AbstractRoomAction.h"
 
-class ThreeKeyRoom : public AbstractRoomAction{
+class ThreeKeyRoomAction : public AbstractRoomAction{
 
 public:
-    ThreeKeyRoom(ItemTable *iList, Command *commands);
+    ThreeKeyRoomAction(ItemTable *iList, Command *commands);
+    ThreeKeyRoomAction(ItemTable *iList);
 
 private:
     ActionResults  *   Throw();

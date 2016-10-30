@@ -8,11 +8,11 @@
 
 #include "Room.h"
 
-class KeyRoom : public Room{
+class ThreeKeyRoom : public Room{
 private:
     std::string testing();
 public:
-    KeyRoom(std::string, ItemTable *iList, bool f);
+    ThreeKeyRoom(std::string, ItemTable *iList, bool f);
     std::string getDescription();
 };
 

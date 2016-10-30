@@ -17,8 +17,8 @@ public:
     ActionResults(itemLocation r, std::string t);
     ActionResults(itemLocation r, std::string t, specialEffects s);
 
-    int getRoom();
-    int getSpecialEffect();
+    itemLocation getRoom();
+    specialEffects getSpecialEffect();
     const std::string getReturnDescription();
 
 };

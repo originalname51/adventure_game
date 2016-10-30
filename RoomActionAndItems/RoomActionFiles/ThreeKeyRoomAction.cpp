@@ -2,14 +2,16 @@
 // Created by rob on 10/29/16.
 //
 
-#include "ThreeKeyRoom.h"
+#include "ThreeKeyRoomAction.h"
 
-ThreeKeyRoom::ThreeKeyRoom(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
+ThreeKeyRoomAction::ThreeKeyRoomAction(ItemTable *iList, Command *commands) : AbstractRoomAction(iList,commands) {}
 
-ActionResults  *   ThreeKeyRoom::Throw(){
+ThreeKeyRoomAction::ThreeKeyRoomAction(ItemTable *iList) : AbstractRoomAction(iList) {}
+
+ActionResults  *   ThreeKeyRoomAction::Throw(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *      ThreeKeyRoom::Go(){
+ActionResults  *      ThreeKeyRoomAction::Go(){
 
     itemType direction = commands->getMainItem();
 
@@ -38,32 +40,32 @@ ActionResults  *      ThreeKeyRoom::Go(){
 
 }
 
-bool ThreeKeyRoom::isDoorOpen(const itemType &key) const {
+bool ThreeKeyRoomAction::isDoorOpen(const itemType &key) const {
     return itemList->getValue(key)->getLocation() == BACKPACK;
 }
 
-ActionResults  *    ThreeKeyRoom::Look(){
+ActionResults  *    ThreeKeyRoomAction::Look(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *    ThreeKeyRoom::Rest(){
+ActionResults  *    ThreeKeyRoomAction::Rest(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *   ThreeKeyRoom::Touch(){
+ActionResults  *   ThreeKeyRoomAction::Touch(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *    ThreeKeyRoom::Pick(){
+ActionResults  *    ThreeKeyRoomAction::Pick(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *    ThreeKeyRoom::Drop(){
+ActionResults  *    ThreeKeyRoomAction::Drop(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *     ThreeKeyRoom::Use(){
+ActionResults  *     ThreeKeyRoomAction::Use(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *    ThreeKeyRoom::Open(){
+ActionResults  *    ThreeKeyRoomAction::Open(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
-ActionResults  *   ThreeKeyRoom::Close(){
+ActionResults  *   ThreeKeyRoomAction::Close(){
     return new ActionResults(CURRENT,"Not implemented yet");
 }
 //ActionResults  * ThreeKeyRoom::Nothing();

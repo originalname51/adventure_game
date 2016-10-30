@@ -9,10 +9,11 @@
 #include "../../Command.h"
 #include "../AbstractRoomAction.h"
 
-class KeyRoomAction: public AbstractRoomAction {
+class GreenRoomOneAction: public AbstractRoomAction {
 
 public:
-    KeyRoomAction(ItemTable *iList, Command *commands);
+    GreenRoomOneAction(ItemTable *iList, Command *commands);
+    GreenRoomOneAction(ItemTable *iList);
 
 private:
     ActionResults  *   Throw();
