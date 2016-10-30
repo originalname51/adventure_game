@@ -50,7 +50,7 @@ Command* parser::parse(string commandIn) {
 
 
 void parser::loadItemMap() {
-    static std::map< string, itemType > itemMap = {
+    itemMap = {
             {"player", PLAYER},
             {"north", NORTH},
             {"south", SOUTH},
@@ -72,7 +72,7 @@ void parser::loadItemMap() {
     };
 }
 void parser::loadActionMap() {
-    static std::map< string, actions > actionMap = {
+    actionMap = {
             {"go", GO},
             {"throw", THROW},
             {"look", LOOK},
@@ -80,6 +80,7 @@ void parser::loadActionMap() {
             {"rest", REST},
             {"touch", TOUCH},
             {"pickup", PICK},
+            {"pick", PICK},
             {"drop", DROP},
             {"use", USE},
             {"open", OPEN},
@@ -127,7 +128,7 @@ void parser::getSubject() {
         if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south")
             subject = cmdVector[1];
         return;
-    }else if((cmdVector[1] == "at")) {
+    }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {
                 if (cmdVector[2] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
                     //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
                     cout << "setting subject value to " << cmdVector[3] << endl;

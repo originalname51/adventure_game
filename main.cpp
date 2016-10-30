@@ -41,7 +41,7 @@ int main() {
     while(!endGame) {
 
         //The getText function in graphics will pass a string object
-        std::cin >> playerCommand;
+        getline(cin,playerCommand);
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
 
