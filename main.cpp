@@ -21,11 +21,10 @@ int main() {
     Room    * room = new ThreeKeyRoom("keyroom", items, true);
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
-    Command * command;
+    Command *command;
     std::string playerCommand = "";
     ActionResults *actionResults;
     int score = 0;
-
 
  //  Display Game Title animation
  //  graphics.animation(std::string("GameTitle"));
@@ -41,9 +40,19 @@ int main() {
 
     while(!endGame) {
 
-        std::cin >> playerCommand; //delete this after fx and parser sorted out.
-        //command = parser.parse(playerCommand).
-        command = new Command(GO,WEST); //delete when parser is figured out.
+        //The getText function in graphics will pass a string object
+        playerCommand = "go NORTH";
+        parser *commandObj = new parser;
+        commandObj->parse(commandObj, playerCommand);
+        command = commandObj->parse(commandObj, playerCommand);
+
+
+
+        cout << "commandObj->act: " << commandObj->act << endl;
+        cout << "commandObj->item1: " << commandObj->item1 << endl;
+        //cout << "commandObj->item2: " << commandObj->item2 << endl;
+        //string values to action and item types.
+        //command = new Command(GO,WEST); //delete when parser is figured out.
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
@@ -72,6 +81,7 @@ int main() {
 
         free(command);
         free(actionResults);
+        free(commandObj);
 
         /*
          * Here we will have logic to see if end game conditions have been met.
