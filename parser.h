@@ -41,12 +41,12 @@ public:
     void printHelp();
 
     //Parse a string object passed in from the console
-    Command* parse(parser *parser1, std::string commandIn);
+    Command* parse(std::string commandIn);
 
     //Get each piece of the command
-    void getVerb(parser *parser1);
-    void getSubject(parser *parser1);
-    void getObject(parser *parser1);
+    void getVerb();
+    void getSubject();
+    void getObject();
 
 
 private:
@@ -55,7 +55,7 @@ private:
     std::map< string, itemType > itemMap;
     void loadItemMap();
     void loadActionMap();
-    vector<string> splitCommand(parser *parser1);
+    vector<string> splitCommand();
     string stringToLower(string input);
 };
 

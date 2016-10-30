@@ -14,31 +14,30 @@ parser::parser() {
     Command command(actions, itemType);
     Command command(actions, itemType, itemType);
 };
-Command* parser::parse(parser *parser1, string commandIn) {
+Command* parser::parse(string commandIn) {
 
-    parser1->cmd = parser1->stringToLower(commandIn);
+    cmd = stringToLower(commandIn);
+    cmdVector = splitCommand();
 
-    parser1->cmdVector = parser1->splitCommand(parser1);
+    getVerb();
+    getSubject();
 
-    parser1->getVerb(parser1);
-    parser1->getSubject(parser1);
-
-    if(parser1->cmdVector.size() <= 0 || parser1->verb == "help") {
-        parser1->printHelp();
-        parser1->verb = "help";
+    if(cmdVector.size() <= 0 || verb == "help") {
+        printHelp();
+        verb = "help";
     }
 
-    if((parser1->cmdVector.size()) > 2)parser1->getObject(parser1);
+    if((cmdVector.size()) > 2)getObject();
     //Test that values have been correctly assigned to command vector
     cout << "Below is each element of the command vector:" << endl;
-    for(unsigned i = 0; i < parser1->cmdVector.size(); ++i){
-        cout << "parser1.cmdVector value[" << i << "]:" << parser1->cmdVector[i] << endl;
+    for(unsigned i = 0; i < cmdVector.size(); ++i){
+        cout << "parser1.cmdVector value[" << i << "]:" << cmdVector[i] << endl;
     }
 
-    act = actionMap.at(parser1->verb);
-    item1 = itemMap.at(parser1->subject);
-    if(!(parser1->object.empty())){
-        item2 = itemMap.at(parser1->object);
+    act = actionMap.at(verb);
+    item1 = itemMap.at(subject);
+    if(!(object.empty())){
+        item2 = itemMap.at(object);
         cout << "item2 value" << item2 << endl;
         return new Command(act, item1, item2);
     }else{
@@ -89,9 +88,9 @@ void parser::loadActionMap() {
     };
 
 }
-vector<string> parser::splitCommand(parser *parser1) {
+vector<string> parser::splitCommand() {
 
-    stringstream ss(parser1->cmd);
+    stringstream ss(cmd);
     istream_iterator<std::string> begin(ss);
     istream_iterator<std::string> end;
     vector<string> words(begin, end);
@@ -113,59 +112,58 @@ string parser::stringToLower(string input) {
 parser::~parser() {
     cout << "Parser deconstruction successful." << endl;
 }
-void parser::getVerb(parser *parser1) {
+void parser::getVerb() {
 
 //    "Valid commands include:\n"
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
-    cout << "Setting verb value to " << parser1->cmdVector[0] << endl;
-    parser1->verb = parser1->cmdVector[0];
-
+    cout << "Setting verb value to " << cmdVector[0] << endl;
+    verb = cmdVector[0];
     return;
 }
-void parser::getSubject(parser *parser1) {
+void parser::getSubject() {
 
-    if(parser1->verb == "go"){
-        if(parser1->cmdVector[1] == "north" || parser1->cmdVector[1] == "east" || parser1->cmdVector[1] == "west" || parser1->cmdVector[1] == "south")
-            parser1->subject = parser1->cmdVector[1];
+    if(verb == "go"){
+        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south")
+            subject = cmdVector[1];
         return;
     }else if((cmdVector[1] == "at")) {
                 if (cmdVector[2] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
                     //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
                     cout << "setting subject value to " << cmdVector[3] << endl;
-                    parser1->subject = parser1->cmdVector[3];
+                    subject = cmdVector[3];
                     return;
                 } else {
-                    parser1->subject = cmdVector[2];
+                    subject = cmdVector[2];
                     return;
                 }
     }else{
-        parser1->subject = cmdVector[1];
+        subject = cmdVector[1];
         return;
     }
 }
-void parser::getObject(parser *parser1) {
-    if(parser1->cmdVector[2] == "")
+void parser::getObject() {
+    if(cmdVector[2] == "")
     {
-        parser1->object = "";
+        object = "";
         return;
-    }else if(parser1->cmdVector[2] == "on"){
+    }else if(cmdVector[2] == "on"){
         if (cmdVector[3] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
             //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
             cout << "setting subject value to " << cmdVector[4] << endl;
-            parser1->object = cmdVector[4];
+            object = cmdVector[4];
             return;
         }
-        parser1->object = parser1->cmdVector[3];
+        object = cmdVector[3];
         return;
-    }else if(parser1->cmdVector[3] == "on") {
+    }else if(cmdVector[3] == "on") {
         if (cmdVector[4] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
             //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
             cout << "setting subject value to " << cmdVector[4] << endl;
-            parser1->object = cmdVector[5];
+            object = cmdVector[5];
             return;
         }
-        parser1->object = parser1->cmdVector[4];
+        object = cmdVector[4];
         return;
     }
 }
