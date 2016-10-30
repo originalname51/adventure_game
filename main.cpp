@@ -87,6 +87,6 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
         case KEY_ROOM :
             return new ThreeKeyRoomAction(iTable);
     }
-    assert(false);
+    assert(true);
 }
 
