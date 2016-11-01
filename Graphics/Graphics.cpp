@@ -37,10 +37,11 @@ bool Graphics::animation(std::string animationName) {
         // TODO: Write the animations call methods
         return true;
     }
+    else if(animationName == "GameTitle"){
+        animations[0]->displayAnimation(screen);
+        return true;
+    }
     else {
-        if(DEBUG){
-            std::cout << "No valid animation selected." << std::endl;
-        }
         return false;
     }
 }
@@ -55,6 +56,7 @@ std::string Graphics::getInput() {
 
 Graphics::Graphics(){
     // TODO: Create the animations array
+    animations.push_back(new GameTitle());
 
     // TODO: Create the menus
 }
@@ -62,15 +64,11 @@ Graphics::Graphics(){
 Graphics::Graphics(int startScore, std::string startRoom) : screen(startScore, startRoom)
 {
     // TODO: Create the animations array
+    animations.push_back(new GameTitle());
 
     // TODO: Create the menus
 }
 
-/*Graphics::Graphics(int startScore, std::string startRoom, std::string startMenuFileName, std::string saveMenuFileName) :
-        screen(startScore, startRoom), startMenu(startMenuFileName), saveMenu(saveMenuFileName){
-    // TODO: Create the animations array
 
-    // TODO: Create the menus
-}*/
 
 

@@ -46,8 +46,8 @@ int main() {
         command = commandObj->parse(playerCommand);
 
 
-//        cout << "commandObj->act: " << commandObj->act << endl;
-//        cout << "commandObj->item1: " << commandObj->item1 << endl;
+        //cout << "commandObj->act: " << commandObj->act << endl;
+        //cout << "commandObj->item1: " << commandObj->item1 << endl;
         //cout << "commandObj->item2: " << commandObj->item2 << endl;
         //string values to action and item types.
         //command = new Command(GO,WEST); //delete when parser is figured out.
