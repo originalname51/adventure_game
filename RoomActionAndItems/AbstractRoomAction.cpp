@@ -31,32 +31,31 @@ ActionResults * AbstractRoomAction::Action() {
         case GO:
             return Go();
         case THROW:
-            action = Throw();
-            break;
+            return Throw();
+
         case LOOK:
-            action = Look();
-            break;
+            return Look();
+
         case REST:
-            action = Rest();
-            break;
+            return  Rest();
+
         case TOUCH:
-            action = Touch();
-            break;
+            return Touch();
         case PICK:
-            action = Pick();
-            break;
+            return Pick();
+
         case DROP:
-            action = Drop();
-            break;
+            return Drop();
+
         case USE:
-            action = Use();
-            break;
+            return  Use();
+
         case OPEN:
-            action = Open();
-            break;
+            return Open();
+
         case CLOSE:
-            action = Close();
-            break;
+            return Close();
+
         case NO_ACTION:
      //       action = Nothing();
             break;

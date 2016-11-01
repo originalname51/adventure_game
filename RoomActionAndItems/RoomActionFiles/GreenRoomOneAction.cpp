@@ -219,12 +219,10 @@ bool GreenRoomOneAction::foxEatsGoose() const {
 ActionResults *GreenRoomOneAction::Pick() {
     std::string information;
 
-    if (itemInRoom(commands->getMainItem()) ||
+    if (!itemInRoom(commands->getMainItem()) ||
         itemList->getValue(commands->getMainItem())->getLocation()
-        != BACKPACK) {
-        information = "You can not look at an  item that you do not currently "
-                "have in your backpack and is not"
-                "in the room.";
+        == BACKPACK) {
+        information = "You can not pick up an item that is not in the room or in your backpack.";
         return new ActionResults(CURRENT, information);
 
     }

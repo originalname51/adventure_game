@@ -29,19 +29,19 @@ Command* parser::parse(string commandIn) {
 
     if((cmdVector.size()) > 2)getObject();
     //Test that values have been correctly assigned to command vector
-    cout << "Below is each element of the command vector:" << endl;
+ //   cout << "Below is each element of the command vector:" << endl;
     for(unsigned i = 0; i < cmdVector.size(); ++i){
-        cout << "parser1.cmdVector value[" << i << "]:" << cmdVector[i] << endl;
+//        cout << "parser1.cmdVector value[" << i << "]:" << cmdVector[i] << endl;
     }
 
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);
     if(!(object.empty())){
         item2 = itemMap.at(object);
-        cout << "item2 value" << item2 << endl;
+ //       cout << "item2 value" << item2 << endl;
         return new Command(act, item1, item2);
     }else{
-        cout << "item1 value" << item1 << endl;
+//        cout << "item1 value" << item1 << endl;
 
         return new Command(act, item1);
     }
@@ -118,7 +118,7 @@ void parser::getVerb() {
 //    "Valid commands include:\n"
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
-    cout << "Setting verb value to " << cmdVector[0] << endl;
+//    cout << "Setting verb value to " << cmdVector[0] << endl;
     verb = cmdVector[0];
     return;
 }

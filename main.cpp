@@ -46,8 +46,8 @@ int main() {
         command = commandObj->parse(playerCommand);
 
 
-        cout << "commandObj->act: " << commandObj->act << endl;
-        cout << "commandObj->item1: " << commandObj->item1 << endl;
+//        cout << "commandObj->act: " << commandObj->act << endl;
+//        cout << "commandObj->item1: " << commandObj->item1 << endl;
         //cout << "commandObj->item2: " << commandObj->item2 << endl;
         //string values to action and item types.
         //command = new Command(GO,WEST); //delete when parser is figured out.
@@ -55,7 +55,7 @@ int main() {
         actionResults = roomAction->Action();
 
         //Display special effects as required.
-        if(actionResults->getSpecialEffect() != NONE) {
+        if (actionResults->getSpecialEffect() != NONE) {
             //Quick method that does a switch statement to figure out which special effect to call.
         }
 
@@ -66,7 +66,7 @@ int main() {
             free(roomAction);
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
-            std::cout << room->getDescription();
+            std::cout << room->getDescription() +"\n";
             /*graphics.displayText(room->getDescription());
             graphics.setRoom(room->getRoomName());*/
 
@@ -74,7 +74,7 @@ int main() {
             /*
           room not changed, inform user of status of his action.
          graphics.displayText(actionResults->getReturnDescription()); */
-            std::cout << actionResults->getReturnDescription();
+            std::cout << actionResults->getReturnDescription() + "\n";
         }
 
         free(command);
