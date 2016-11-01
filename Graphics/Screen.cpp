@@ -14,6 +14,7 @@ Screen::Screen() {
     cursor[1] = 0;  // X
     score = "0";
     currentRoom = " ";
+    colorCounter = 0;
 
     // Initialize the ncurses screen
     initscr();
@@ -39,6 +40,7 @@ Screen::Screen(int startScore, std::string startRoom) {
     cursor[1] = 0;  // X
     score = std::to_string(startScore);
     currentRoom = startRoom;
+    colorCounter = 0;
 
     // Initialize the ncurses screen
     initscr();
@@ -66,6 +68,7 @@ Screen::~Screen() {
     delwin(infoScreen);
     delwin(textScreen);
     delwin(inputScreen);
+    delwin(animationScreen);
 
     // Delete the default window
     endwin();
@@ -146,12 +149,14 @@ std::string Screen::getInput() {
 }
 
 bool Screen::refreshScreen() {
+    updateScreenSize();
     wrefresh(animationScreen);
 
     return true;
 }
 
 bool Screen::clearScreen() {
+    updateScreenSize();
     wclear(animationScreen);
     return true;
 }
@@ -164,7 +169,7 @@ bool Screen::startAnimation() {
     updateScreenSize();
 
     // Create the windows for the program
-    animationScreen = newwin(screenSize[0], screenSize[1], 0, 0);
+    animationScreen = newwin(getScreenSizeY(), getScreenSizeX(), 0, 0);
 
     wrefresh(animationScreen);
 
@@ -192,8 +197,42 @@ bool Screen::endAnimation() {
     return true;
 }
 
+int Screen::createColor(short foregroundColor, short backgroundColor) {
+    colorCounter++;
+    init_pair(static_cast<short>(colorCounter), foregroundColor, backgroundColor);
+
+    return colorCounter;
+}
+
+bool Screen::turnAttrOn(int attribute) {
+    wattron(animationScreen, attribute);
+
+    return true;
+}
+
+bool Screen::turnAttrOff(int attribute) {
+    wattroff(animationScreen, attribute);
+
+    return true;
+}
+
+bool Screen::printString(std::string text, int y, int x) {
+    // Check for valid start coordinates
+    if(y > getScreenSizeY() || x > getScreenSizeX()){
+        return false;
+    }
+    else {
+        // Ensure that printed text is not off the screen
+        mvwprintw(animationScreen, y, x, text.c_str());
+
+        return true;
+    }
+}
+
 bool Screen::testAnimation() {
     std::string text = "Boom!";
+    int colorPair1 = -1;
+    int colorPair2 = -1;
     // Animation mode assumed to be on
 
     // Clear the animation screen
@@ -201,20 +240,20 @@ bool Screen::testAnimation() {
     refreshScreen();
 
     // Set up some colors
-    init_pair(1, COLOR_RED, COLOR_WHITE);
-    init_pair(2, COLOR_WHITE, COLOR_RED);
+    colorPair1 = createColor(COLOR_RED, COLOR_WHITE);
+    colorPair2 = createColor(COLOR_WHITE, COLOR_RED);
 
     // Print some red text
     for(int i = 0; i < 200; i++){
-        wattron(animationScreen, COLOR_PAIR(1));
+        wattron(animationScreen, COLOR_PAIR(colorPair1));
         mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
         refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(1));
+        wattroff(animationScreen, COLOR_PAIR(colorPair1));
         usleep(1000);
-        wattron(animationScreen, COLOR_PAIR(2));
+        wattron(animationScreen, COLOR_PAIR(colorPair1));
         mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
         refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(2));
+        wattroff(animationScreen, COLOR_PAIR(colorPair1));
         usleep(1000);
     }
 
@@ -229,7 +268,7 @@ bool Screen::testAnimation() {
 // Private Methods
 
 void Screen::updateInfo() {
-    std::string scoreText = "Score: ";
+    std::string scoreText = "Progress: ";
     std::string roomText = "Room: ";
 
     // Clear the info window
@@ -255,13 +294,3 @@ bool Screen::clearWindow(WINDOW *window) {
 
     return true;
 }
-
-
-
-
-
-
-
-
-
-

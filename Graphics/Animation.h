@@ -14,9 +14,13 @@ protected:
     std::string name;
     std::string description;
 public:
+    Animation(){
+        name = "";
+        description = "";
+    }
     std::string getName(){return name;}
     std::string getDescription(){return description;}
-    virtual bool displayAnimation(Screen screen) = 0;
+    virtual bool displayAnimation(Screen &screen) = 0;
 };
 
 
