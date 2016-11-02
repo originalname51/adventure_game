@@ -7,9 +7,17 @@
 #include "Item.h"
 #include "Action.h"
 
-enum itemLocation { PODIUM_ROOM_FLOOR,
+enum itemLocation {
+
+    THREE_KEY_ROOM, HIDDEN,
+
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
-    G_ROOM1_SIDE1, G_ROOM1_SIDE2,G_ROOM1_TOKEN_DOOR, BACKPACK };
+
+    G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM1_TOKEN_DOOR,
+
+    BACKPACK,CURRENT };
+
+
 
 enum itemState { DEFAULT,
     SPECIAL, CHANGED, ON};
@@ -17,12 +25,15 @@ enum itemState { DEFAULT,
 class ItemWrapper {
 
 private:
-    const Item   classItem;
+    Item   classItem;
     itemLocation location;
-    const Action defaultAction;
+    Action defaultAction;
     itemState    state;
+    std::string  itemName;
 
 public:
+    void setItemName(std::string);
+    std::string getItemName();
     ItemWrapper(Item item, itemLocation l);
     ItemWrapper(Item item, itemLocation l, Action d);
     itemLocation getLocation();

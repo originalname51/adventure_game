@@ -1,91 +1,127 @@
-// Comment this line out to turn off debugging
-#define DEBUG 1
-
-
-// Debugging includes
-#ifdef DEBUG
 #include <iostream>
-#endif
-
-
-// Internal Class includes
 #include "Rooms/Room.h"
-#include "Rooms/StartRoom.h"
-#include "Rooms/KeyRoom.h"
+#include "Rooms/ThreeKeyRoom.h"
 #include "parser.h"
+#include "Command.h"
+#include "RoomActionAndItems/AbstractRoomAction.h"
+#include "RoomActionAndItems/RoomActionFiles/ThreeKeyRoomAction.h"
+#include "RoomActionAndItems/RoomActionFiles/GreenRoomOneAction.h"
+#include "Rooms/GreenRoomOne.h"
 #include "Graphics/Graphics.h"
+AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *pTable);
+Room *newRoomFactory(itemLocation location, ItemTable *pTable);
+void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
 
 
+int main() {
+    //initialize game.
+    bool endGame = false;
+    ItemTable *items = new ItemTable();
+    //   Graphics graphics(0, "keyroom");
+    Room    * room = new ThreeKeyRoom("keyroom", items, true);
+    parser  * parsingTool = new parser();
+    AbstractRoomAction * roomAction;
+    Command *command;
+    Graphics graphics;
+    std::string playerCommand = "";
+    ActionResults *actionResults;
+    //int score = 0;
 
-int main(int argc, char *argv[]) {
-    // Initialize the screen with beginning values
-    std::string startRoom = "keyroom";
-    std::string input = "";
-    Graphics graphics(0, startRoom);
-
-
-    // DEBUGGING Initialization Code
-    #ifdef DEBUG
-    int endGame = 10;
-    ItemTable table = ItemTable();
-    Room *r = new KeyRoom("keyroom", &table, false);
-    cout << endl << r->getDescription()<< endl;
-
-    parser *commandObj = new parser;
-    std::string commandIn("use rope on white pillar");
-
-    cout << "Testing parser values before and after..." << endl;
-    cout << "Command in main function: " << commandIn << endl;
-    commandObj->parse(commandObj, commandIn);
-
-    //Test that values have been correctly assigned to command vector
-    cout << "commandObj.cmd value: " << commandObj->cmd << endl;
-    cout << "Below is each element of the command vector:" << endl;
-    for(unsigned i = 0; i < commandObj->cmdVector.size(); ++i){
-        cout << "parser1.cmdVector value[" << i << "]:" << commandObj->cmdVector[i] << endl;
-    }
-    #endif  // DEBUG
 
     // Display Game Title animation
     graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
-    graphics.displayText(std::string("This is the example text displayed by the beginning room"));
+    graphics.displayText(room->getDescription());
+    //std::cout << "Welcome to Private Keys Members Only. Please type" " a command. We are ignoring it.\n";
 
-    //Enter the menu screen/graphics loop here
-    while(endGame != 0)
-    {
-        #ifdef DEBUG
-        input = graphics.getInput();
+    roomAction = new ThreeKeyRoomAction(items);
+    //std::cout << room->getDescription();
 
-        graphics.displayText(std::string("Whoa, you entered: ") + input);
+    while(!endGame) {
 
-        endGame = endGame - 1;
+        //The getText function in graphics will pass a string object
+        //getline(cin,playerCommand);
 
-        graphics.setScore(1+1);
-        graphics.setRoom(std::string("The New Room"));
-        #else
+        playerCommand = graphics.getInput();
+        parser *commandObj = new parser;
+        command = commandObj->parse(playerCommand);
 
 
-        //Graphics passes string object to parser
 
-        // Example parser.parse(parser, graphics.getInput);
+        //cout << "commandObj->act: " << commandObj->act << endl;
+        //cout << "commandObj->item1: " << commandObj->item1 << endl;
+        //cout << "commandObj->item2: " << commandObj->item2 << endl;
+        //string values to action and item types.
+        //command = new Command(GO,WEST); //delete when parser is figured out.
+        roomAction->setCommands(command);
+        actionResults = roomAction->Action();
 
-        //Parser passes 2 or 3 tuple to Room Action
+        //Display special effects as required.
+        if (actionResults->getSpecialEffect() != NONE) {
+            //Quick method that does a switch statement to figure out which special effect to call.
+        }
 
-        //Items get updated
+        if (actionResults->getRoom() != CURRENT) {
+            //Room has changed, set up a new room and call description of it.
+            setPlayerLocation(items, actionResults);
+            free(room);
+            free(roomAction);
+                room   = newRoomFactory(actionResults->getRoom(), items);
+            roomAction = getNewRoomAction(actionResults->getRoom(), items);
+            //std::cout << room->getDescription() +"\n";
+            graphics.displayText(room->getDescription());
+            //graphics.setRoom(room->getRoomName());
 
-        //Loop back to beginning for next user command
+        } else {
 
-        // The response to the command is printed
+          //room not changed, inform user of status of his action.
+         graphics.displayText(actionResults->getReturnDescription());
+            //std::cout << actionResults->getReturnDescription() << std::endl;
+        }
 
-        #endif  // DEBUG
+        free(command);
+        free(actionResults);
+        free(commandObj);
+
+        /*
+         * Here we will have logic to see if end game conditions have been met.
+         * */
+        endGame = false;
     }
+    //game over stuff goes here.
 
-    #ifdef DEBUG
-    free (r);
-    free (commandObj);
-    #endif  // DEBUG
-
+    free(roomAction);
+    free(room);
+    free(parsingTool);
     return 0;
 }
+
+void setPlayerLocation(ItemTable *items, ActionResults *actionResults) { items->getValue(PLAYER)->setLocation(actionResults->getRoom()); }
+
+Room *newRoomFactory(itemLocation location, ItemTable *pTable) {
+    switch(location) {
+        case G_ROOM1_SIDE1:
+        case G_ROOM1_SIDE2:
+            return new GreenRoomOne("greenRoomOne", pTable, true);
+        case THREE_KEY_ROOM :
+            return new ThreeKeyRoom("keyroom",pTable, true);
+        default:
+            assert(false);
+            break;
+    }
+}
+
+AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
+    switch(location) {
+        case G_ROOM1_SIDE1:
+        case G_ROOM1_SIDE2:
+            return new GreenRoomOneAction(iTable);
+        case THREE_KEY_ROOM :
+            return new ThreeKeyRoomAction(iTable);
+        default:
+            return new ThreeKeyRoomAction(iTable);
+    }
+    assert(false);
+}
+

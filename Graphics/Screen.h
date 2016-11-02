@@ -63,7 +63,7 @@ public:
     bool turnAttrOn(int attribute);
     bool turnAttrOff(int attribute);
     bool printString(std::string text, int y, int x);
-    bool testAnimation();
+    //bool testAnimation();
 
     // Destructor
     ~Screen();

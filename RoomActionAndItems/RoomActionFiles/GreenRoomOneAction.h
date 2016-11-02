@@ -5,16 +5,15 @@
 #ifndef ITEM_TEST_KEYROOMACTION_H
 #define ITEM_TEST_KEYROOMACTION_H
 
-
 #include "../ActionResults.h"
 #include "../../Command.h"
 #include "../AbstractRoomAction.h"
 
-class KeyRoomAction: public AbstractRoomAction {
+class GreenRoomOneAction: public AbstractRoomAction {
 
 public:
-    KeyRoomAction();
-    KeyRoomAction(ItemTable *iList, Command *commands);
+    GreenRoomOneAction(ItemTable *iList, Command *commands);
+    GreenRoomOneAction(ItemTable *iList);
 
 private:
     ActionResults  *   Throw();
@@ -34,6 +33,18 @@ private:
     bool isBeanToken() const;
 
     bool itemInRoom(itemType item) const;
+
+    bool hasAToken() const;
+
+    bool foxEatsGoose() const;
+
+    bool gooseEatsBean() const;
+
+    void resetTokens() const;
+
+    void takeBoat() const;
+
+    void dropItem(const itemType &item) const;
 };
 
 

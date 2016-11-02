@@ -12,15 +12,33 @@ ItemTable::ItemTable(){
 ItemWrapper*  ItemTable::getValue(itemType const &value) {
 return items.find(value)->second;
 assert(false); //will break if no value assigned.
+
 }
 
 void ItemTable::populateMap(){
 
-    GreenRoomOne();
+    ItemWrapper * player = new ItemWrapper(Item("PLAYER", PLAYER), THREE_KEY_ROOM);
+    ItemWrapper * nothing= new ItemWrapper(Item("Nothing", NOTHING), HIDDEN);
 
-    ItemWrapper *      Player = new ItemWrapper(Item("PLAYER", PLAYER), G_ROOM1_SIDE1);
+    items[PLAYER] = player;
+    items[NOTHING] = nothing;
+
+    GreenRoomOne();
+    ThreeKeyRoom();
+}
+
+void ItemTable::ThreeKeyRoom() {
+
+    ItemWrapper * greenKey = new ItemWrapper(Item("Green Key", GREEN_KEY), THREE_KEY_ROOM);
+    ItemWrapper * whiteKey = new ItemWrapper(Item("White Key", WHITE_KEY), THREE_KEY_ROOM);
+    ItemWrapper *  blueKey = new ItemWrapper(Item("Blue Key", BLUE_KEY), THREE_KEY_ROOM);
+
+    items[GREEN_KEY] = greenKey;
+    items[WHITE_KEY] = whiteKey;
+    items[BLUE_KEY]  = blueKey;
 
 }
+
 void ItemTable::GreenRoomOne(){
 
     ItemWrapper *       foxToken = new ItemWrapper(Item("Fox Token", FOX_TOKEN), G_ROOM1_SIDE1);

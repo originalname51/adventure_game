@@ -14,7 +14,7 @@ enum description {
     ROOM_STATE_0,ROOM_STATE_1, ROOM_STATE_2, ROOM_DESCRIPT_1, ROOM_DESCRIPT_2,
     ROOM_DESCRIPT_3, ROOM_DESCRIPT_4, ROOM_DESCRIPT_5
 };
-enum room {KEY_ROOM, END_ROOM, CURRENT};
+//enum room {KEY_ROOM, END_ROOM, CURRENT};
 
 class Room {
 protected:
@@ -31,11 +31,13 @@ protected:
     std::string roomName;
     ItemTable * table;
     bool showLongDescription;
+    std::string displayName;
     void parseData();
 public:
     Room();
     Room(std::string, ItemTable *iList, bool f);
     virtual std::string getDescription()=0;
+    std::string getRoomName();
 };
 
 

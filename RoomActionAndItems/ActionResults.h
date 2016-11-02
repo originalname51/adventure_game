@@ -10,15 +10,15 @@
 enum specialEffects{ZAP, BOP, ICE, NONE};
 class ActionResults {
 private:
-    const room returnRoom;
-    const std::string returnText;
+    const itemLocation   returnRoom;
+    const std::string    returnText;
     const specialEffects special;
 public:
-    ActionResults(room r, std::string t);
-    ActionResults(room r, std::string t, specialEffects s);
+    ActionResults(itemLocation r, std::string t);
+    ActionResults(itemLocation r, std::string t, specialEffects s);
 
-    int getRoom();
-    int getSpecialEffect();
+    itemLocation getRoom();
+    specialEffects getSpecialEffect();
     const std::string getReturnDescription();
 
 };

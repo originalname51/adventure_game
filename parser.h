@@ -13,27 +13,48 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <map>
+#include "Command.h"
+#include "ItemsAndActions/Action.h"
+
 using namespace std;
 
 class parser {
 
 public:
 
+    actions act;
+    itemType item1;
+    itemType item2;
     string cmd;
     string verb;
     string subject;
     string object;
     vector<string> cmdVector;
 
+
+    //Initial constructor and destructor
     parser();
     ~parser();
-    void parse(parser *parser1, std::string commandIn);
-    void getVerb(parser *parser1);
-    void getSubject(parser *parser1);
-    void getObject(parser *parser1);
+
+
+
+    //Parse a string object passed in from the console
+    Command* parse(std::string commandIn);
+
+    //Get each piece of the command
+    void getVerb();
+    void getSubject();
+    void getObject();
+
 
 private:
-    vector<string> splitCommand(parser *parser1);
+
+    std::map< string, actions > actionMap;
+    std::map< string, itemType > itemMap;
+    void loadItemMap();
+    void loadActionMap();
+    vector<string> splitCommand();
     string stringToLower(string input);
 };
 
