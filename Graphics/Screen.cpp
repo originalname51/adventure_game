@@ -229,39 +229,39 @@ bool Screen::printString(std::string text, int y, int x) {
     }
 }
 
-bool Screen::testAnimation() {
-    std::string text = "Boom!";
-    int colorPair1 = -1;
-    int colorPair2 = -1;
-    // Animation mode assumed to be on
-
-    // Clear the animation screen
-    clearScreen();
-    refreshScreen();
-
-    // Set up some colors
-    colorPair1 = createColor(COLOR_RED, COLOR_WHITE);
-    colorPair2 = createColor(COLOR_WHITE, COLOR_RED);
-
-    // Print some red text
-    for(int i = 0; i < 200; i++){
-        wattron(animationScreen, COLOR_PAIR(colorPair1));
-        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
-        refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(colorPair1));
-        usleep(1000);
-        wattron(animationScreen, COLOR_PAIR(colorPair1));
-        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
-        refreshScreen();
-        wattroff(animationScreen, COLOR_PAIR(colorPair1));
-        usleep(1000);
-    }
-
-    // Clear the screen
-    clearScreen();
-
-    return true;
-}
+//bool Screen::testAnimation() {
+//    std::string text = "Boom!";
+//    int colorPair1 = -1;
+//    int colorPair2 = -1;
+//    // Animation mode assumed to be on
+//
+//    // Clear the animation screen
+//    clearScreen();
+//    refreshScreen();
+//
+//    // Set up some colors
+//    colorPair1 = createColor(COLOR_RED, COLOR_WHITE);
+//    colorPair2 = createColor(COLOR_WHITE, COLOR_RED);
+//
+//    // Print some red text
+//    for(int i = 0; i < 200; i++){
+//        wattron(animationScreen, COLOR_PAIR(colorPair1));
+//        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
+//        refreshScreen();
+//        wattroff(animationScreen, COLOR_PAIR(colorPair1));
+//        usleep(1000);
+//        wattron(animationScreen, COLOR_PAIR(colorPair1));
+//        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
+//        refreshScreen();
+//        wattroff(animationScreen, COLOR_PAIR(colorPair1));
+//        usleep(1000);
+//    }
+//
+//    // Clear the screen
+//    clearScreen();
+//
+//    return true;
+//}
 
 
 

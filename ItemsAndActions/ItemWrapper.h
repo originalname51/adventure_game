@@ -9,7 +9,7 @@
 
 enum itemLocation {
 
-    THREE_KEY_ROOM,
+    THREE_KEY_ROOM, HIDDEN,
 
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
 

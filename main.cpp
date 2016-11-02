@@ -22,28 +22,31 @@ int main() {
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
     Command *command;
+    Graphics graphics;
     std::string playerCommand = "";
     ActionResults *actionResults;
-    int score = 0;
-
- //  Display Game Title animation
- //  graphics.animation(std::string("GameTitle"));
+    //int score = 0;
 
 
-//    graphics.displayText("Welcome to Private Keys Members Only. Please type"
-//                                 " a command. We are ignoring it.");
-    std::cout << "Welcome to Private Keys Members Only. Please type"
-            " a command. We are ignoring it.\n";
+    // Display Game Title animation
+    graphics.animation(std::string("GameTitle"));
+
+    // Display beginning text prompt
+    graphics.displayText(room->getDescription());
+    //std::cout << "Welcome to Private Keys Members Only. Please type" " a command. We are ignoring it.\n";
 
     roomAction = new ThreeKeyRoomAction(items);
-    std::cout << room->getDescription();
+    //std::cout << room->getDescription();
 
     while(!endGame) {
 
         //The getText function in graphics will pass a string object
-        getline(cin,playerCommand);
+        //getline(cin,playerCommand);
+
+        playerCommand = graphics.getInput();
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
+
 
 
         //cout << "commandObj->act: " << commandObj->act << endl;
@@ -66,15 +69,15 @@ int main() {
             free(roomAction);
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
-            std::cout << room->getDescription() +"\n";
-            /*graphics.displayText(room->getDescription());
-            graphics.setRoom(room->getRoomName());*/
+            //std::cout << room->getDescription() +"\n";
+            graphics.displayText(room->getDescription());
+            //graphics.setRoom(room->getRoomName());
 
         } else {
-            /*
-          room not changed, inform user of status of his action.
-         graphics.displayText(actionResults->getReturnDescription()); */
-            std::cout << actionResults->getReturnDescription() + "\n";
+
+          //room not changed, inform user of status of his action.
+         graphics.displayText(actionResults->getReturnDescription());
+            //std::cout << actionResults->getReturnDescription() << std::endl;
         }
 
         free(command);

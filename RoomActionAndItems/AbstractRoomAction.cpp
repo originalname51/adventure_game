@@ -4,14 +4,6 @@
 
 #include "AbstractRoomAction.h"
 AbstractRoomAction::~AbstractRoomAction(){};
-ActionResults AbstractRoomAction::Help(){
-    std::string help = ""
-            "Valid commands include:\n"
-            "Go, Look, Help, Rest, Touch, Pick-Up\n"
-            "Drop, Use, Open, Close";
-    return  ActionResults(CURRENT, help);
-
-}
 
 AbstractRoomAction::AbstractRoomAction(ItemTable *iList, Command *commands) : itemList(iList), commands(commands) {}
 
@@ -58,6 +50,8 @@ ActionResults * AbstractRoomAction::Action() {
 
         case NO_ACTION:
      //       action = Nothing();
+        case HELP:
+            return Help();
             break;
         default:
             assert(false); //blow up program is no relevant action.
@@ -65,4 +59,29 @@ ActionResults * AbstractRoomAction::Action() {
             return action;
     }
     return new ActionResults(CURRENT,"Program is broken in Action() class");
+}
+
+ActionResults * AbstractRoomAction::Help() {
+    std::string info = "Command options and structure  \n"
+            "      _________________________________________________  \n"
+            "      GO _____ | ex: GO NORTH  \n"
+            "      => takes you to the next room in that direction.  \n"
+            "      LOOK (or) EXAMINE _____ | ex: LOOK TABLE  \n"
+            "      => examines an item/object/feature more closely  \n"
+            "      TOUCH ____ | ex: TOUCH STONE  \n"
+            "      => Interacts with an item/object/feature  \n"
+            "      PICKUP (or) TAKE ____ | ex: PICKUP STATUE  \n"
+            "      => attempts to put an item into your inventory  \n"
+            "      DROP _____ | ex: DROP PAMPHLET  \n"
+            "      => drops an item from your inventory to the floor  \n"
+            "      USE _____ | ex: USE ROPE  \n"
+            "      => uses an item in a way that you deem natural.  \n"
+            "      OPEN _____ | ex: OPEN DOOR  \n"
+            "      => Attempts to open an item/object/feature  \n"
+            "      CLOSE _____ | ex: CLOSE DOOR  \n"
+            "      => Attempts to close an item/object/feature  \n"
+            "      HELP | ex: [Blank] or HELP  \n"
+            "      => Pretty sure you know what this one does...";
+
+    return new ActionResults(CURRENT,info);
 }

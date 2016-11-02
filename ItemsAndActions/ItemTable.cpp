@@ -17,10 +17,11 @@ assert(false); //will break if no value assigned.
 
 void ItemTable::populateMap(){
 
+    ItemWrapper * player = new ItemWrapper(Item("PLAYER", PLAYER), THREE_KEY_ROOM);
+    ItemWrapper * nothing= new ItemWrapper(Item("Nothing", NOTHING), HIDDEN);
 
-    ItemWrapper *      player = new ItemWrapper(Item("PLAYER", PLAYER), THREE_KEY_ROOM);
     items[PLAYER] = player;
-
+    items[NOTHING] = nothing;
 
     GreenRoomOne();
     ThreeKeyRoom();

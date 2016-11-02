@@ -20,11 +20,14 @@ Command* parser::parse(string commandIn) {
     cmdVector = splitCommand();
 
     getVerb();
-    getSubject();
+    if(cmdVector.size() == 1)
+    {
+        act = actionMap.at(verb);
+        return new Command(act, NOTHING);
+    }else getSubject();
 
     if(cmdVector.size() <= 0 || verb == "help") {
-        printHelp();
-        verb = "help";
+        return new Command(HELP,SHIH_TZU);
     }
 
     if((cmdVector.size()) > 2)getObject();
@@ -87,7 +90,6 @@ void parser::loadActionMap() {
             {"close", OPEN},
             {"", NO_ACTION}
     };
-
 }
 vector<string> parser::splitCommand() {
 
@@ -131,7 +133,7 @@ void parser::getSubject() {
     }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {
                 if (cmdVector[2] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
                     //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-                    cout << "setting subject value to " << cmdVector[3] << endl;
+                    //cout << "setting subject value to " << cmdVector[3] << endl;
                     subject = cmdVector[3];
                     return;
                 } else {
@@ -151,7 +153,7 @@ void parser::getObject() {
     }else if(cmdVector[2] == "on"){
         if (cmdVector[3] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
             //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            cout << "setting subject value to " << cmdVector[4] << endl;
+            //cout << "setting subject value to " << cmdVector[4] << endl;
             object = cmdVector[4];
             return;
         }
@@ -160,35 +162,11 @@ void parser::getObject() {
     }else if(cmdVector[3] == "on") {
         if (cmdVector[4] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
             //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            cout << "setting subject value to " << cmdVector[4] << endl;
+            //cout << "setting subject value to " << cmdVector[4] << endl;
             object = cmdVector[5];
             return;
         }
         object = cmdVector[4];
         return;
     }
-}
-void parser::printHelp() {
-    cout << "Command options and structure" << endl
-         << "_________________________________________________" << endl
-         << "GO _____ | ex: GO NORTH" << endl
-         << "=> takes you to the next room in that direction." << endl
-         << "LOOK (or) EXAMINE _____ | ex: LOOK TABLE" << endl
-         << "=> examines an item/object/feature more closely" << endl
-         << "TOUCH ____ | ex: TOUCH STONE" << endl
-         << "=> Interacts with an item/object/feature" << endl
-         << "PICKUP (or) TAKE ____ | ex: PICKUP STATUE" << endl
-         << "=> attempts to put an item into your inventory" << endl
-         << "DROP _____ | ex: DROP PAMPHLET" << endl
-         << "=> drops an item from your inventory to the floor" << endl
-         << "USE _____ | ex: USE ROPE" << endl
-         << "=> uses an item in a way that you deem natural." << endl
-         << "OPEN _____ | ex: OPEN DOOR" << endl
-         << "=> Attempts to open an item/object/feature" << endl
-         << "CLOSE _____ | ex: CLOSE DOOR" << endl
-         << "=> Attempts to close an item/object/feature" << endl
-         << "HELP | ex: [Blank] or HELP" << endl
-         << "=> Pretty sure you know what this one does..." << endl
-         << endl;
-    return;
 }

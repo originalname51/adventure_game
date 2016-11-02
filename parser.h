@@ -37,8 +37,7 @@ public:
     parser();
     ~parser();
 
-    //Print list of possible commands
-    void printHelp();
+
 
     //Parse a string object passed in from the console
     Command* parse(std::string commandIn);
