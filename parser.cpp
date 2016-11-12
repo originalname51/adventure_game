@@ -20,6 +20,9 @@ Command* parser::parse(string commandIn) {
     cmdVector = splitCommand();
 
     getVerb();
+//    if(verb == ""){
+//        return new Command(NO_ACTION, NOTHING);
+//    }
     if(cmdVector.size() == 1)
     {
         act = actionMap.at(verb);
@@ -88,6 +91,7 @@ void parser::loadActionMap() {
             {"use", USE},
             {"open", OPEN},
             {"close", OPEN},
+            {"help", HELP},
             {"", NO_ACTION}
     };
 }
