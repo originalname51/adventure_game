@@ -20,6 +20,9 @@ Command* parser::parse(string commandIn) {
     cmdVector = splitCommand();
 
     getVerb();
+//    if(verb == ""){
+//        return new Command(NO_ACTION, NOTHING);
+//    }
     if(cmdVector.size() == 1)
     {
         act = actionMap.at(verb);
@@ -70,8 +73,32 @@ void parser::loadItemMap() {
             {"tokendoor", TOKEN_DOOR},
             {"greenkey", GREEN_KEY},
             {"whitekey", WHITE_KEY},
-            {"bluekey", BLUE_KEY}
-
+            {"bluekey", BLUE_KEY},
+            {"bucket", BLOOD_BUCKET},
+            {"glyphs", GLYPHS},
+            {"fish", FISH},
+            {"babelfish", FISH},
+            {"ceiling", CEILING},
+            {"ball", BALL},
+            {"steelball", BALL},
+            {"pipe", PIPE},
+            {"tablet", TABLET},
+            {"stonetablet", TABLET},
+            {"statue", STATUE},
+            {"stonestatue", STATUE},
+            {"rope", ROPE},
+            {"whitepillar", WHITE_PILLAR},
+            {"blackpillar", BLACK_PILLAR},
+            {"discus", DISCUS},
+            {"disc", DISCUS},
+            {"powercrystal", POWER_CRYSTAL},
+            {"crystal", POWER_CRYSTAL},
+            {"torch", TORCH},
+            {"lightpillar", LIGHT_PILLAR},
+            {"light", LIGHT},
+            {"pitcher", PITCHER},
+            {"bowl", BOWL},
+            {"stonepitcher", PITCHER}
     };
 }
 void parser::loadActionMap() {
@@ -88,6 +115,7 @@ void parser::loadActionMap() {
             {"use", USE},
             {"open", OPEN},
             {"close", OPEN},
+            {"help", HELP},
             {"", NO_ACTION}
     };
 }

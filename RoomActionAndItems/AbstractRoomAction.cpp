@@ -80,7 +80,7 @@ ActionResults * AbstractRoomAction::Help() {
             "      => Attempts to open an item/object/feature  \n"
             "      CLOSE _____ | ex: CLOSE DOOR  \n"
             "      => Attempts to close an item/object/feature  \n"
-            "      HELP | ex: [Blank] or HELP  \n"
+            "      HELP | ex: HELP  \n"
             "      => Pretty sure you know what this one does...";
 
     return new ActionResults(CURRENT,info);
