@@ -11,13 +11,37 @@ enum itemType {
     PLAYER, NORTH, SOUTH, EAST, WEST, NOTHING,
 
     //Items not used for anything currently.
-    WATER, SHIH_TZU, NON_EXIST,
+    SHIH_TZU, NON_EXIST,
 
     //Items in "Green Room One"
     FOX_TOKEN, BEAN_TOKEN, G_BOAT, GOOSE_TOKEN, TOKEN_DOOR,
 
     //Three Key Room Items
-    GREEN_KEY, WHITE_KEY, BLUE_KEY
+    GREEN_KEY, WHITE_KEY, BLUE_KEY,
+
+    //GREEN Hospital room
+    BLOOD_BUCKET,
+
+    //Basin Room and //Kid-key room
+    WATER,
+
+    //BLUE - Misty Room
+    GLYPHS, FISH, CEILING,
+
+    //BLUE - Ice Room
+    BALL, PIPE,
+
+    //BLUE - Dark Room
+    TABLET, STATUE,
+
+    //BLUE - Mirror Room
+    ROPE, WHITE_PILLAR, BLACK_PILLAR,
+
+    //WHITE - PILLAR room
+    DISCUS, POWER_CRYSTAL, TORCH, LIGHT_PILLAR,
+
+    //WHITE - Table Room
+    PITCHER, BOWL, LIGHT
 
 };
 
