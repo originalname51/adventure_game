@@ -98,7 +98,10 @@ void parser::loadItemMap() {
             {"light", LIGHT},
             {"pitcher", PITCHER},
             {"bowl", BOWL},
-            {"stonepitcher", PITCHER}
+            {"stonepitcher", PITCHER},
+            {"northwall", NORTH_WALL},
+            {"eastwall", EAST_WALL},
+            {"westwall", WEST_WALL}
     };
 }
 void parser::loadActionMap() {

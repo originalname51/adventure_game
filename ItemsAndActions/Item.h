@@ -37,6 +37,9 @@ enum itemType {
     //BLUE - Mirror Room
     ROPE, WHITE_PILLAR, BLACK_PILLAR,
 
+    //WHITE - Room 2
+    NORTH_WALL, EAST_WALL, WEST_WALL,
+    
     //WHITE - PILLAR room
     DISCUS, POWER_CRYSTAL, TORCH, LIGHT_PILLAR,
 
