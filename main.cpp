@@ -1,4 +1,7 @@
 #include <iostream>
+#include <curses.h>
+#include <signal.h>
+#include <cstring>
 #include "Rooms/Room.h"
 #include "Rooms/ThreeKeyRoom.h"
 #include "parser.h"
@@ -8,21 +11,27 @@
 #include "RoomActionAndItems/RoomActionFiles/GreenRoomOneAction.h"
 #include "Rooms/GreenRoomOne.h"
 #include "Graphics/Graphics.h"
+
+
 AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *pTable);
 Room *newRoomFactory(itemLocation location, ItemTable *pTable);
 void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
+void initializeScreenResizingHandler();
 
+
+Graphics graphics(0, std::string(""));
 
 int main() {
+    /* DO NOT DELETE THIS SIGNAL HANDLER */
+    initializeScreenResizingHandler();
+
     //initialize game.
     bool endGame = false;
     ItemTable *items = new ItemTable();
-    //   Graphics graphics(0, "keyroom");
     Room    * room = new ThreeKeyRoom("keyroom", items, true);
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
     Command *command;
-    Graphics graphics;
     std::string playerCommand = "";
     ActionResults *actionResults;
     //int score = 0;
@@ -32,28 +41,18 @@ int main() {
     graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
+    graphics.setRoom(room->getRoomName());
     graphics.displayText(room->getDescription());
-    //std::cout << "Welcome to Private Keys Members Only. Please type" " a command. We are ignoring it.\n";
 
     roomAction = new ThreeKeyRoomAction(items);
-    //std::cout << room->getDescription();
 
     while(!endGame) {
 
-        //The getText function in graphics will pass a string object
-        //getline(cin,playerCommand);
-
+        // Get input from the player
         playerCommand = graphics.getInput();
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
 
-
-
-        //cout << "commandObj->act: " << commandObj->act << endl;
-        //cout << "commandObj->item1: " << commandObj->item1 << endl;
-        //cout << "commandObj->item2: " << commandObj->item2 << endl;
-        //string values to action and item types.
-        //command = new Command(GO,WEST); //delete when parser is figured out.
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
@@ -63,21 +62,19 @@ int main() {
         }
 
         if (actionResults->getRoom() != CURRENT) {
-            //Room has changed, set up a new room and call description of it.
+            // Room has changed, set up a new room and call description of it.
             setPlayerLocation(items, actionResults);
             free(room);
             free(roomAction);
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
-            //std::cout << room->getDescription() +"\n";
+
+            graphics.setRoom(room->getRoomName());
             graphics.displayText(room->getDescription());
-            //graphics.setRoom(room->getRoomName());
-
-        } else {
-
-          //room not changed, inform user of status of his action.
-         graphics.displayText(actionResults->getReturnDescription());
-            //std::cout << actionResults->getReturnDescription() << std::endl;
+        }
+        else {
+            // Room not changed, inform user of status of his action.
+            graphics.displayText(actionResults->getReturnDescription());
         }
 
         free(command);
@@ -90,6 +87,8 @@ int main() {
         endGame = false;
     }
     //game over stuff goes here.
+
+    graphics.animation(std::string("Fireworks"));
 
     free(roomAction);
     free(room);
@@ -124,4 +123,20 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
     }
     assert(false);
 }
+
+void handle_winch(int sig)
+{
+    endwin();
+    // Needs to be called after an endwin() so ncurses will initialize
+    // itself with the new terminal dimensions.
+    refresh();
+
+    graphics.refreshScreen();
+}
+
+//  Signal Handling Initialization
+void initializeScreenResizingHandler(){
+    signal(SIGWINCH, handle_winch);
+}
+
 

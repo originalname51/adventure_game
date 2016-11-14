@@ -14,6 +14,7 @@
 #include "Animation.h"
 #include "Screen.h"
 #include "GameTitle.h"
+#include "Fireworks.h"
 
 class Graphics {
 private:
@@ -28,12 +29,15 @@ public:
     // Preferred Constructor
     Graphics(int startScore, std::string startRoom);
 
+    ~Graphics();
+
     // Public Methods
     void setRoom(std::string roomName);
     void setScore(int newScore);
     bool animation(std::string animationName);
     bool displayText(std::string text);
     std::string getInput();
+    void refreshScreen();
 };
 
 
