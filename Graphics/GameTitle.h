@@ -7,12 +7,9 @@
 
 
 #include <string>
-#include <curses.h>
 #include "Animation.h"
 #include "Screen.h"
 
-#define FRAMES_PER_SECOND 24
-#define MICROSECONDS_PER_SECOND 1000000
 #define LEFT 0
 #define RIGHT 1
 #define DOWN 1

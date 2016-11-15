@@ -4,6 +4,32 @@
 
 #include "Graphics.h"
 
+Graphics::Graphics(){
+    // Create the animations array
+    animations.push_back(new GameTitle());
+    animations.push_back(new Fireworks());
+
+    // TODO: Create the menus
+}
+
+Graphics::Graphics(int startScore, std::string startRoom) : screen(startScore, startRoom)
+{
+    // Create the animations array
+    animations.push_back(new GameTitle());
+    animations.push_back(new Fireworks());
+
+    // TODO: Create the menus
+}
+
+Graphics::~Graphics() {
+    unsigned int i;
+
+    for(i = 0; i < animations.size(); i++){
+        free(animations[i]);
+    }
+}
+
+
 void Graphics::setRoom(std::string roomName) {
     screen.setRoom(roomName);
 }
@@ -38,8 +64,10 @@ bool Graphics::animation(std::string animationName) {
         return true;
     }
     else if(animationName == "GameTitle"){
-        animations[0]->displayAnimation(screen);
-        return true;
+        return animations[0]->displayAnimation(screen);
+    }
+    else if(animationName == "Fireworks"){
+        return animations[1]->displayAnimation(screen);
     }
     else {
         return false;
@@ -54,20 +82,11 @@ std::string Graphics::getInput() {
     return screen.getInput();
 }
 
-Graphics::Graphics(){
-    // TODO: Create the animations array
-    animations.push_back(new GameTitle());
-
-    // TODO: Create the menus
+void Graphics::refreshScreen() {
+    screen.updateScreenSize();
 }
 
-Graphics::Graphics(int startScore, std::string startRoom) : screen(startScore, startRoom)
-{
-    // TODO: Create the animations array
-    animations.push_back(new GameTitle());
 
-    // TODO: Create the menus
-}
 
 
 

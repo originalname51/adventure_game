@@ -7,7 +7,11 @@
 
 
 #include <string>
+#include <curses.h>
 #include "Screen.h"
+
+#define FRAMES_PER_SECOND 24
+#define MICROSECONDS_PER_SECOND 1000000
 
 class Animation {
 protected:
