@@ -32,7 +32,8 @@ int main() {
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
     Command *command;
-    std::string playerCommand = "";
+    Graphics graphics;
+    std::string playerCommand;
     ActionResults *actionResults;
     //int score = 0;
 
@@ -50,6 +51,13 @@ int main() {
 
         // Get input from the player
         playerCommand = graphics.getInput();
+        if(playerCommand.empty()){
+            graphics.displayText(room->getDescription());
+            graphics.displayText("No command was entered. You've got to give me something to go on.");
+            //std::cout << "No command entered." << endl;
+            continue;
+        }
+
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
 
@@ -75,6 +83,7 @@ int main() {
         else {
             // Room not changed, inform user of status of his action.
             graphics.displayText(actionResults->getReturnDescription());
+            //std::cout << actionResults->getReturnDescription() << std::endl;
         }
 
         free(command);
