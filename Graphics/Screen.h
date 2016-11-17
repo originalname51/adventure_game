@@ -14,7 +14,7 @@
 class Screen {
 private:
     int cursor[2];
-    int screenSize[2];          /* 0 = Y, 1 = X */
+    volatile int screenSize[2];          /* 0 = Y, 1 = X */
     std::string currentRoom;
     std::string score;
     std::string currentText;
@@ -26,10 +26,10 @@ private:
     WINDOW *animationScreen;
     bool animationMode;
 
-    void updateScreenSize();
-
+    void initializeScreenSize();
     bool clearWindow(WINDOW *window);
     void updateInfo();
+    void refreshInput();
 
 public:
     // Constructors
@@ -38,11 +38,13 @@ public:
 
     // Accessors
     int getScreenSizeX(){
-        updateScreenSize();
+        refresh();
+        screenSize[1] = getmaxx(stdscr);
         return screenSize[1];
     }
     int getScreenSizeY(){
-        updateScreenSize();
+        refresh();
+        screenSize[0] = getmaxy(stdscr);
         return screenSize[0];
     }
 
@@ -53,6 +55,7 @@ public:
     // General Functions
     bool displayText(std::string text);
     std::string getInput();
+    void updateScreenSize();
 
     // Functions for animations
     bool startAnimation();
@@ -63,7 +66,6 @@ public:
     bool turnAttrOn(int attribute);
     bool turnAttrOff(int attribute);
     bool printString(std::string text, int y, int x);
-    //bool testAnimation();
 
     // Destructor
     ~Screen();

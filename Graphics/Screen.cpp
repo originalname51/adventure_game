@@ -23,12 +23,12 @@ Screen::Screen() {
     start_color();
 
     // Get the current size of the screen
-    updateScreenSize();
+    initializeScreenSize();
 
     // Create the windows for the program
-    infoScreen = newwin(3, screenSize[1], 0, 0);
-    textScreen = newwin((screenSize[0] - 6), screenSize[1], 3, 0);
-    inputScreen = newwin(3, screenSize[1], (screenSize[0] - 6), 0);
+    infoScreen = newwin(3, getScreenSizeX(), 0, 0);
+    textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
+    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
 
     // Turn off animation mode
     animationMode = false;
@@ -49,12 +49,12 @@ Screen::Screen(int startScore, std::string startRoom) {
     start_color();
 
     // Get the current size of the screen
-    updateScreenSize();
+    initializeScreenSize();
 
     // Create the windows for the program
-    infoScreen = newwin(3, screenSize[1], 0, 0);
-    textScreen = newwin((screenSize[0] - 6), screenSize[1], 3, 0);
-    inputScreen = newwin(3, screenSize[1], (screenSize[0] - 6), 0);
+    infoScreen = newwin(3, getScreenSizeX(), 0, 0);
+    textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
+    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
 
     // Turn off animation mode
     animationMode = false;
@@ -90,12 +90,6 @@ void Screen::setRoom(std::string roomName) {
 
     // Display the updated room
     updateInfo();
-}
-
-void Screen::updateScreenSize() {
-    // Get the current size of the screen
-    screenSize[0] = getmaxy(stdscr);
-    screenSize[1] = getmaxx(stdscr);
 }
 
 bool Screen::displayText(std::string text) {
@@ -228,61 +222,72 @@ bool Screen::printString(std::string text, int y, int x) {
         return true;
     }
 }
-
-//bool Screen::testAnimation() {
-//    std::string text = "Boom!";
-//    int colorPair1 = -1;
-//    int colorPair2 = -1;
-//    // Animation mode assumed to be on
-//
-//    // Clear the animation screen
-//    clearScreen();
-//    refreshScreen();
-//
-//    // Set up some colors
-//    colorPair1 = createColor(COLOR_RED, COLOR_WHITE);
-//    colorPair2 = createColor(COLOR_WHITE, COLOR_RED);
-//
-//    // Print some red text
-//    for(int i = 0; i < 200; i++){
-//        wattron(animationScreen, COLOR_PAIR(colorPair1));
-//        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
-//        refreshScreen();
-//        wattroff(animationScreen, COLOR_PAIR(colorPair1));
-//        usleep(1000);
-//        wattron(animationScreen, COLOR_PAIR(colorPair1));
-//        mvwprintw(animationScreen, (screenSize[0] / 2), (screenSize[1] / 2), text.c_str());
-//        refreshScreen();
-//        wattroff(animationScreen, COLOR_PAIR(colorPair1));
-//        usleep(1000);
-//    }
-//
-//    // Clear the screen
-//    clearScreen();
-//
-//    return true;
-//}
-
-
-
 // Private Methods
 
+void Screen::initializeScreenSize() {
+    getScreenSizeY();
+    getScreenSizeX();
+}
+
+void Screen::updateScreenSize() {
+    // Check for a changed screen size
+    int screenSizeY = getmaxy(stdscr);
+    int screenSizeX = getmaxx(stdscr);
+
+    if(screenSize[0] != screenSizeY || screenSize[1] != screenSizeX){
+        getScreenSizeY();
+        getScreenSizeX();
+
+        clearScreen();
+
+        // The screen has been resized by the user,
+        // Delete the windows and reprint the information
+        if(animationMode){
+            delwin(animationScreen);
+
+            animationScreen = newwin(getScreenSizeY(), getScreenSizeX(), 0, 0);
+
+            wrefresh(animationScreen);
+        }
+        else{
+            if(infoScreen){
+                delwin(infoScreen);
+                infoScreen = newwin(3, getScreenSizeX(), 0, 0);
+                updateInfo();
+                wrefresh(infoScreen);
+            }
+
+            if(inputScreen){
+                delwin(textScreen);
+                textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
+                displayText(currentText);
+                wrefresh(textScreen);
+            }
+
+            if(inputScreen){
+                delwin(inputScreen);
+                inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
+                refreshInput();
+            }
+        }
+    }
+}
+
+
 void Screen::updateInfo() {
-    std::string scoreText = "Progress: ";
+    std::string scoreText = "Items Found: ";
     std::string roomText = "Room: ";
 
     // Clear the info window
     clearWindow(infoScreen);
 
-    // Refresh the screen size
-    updateScreenSize();
-
     // Print out the score
     mvwprintw(infoScreen, 1, 1, scoreText.c_str());
     wprintw(infoScreen, score.c_str());
+    wprintw(infoScreen, "%%");
 
     // Print out the current room
-    mvwprintw(infoScreen, 1, ( screenSize[1] / 2), roomText.c_str() );
+    mvwprintw(infoScreen, 1, ( getScreenSizeX() / 2 ), roomText.c_str() );
     wprintw(infoScreen, currentRoom.c_str());
 
     wrefresh(infoScreen);
@@ -294,3 +299,13 @@ bool Screen::clearWindow(WINDOW *window) {
 
     return true;
 }
+
+void Screen::refreshInput() {
+    // Clear the input area
+    clearWindow(inputScreen);
+    wrefresh(inputScreen);
+
+    // Move the cursor to the correct location
+    mvwprintw(inputScreen, 1, 1, "> ");
+}
+
