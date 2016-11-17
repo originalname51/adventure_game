@@ -62,7 +62,7 @@ int main() {
         command = commandObj->parse(playerCommand);
 
         if(command->getAction() == NO_ACTION){
-            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas.");
+            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
             continue;
         }
 
