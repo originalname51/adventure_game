@@ -18,11 +18,26 @@ Command* parser::parse(string commandIn) {
 
     cmd = stringToLower(commandIn);
     cmdVector = splitCommand();
+    int validAction = 1;
 
     getVerb();
-//    if(verb == ""){
-//        return new Command(NO_ACTION, NOTHING);
-//    }
+
+    for(auto iterator = actionMap.begin(); iterator != actionMap.end(); ++iterator){
+        string str = iterator->first;
+        if(verb != str)
+        {
+            continue;
+        }else{
+            validAction = 0;
+            break;
+        }
+    }
+
+    if(validAction == 1){
+        return new Command(NO_ACTION,NOTHING);
+    }
+
+
     if(cmdVector.size() == 1)
     {
         act = actionMap.at(verb);
