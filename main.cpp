@@ -61,6 +61,11 @@ int main() {
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
 
+        if(command->getAction() == NO_ACTION){
+            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas.");
+            continue;
+        }
+
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
