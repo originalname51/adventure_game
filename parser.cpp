@@ -19,11 +19,12 @@ Command* parser::parse(string commandIn) {
     cmd = stringToLower(commandIn);
     cmdVector = splitCommand();
     int validAction = 1;
+    int validItem = 1;
 
     getVerb();
 
-    for(auto iterator = actionMap.begin(); iterator != actionMap.end(); ++iterator){
-        string str = iterator->first;
+    for(auto actionIterator = actionMap.begin(); actionIterator != actionMap.end(); ++actionIterator){
+        string str = actionIterator->first;
         if(verb != str)
         {
             continue;
@@ -48,24 +49,34 @@ Command* parser::parse(string commandIn) {
         return new Command(HELP,SHIH_TZU);
     }
 
-    if((cmdVector.size()) > 2)getObject();
-    //Test that values have been correctly assigned to command vector
- //   cout << "Below is each element of the command vector:" << endl;
-    for(unsigned i = 0; i < cmdVector.size(); ++i){
-//        cout << "parser1.cmdVector value[" << i << "]:" << cmdVector[i] << endl;
+    for(auto itemIterator = itemMap.begin(); itemIterator != itemMap.end(); ++itemIterator){
+        string str = itemIterator->first;
+        if(subject != str)
+        {
+            continue;
+        }else{
+            validItem = 0;
+            break;
+        }
     }
+
+    if(validItem == 1){
+        return new Command(NO_ACTION,NOTHING);
+    }
+
+    if((cmdVector.size()) > 2)getObject();
 
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);
     if(!(object.empty())){
         item2 = itemMap.at(object);
- //       cout << "item2 value" << item2 << endl;
         return new Command(act, item1, item2);
     }else{
-//        cout << "item1 value" << item1 << endl;
 
         return new Command(act, item1);
     }
+
+
 
 }
 
