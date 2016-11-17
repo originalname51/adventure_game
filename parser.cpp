@@ -20,6 +20,7 @@ Command* parser::parse(string commandIn) {
     cmdVector = splitCommand();
     int validAction = 1;
     int validItem = 1;
+    int validObject = 1;
 
     getVerb();
 
@@ -64,7 +65,23 @@ Command* parser::parse(string commandIn) {
         return new Command(NO_ACTION,NOTHING);
     }
 
-    if((cmdVector.size()) > 2)getObject();
+    if((cmdVector.size()) > 2){
+        getObject();
+        for(auto itemIterator = itemMap.begin(); itemIterator != itemMap.end(); ++itemIterator){
+            string str = itemIterator->first;
+            if(object != str)
+            {
+                continue;
+            }else{
+                validObject = 0;
+                break;
+            }
+        }
+    }
+
+    if(validObject == 1){
+        return new Command(NO_ACTION,NOTHING);
+    }
 
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);
