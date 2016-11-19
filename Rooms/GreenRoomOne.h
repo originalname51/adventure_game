@@ -8,7 +8,7 @@
 
 #include "Room.h"
 
-class GreenRoomOne : public Room{
+class GreenRoomOne : public Room {
 
     private:
     std::string testing();

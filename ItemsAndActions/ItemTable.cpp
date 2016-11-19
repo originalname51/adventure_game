@@ -28,6 +28,7 @@ void ItemTable::populateMap(){
     GreenRoomTwo();
     GreenRoomThree();
     GreenRoomFour();
+    WhiteRoomOne();
 }
 
 void ItemTable::ThreeKeyRoom() {
@@ -75,6 +76,23 @@ void ItemTable::GreenRoomFour() {
     items[KID] = Kid;
 
 }
+
+void ItemTable::WhiteRoomOne() {
+    //    DISCUS, POWER_CRYSTAL, TORCH, LIGHT_PILLAR,
+
+    ItemWrapper * Discus         = new ItemWrapper(Item("Disc", DISCUS), W_ROOM1);
+    ItemWrapper * PowerCrystal   = new ItemWrapper(Item("PowerCrystal", POWER_CRYSTAL), W_ROOM1);
+    ItemWrapper * Torch          = new ItemWrapper(Item("Torch", TORCH), W_ROOM1);
+    ItemWrapper * LPiller        = new ItemWrapper(Item("Light Pillar", LIGHT_PILLAR), W_ROOM1);
+    ItemWrapper * Ladder         = new ItemWrapper(Item("Ladder", LADDER), HIDDEN);
+
+    items[DISCUS] = Discus;
+    items[POWER_CRYSTAL] = PowerCrystal;
+    items[TORCH] = Torch;
+    items[LIGHT_PILLAR] = LPiller;
+    items[LADDER] = Ladder;
+}
+
 
 ItemTable::~ItemTable(){
     for(auto i : items){

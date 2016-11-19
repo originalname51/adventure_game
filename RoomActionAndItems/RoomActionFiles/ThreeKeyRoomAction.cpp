@@ -44,15 +44,6 @@ bool ThreeKeyRoomAction::isDoorOpen(const itemType &key) const {
     return itemList->getValue(key)->getLocation() == BACKPACK;
 }
 
-ActionResults  *    ThreeKeyRoomAction::Look(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
-ActionResults  *    ThreeKeyRoomAction::Rest(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
-ActionResults  *   ThreeKeyRoomAction::Touch(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
 ActionResults  *    ThreeKeyRoomAction::Pick(){
     itemType item = commands->getMainItem();
     std::string information;
@@ -65,12 +56,9 @@ ActionResults  *    ThreeKeyRoomAction::Pick(){
             } else {
                 information = "Can only have one key at a time.";
             }
+            break;
         default:
-            if(itemList->getValue(item)->getLocation() == THREE_KEY_ROOM) {
-                pickUpItem(item, information);
-            } else {
-                information = "Can't pick item up, it's not in this room!";
-            }
+            return AbstractRoomAction::Pick();
     }
     return new ActionResults(CURRENT,information);
 }

@@ -22,11 +22,13 @@ private:
     void GreenRoomThree();
     void GreenRoomFour();
     void ThreeKeyRoom();
+    void WhiteRoomOne();
 
 public:
     ItemTable();
     ItemWrapper*  getValue(itemType const &value);
     ~ItemTable();
+
 };
 
 

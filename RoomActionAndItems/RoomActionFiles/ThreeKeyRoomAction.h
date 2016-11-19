@@ -17,9 +17,6 @@ public:
 private:
     ActionResults  *   Throw();
     ActionResults  *      Go();
-    ActionResults  *    Look();
-    ActionResults  *    Rest();
-    ActionResults  *   Touch();
     ActionResults  *    Pick();
 
     bool isDoorOpen(const itemType &key) const;
