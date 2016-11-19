@@ -46,6 +46,6 @@ ActionResults * GreenRoomFourAction::Go() {
         return new ActionResults(CURRENT, "You can't go west, you can only go south..\n");
     }
     return new ActionResults(CURRENT,"You can't go there.\n");
-}
 
 }
+
