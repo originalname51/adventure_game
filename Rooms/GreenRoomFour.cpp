@@ -3,3 +3,17 @@
 //
 
 #include "GreenRoomFour.h"
+GreenRoomFour::GreenRoomFour(std::string rn, ItemTable *iList, bool f) {
+    table = iList;
+    displayName = "GreenRoomFour";
+    roomName = std::string(RESOURCES_PATH) + rn;
+    showLongDescription = f;
+    parseData();
+}
+
+std::string GreenRoomFour::getDescription() {
+    if(showLongDescription){
+        return rstate0;
+    }
+    return rstate1;
+}

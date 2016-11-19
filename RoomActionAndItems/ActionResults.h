@@ -7,7 +7,7 @@
 #include <iostream>
 #include "../Rooms/Room.h"
 
-enum specialEffects{ZAP, BOP, ICE, NONE};
+enum specialEffects{ZAP, BOP, ICE, FIREWORKS, NONE};
 class ActionResults {
 private:
     const itemLocation   returnRoom;

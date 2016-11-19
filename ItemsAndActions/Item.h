@@ -23,7 +23,10 @@ enum itemType {
     BLOOD_BUCKET, CLEAN_BUCKET,
 
     //Basin Room and //Kid-key room
-    WATER,
+    WATER, BASIN,
+
+    //Kid-key room
+    KID,
 
     //BLUE - Misty Room
     GLYPHS, FISH, CEILING,

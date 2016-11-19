@@ -17,14 +17,14 @@ ActionResults *GreenRoomThreeAction::Use() {
         return new ActionResults(CURRENT, "No item to use here");
     }
 
-    if((commands->getMainItem() == WATER || commands->getActedOnItem() == WATER) &&
+    if((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&
             (commands->getMainItem() == BLOOD_BUCKET || commands->getActedOnItem() == BLOOD_BUCKET)) {
 
         itemList->getValue(BLOOD_BUCKET)->setLocation(HIDDEN);
         itemList->getValue(CLEAN_BUCKET)->setLocation(BACKPACK);
         return new ActionResults(CURRENT, "You cleaned the bloody bucket! You now have a clean bucket filled with water!");
     }
-    else if ((commands->getMainItem() == WATER || commands->getActedOnItem() == WATER) &&
+    else if ((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&
                                                          (commands->getMainItem() == CLEAN_BUCKET || commands->getActedOnItem() == CLEAN_BUCKET))
     {
         return new ActionResults(CURRENT,"You pour out and re-fill the bucket with ice-cold water");
@@ -47,4 +47,5 @@ ActionResults *GreenRoomThreeAction::Go() {
     if (commands->getMainItem() == WEST) {
         return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");
     }
-    return new ActionResults(CURRENT,"You can't go there.\n");}
+    return new ActionResults(CURRENT,"You can't go there.\n");
+}

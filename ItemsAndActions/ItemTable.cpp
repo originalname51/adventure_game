@@ -26,7 +26,8 @@ void ItemTable::populateMap(){
     ThreeKeyRoom();
     GreenRoomOne();
     GreenRoomTwo();
-
+    GreenRoomThree();
+    GreenRoomFour();
 }
 
 void ItemTable::ThreeKeyRoom() {
@@ -62,6 +63,18 @@ void ItemTable::GreenRoomTwo() {
     items[CLEAN_BUCKET] = CleanBucket;
 }
 
+void ItemTable::GreenRoomThree() {
+    ItemWrapper * Basin = new ItemWrapper(Item("Basin", BASIN), G_ROOM3_BASIN);
+
+    items[BASIN] = Basin;
+}
+
+void ItemTable::GreenRoomFour() {
+    ItemWrapper * Kid = new ItemWrapper(Item("Kid", KID), G_ROOM4_KID);
+
+    items[KID] = Kid;
+
+}
 
 ItemTable::~ItemTable(){
     for(auto i : items){

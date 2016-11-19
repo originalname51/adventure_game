@@ -19,6 +19,8 @@ private:
     void populateMap();
     void GreenRoomOne();
     void GreenRoomTwo();
+    void GreenRoomThree();
+    void GreenRoomFour();
     void ThreeKeyRoom();
 
 public:
