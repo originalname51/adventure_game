@@ -23,8 +23,10 @@ void ItemTable::populateMap(){
     items[PLAYER] = player;
     items[NOTHING] = nothing;
 
-    GreenRoomOne();
     ThreeKeyRoom();
+    GreenRoomOne();
+    GreenRoomTwo();
+
 }
 
 void ItemTable::ThreeKeyRoom() {
@@ -52,6 +54,13 @@ void ItemTable::GreenRoomOne(){
     items[TOKEN_DOOR]  = gRoomTokenDoor;
 }
 
+void ItemTable::GreenRoomTwo() {
+    ItemWrapper *      Bucket = new ItemWrapper(Item("Bucket", BLOOD_BUCKET), G_ROOM2);
+    ItemWrapper * CleanBucket = new ItemWrapper(Item("Clean Bucket", CLEAN_BUCKET) , HIDDEN);
+
+    items[BLOOD_BUCKET] = Bucket;
+    items[CLEAN_BUCKET] = CleanBucket;
+}
 
 
 ItemTable::~ItemTable(){

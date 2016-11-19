@@ -6,8 +6,15 @@
 #define ITEM_TEST_GREENROOMTWO_H
 
 
-class GreenRoomTwo {
+#include "Room.h"
 
+class GreenRoomTwo : public Room{
+
+private:
+    std::string testing();
+public:
+    GreenRoomTwo(std::string, ItemTable *iList, bool f);
+    std::string getDescription();
 };
 
 

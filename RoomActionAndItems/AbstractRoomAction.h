@@ -30,7 +30,7 @@ public:
     virtual ActionResults    * Touch();
     virtual ActionResults    * Pick();
     virtual ActionResults    * Drop();
-    virtual ActionResults    * Use()=0;
+    virtual ActionResults    * Use();
     virtual ActionResults    * Open();
     virtual ActionResults    * Close();
     void setCommands(Command * com);

@@ -21,11 +21,6 @@ private:
     ActionResults  *    Rest();
     ActionResults  *   Touch();
     ActionResults  *    Pick();
-    ActionResults  *    Drop();
-    ActionResults  *     Use();
-    ActionResults  *    Open();
-    ActionResults  *   Close();
-//    ActionResults  * Nothing();
 
     bool isDoorOpen(const itemType &key) const;
 

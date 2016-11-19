@@ -20,7 +20,7 @@ enum itemType {
     GREEN_KEY, WHITE_KEY, BLUE_KEY,
 
     //GREEN Hospital room
-    BLOOD_BUCKET,
+    BLOOD_BUCKET, CLEAN_BUCKET,
 
     //Basin Room and //Kid-key room
     WATER,

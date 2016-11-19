@@ -19,11 +19,11 @@ void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
 void initializeScreenResizingHandler();
 
 
-Graphics graphics(0, std::string(""));
+// Graphics graphics(0, std::string(""));
 
 int main() {
     /* DO NOT DELETE THIS SIGNAL HANDLER */
-    initializeScreenResizingHandler();
+//    initializeScreenResizingHandler();
 
     //initialize game.
     bool endGame = false;
@@ -32,28 +32,34 @@ int main() {
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
     Command *command;
-    Graphics graphics;
+//    Graphics graphics;
     std::string playerCommand;
     ActionResults *actionResults;
     //int score = 0;
 
 
     // Display Game Title animation
-    graphics.animation(std::string("GameTitle"));
+//    graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
-    graphics.setRoom(room->getRoomName());
-    graphics.displayText(room->getDescription());
+    std::cout << room->getDescription();
+//    graphics.setRoom(room->getRoomName());
+//    graphics.displayText(room->getDescription());
 
     roomAction = new ThreeKeyRoomAction(items);
+
+    std::string input;
 
     while(!endGame) {
 
         // Get input from the player
-        playerCommand = graphics.getInput();
+        std::getline (std::cin,playerCommand);
+//        playerCommand = graphics.getInput();
+
         if(playerCommand.empty()){
-            graphics.displayText(room->getDescription());
-            graphics.displayText("No command was entered. You've got to give me something to go on.");
+            std::cout << "No Command Entered. YOu've got to give me something to go on.\n";
+  //          graphics.displayText(room->getDescription());
+  //          graphics.displayText("No command was entered. You've got to give me something to go on.");
             //std::cout << "No command entered." << endl;
             continue;
         }
@@ -62,7 +68,8 @@ int main() {
         command = commandObj->parse(playerCommand);
 
         if(command->getAction() == NO_ACTION){
-            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
+            std::cout << "I didn't understand the command\n";
+//            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
             continue;
         }
 
@@ -82,13 +89,14 @@ int main() {
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
 
-            graphics.setRoom(room->getRoomName());
-            graphics.displayText(room->getDescription());
+         //   graphics.setRoom(room->getRoomName());
+         //   graphics.displayText(room->getDescription());
+            std::cout<< room->getDescription();
         }
         else {
             // Room not changed, inform user of status of his action.
-            graphics.displayText(actionResults->getReturnDescription());
-            //std::cout << actionResults->getReturnDescription() << std::endl;
+         //   graphics.displayText(actionResults->getReturnDescription());
+            std::cout << actionResults->getReturnDescription() << std::endl;
         }
 
         free(command);
@@ -102,7 +110,7 @@ int main() {
     }
     //game over stuff goes here.
 
-    graphics.animation(std::string("Fireworks"));
+//    graphics.animation(std::string("Fireworks"));
 
     free(roomAction);
     free(room);
@@ -145,7 +153,7 @@ void handle_winch(int sig)
     // itself with the new terminal dimensions.
     refresh();
 
-    graphics.refreshScreen();
+//    graphics.refreshScreen();
 }
 
 //  Signal Handling Initialization

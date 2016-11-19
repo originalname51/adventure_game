@@ -85,17 +85,4 @@ bool ThreeKeyRoomAction::hasAKey() const {
            && itemList->getValue(WHITE_KEY)->getLocation() != BACKPACK
            && itemList->getValue(BLUE_KEY)->getLocation() != BACKPACK;
 }
-
-ActionResults  *    ThreeKeyRoomAction::Drop(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
-ActionResults  *     ThreeKeyRoomAction::Use(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
-ActionResults  *    ThreeKeyRoomAction::Open(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
-ActionResults  *   ThreeKeyRoomAction::Close(){
-    return new ActionResults(CURRENT,"Not implemented yet");
-}
 //ActionResults  * ThreeKeyRoom::Nothing();

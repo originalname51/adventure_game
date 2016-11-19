@@ -15,6 +15,15 @@ void AbstractRoomAction::setCommands(Command * com) {
 
 }
 
+
+ActionResults * AbstractRoomAction::Use() {
+    std::string information;
+
+    information = "You contemplate using " + itemList->getValue(commands->getMainItem())->getItemName() + " but do not see the use."
+                                                                                                                  "Perhaps you should do something else.";
+    return new ActionResults(CURRENT, information);
+}
+
 ActionResults * AbstractRoomAction::Throw() {
 
     std::string information;

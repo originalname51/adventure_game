@@ -9,7 +9,7 @@
 #include "../../Command.h"
 #include "../AbstractRoomAction.h"
 
-class GreenRoomOneAction: public AbstractRoomAction {
+class GreenRoomOneAction : public AbstractRoomAction {
 
 public:
     GreenRoomOneAction(ItemTable *iList, Command *commands);

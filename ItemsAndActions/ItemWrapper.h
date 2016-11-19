@@ -15,6 +15,8 @@ enum itemLocation {
 
     G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM1_TOKEN_DOOR,
 
+    G_ROOM2,
+
     BACKPACK,CURRENT };
 
 

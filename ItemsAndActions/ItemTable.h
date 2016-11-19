@@ -18,6 +18,7 @@ private:
     static const ItemTable gameItems;
     void populateMap();
     void GreenRoomOne();
+    void GreenRoomTwo();
     void ThreeKeyRoom();
 
 public:
