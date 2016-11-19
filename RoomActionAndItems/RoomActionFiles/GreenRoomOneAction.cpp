@@ -37,8 +37,7 @@ ActionResults *GreenRoomOneAction::Use() {
             }
             break;
         default:
-            information = "This item can not be used here.";
-        }
+           return AbstractRoomAction::Use();        }
     return new ActionResults(CURRENT, information);
     }
 

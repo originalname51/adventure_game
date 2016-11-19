@@ -9,7 +9,6 @@ GreenRoomTwo::GreenRoomTwo(std::string rn, ItemTable *iList, bool sld) {
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();
-
 }
 
 std::string GreenRoomTwo::getDescription(){
