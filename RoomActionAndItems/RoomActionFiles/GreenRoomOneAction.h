@@ -16,25 +16,9 @@ public:
     GreenRoomOneAction(ItemTable *iList);
 
 private:
-    ActionResults  *   Throw();
     ActionResults  *      Go();
-    ActionResults  *    Look();
-    ActionResults  *    Rest();
-    ActionResults  *   Touch();
-    ActionResults  *    Pick();
-    ActionResults  *    Drop();
     ActionResults  *     Use();
-    ActionResults  *    Open();
-    ActionResults  *   Close();
     ActionResults  * Nothing();
-
-    bool getIsGooseHere() const;
-
-    bool isBeanToken() const;
-
-    bool itemInRoom(itemType item) const;
-
-    bool hasAToken() const;
 
     bool foxEatsGoose() const;
 
@@ -43,8 +27,6 @@ private:
     void resetTokens() const;
 
     void takeBoat() const;
-
-    void dropItem(const itemType &item) const;
 };
 
 
