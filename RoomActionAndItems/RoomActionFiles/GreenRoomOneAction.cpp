@@ -10,15 +10,6 @@ GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList) : AbstractRoomAction(iL
 
 ActionResults *GreenRoomOneAction::Go() {
 
-    if (commands->getMainItem() == NORTH) {
-        return new ActionResults(CURRENT, "You go north.");
-    }
-    if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(CURRENT, "You go south.");
-    }
-    if (commands->getMainItem() == EAST) {
-        return new ActionResults(CURRENT, "You go east.");
-    }
     if (commands->getMainItem() == WEST) {
         return new ActionResults(CURRENT, "The path is blocked.\n");
     }
