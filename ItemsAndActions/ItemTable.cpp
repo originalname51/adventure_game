@@ -35,6 +35,7 @@ void ItemTable::populateMap(){
     BlueRoomFive();
     WhiteRoomOne();
     WhiteRoomTwo();
+    WhiteRoomThree();
 
 }
 
@@ -111,6 +112,12 @@ void ItemTable::WhiteRoomTwo() {
     items[EAST_WALL]    = eastWall;
     items[WEST_WALL]    = westWall;
 
+}
+
+void ItemTable::WhiteRoomThree() {
+
+    ItemWrapper * WhiteRoomDoor   = new ItemWrapper(Item("Door", TOKEN_DOOR), HIDDEN);
+    items[DOOR_W1]  = WhiteRoomDoor;
 }
 
 

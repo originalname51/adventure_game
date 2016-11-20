@@ -29,13 +29,10 @@ ActionResults *WhiteRoomTwoAction::Go() {
         default :
             return new ActionResults(CURRENT, "You can't go that way");
     }
-
-
-
 }
 
 ActionResults *WhiteRoomTwoAction::Use() {
-    if(commands->getMainItem() == POWER_CRYSTAL && commands->getActedOnItem() == LIGHT_PILLAR) {
+    if((commands->getMainItem() == POWER_CRYSTAL && commands->getActedOnItem() == LIGHT_PILLAR) || commands->getMainItem() == TORCH) {
         roomLit = true;
         return new ActionResults(CURRENT, "The light pillar illuminates the room showing interesting descriptions on the "
                 "east, west, and north walls. You feel compelled to read each wall, almost as if it is a requirement to "

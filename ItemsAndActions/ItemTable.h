@@ -36,6 +36,7 @@ public:
     ~ItemTable();
 
 
+    void WhiteRoomThree();
 };
 
 
