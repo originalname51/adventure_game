@@ -17,6 +17,7 @@ public:
 private:
     ActionResults * Go();
     ActionResults * Action();
+    ActionResults * Drop();
 };
 
 

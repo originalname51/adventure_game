@@ -28,14 +28,18 @@ void ItemTable::populateMap(){
     GreenRoomTwo();
     GreenRoomThree();
     GreenRoomFour();
+
     BlueRoomOne();
     BlueRoomTwo();
     BlueRoomThree();
     BlueRoomFour();
     BlueRoomFive();
+
     WhiteRoomOne();
     WhiteRoomTwo();
     WhiteRoomThree();
+    WhiteRoomFour();
+    WhiteRoomFive();
 
 }
 
@@ -120,7 +124,23 @@ void ItemTable::WhiteRoomThree() {
     items[DOOR_W1]  = WhiteRoomDoor;
 }
 
+void ItemTable::WhiteRoomFour() {
 
+    ItemWrapper * Light = new ItemWrapper(Item("Light", LIGHT), W_ROOM4);
+
+    items[LIGHT] = Light;
+
+}
+
+void ItemTable::WhiteRoomFive() {
+
+    ItemWrapper * pitcher = new ItemWrapper(Item("Pitcher",PITCHER), W_ROOM5);
+    ItemWrapper * bowl    = new ItemWrapper(Item("Bowl", BOWL), W_ROOM5);
+
+    items[PITCHER] = pitcher;
+    items[BOWL] = bowl;
+
+}
 
 void ItemTable::BlueRoomOne() {
     ItemWrapper * Torch = new ItemWrapper(Item("A Torch", TORCH), HIDDEN);

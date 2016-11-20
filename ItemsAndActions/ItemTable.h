@@ -24,6 +24,9 @@ private:
     void ThreeKeyRoom();
     void WhiteRoomOne();
     void WhiteRoomTwo();
+    void WhiteRoomThree();
+    void WhiteRoomFour();
+    void WhiteRoomFive();
     void BlueRoomOne();
     void BlueRoomTwo();
     void BlueRoomThree();
@@ -36,7 +39,7 @@ public:
     ~ItemTable();
 
 
-    void WhiteRoomThree();
+
 };
 
 
