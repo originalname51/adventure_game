@@ -11,6 +11,32 @@
 #include "RoomActionAndItems/RoomActionFiles/GreenRoomOneAction.h"
 #include "Rooms/GreenRoomOne.h"
 #include "Graphics/Graphics.h"
+#include "Rooms/WhiteRoomOne.h"
+#include "Rooms/WhiteRoomTwo.h"
+#include "Rooms/WhiteRoomThree.h"
+#include "Rooms/WhiteRoomFour.h"
+#include "Rooms/WhiteRoomFive.h"
+#include "RoomActionAndItems/RoomActionFiles/WhiteRoomOneAction.h"
+#include "RoomActionAndItems/RoomActionFiles/WhiteRoomTwoAction.h"
+#include "RoomActionAndItems/RoomActionFiles/WhiteRoomThreeAction.h"
+#include "RoomActionAndItems/RoomActionFiles/WhiteRoomFourAction.h"
+#include "RoomActionAndItems/RoomActionFiles/WhiteRoomFiveAction.h"
+#include "RoomActionAndItems/RoomActionFiles/GreenRoomTwoAction.h"
+#include "RoomActionAndItems/RoomActionFiles/GreenRoomThreeAction.h"
+#include "RoomActionAndItems/RoomActionFiles/GreenRoomFourAction.h"
+#include "RoomActionAndItems/RoomActionFiles/BlueRoomFiveAction.h"
+#include "RoomActionAndItems/RoomActionFiles/BlueRoomFourAction.h"
+#include "RoomActionAndItems/RoomActionFiles/BlueRoomThreeAction.h"
+#include "RoomActionAndItems/RoomActionFiles/BlueRoomTwoAction.h"
+#include "RoomActionAndItems/RoomActionFiles/BlueRoomOneAction.h"
+#include "Rooms/GreenRoomTwo.h"
+#include "Rooms/GreenRoomThree.h"
+#include "Rooms/GreenRoomFour.h"
+#include "Rooms/BlueRoomOne.h"
+#include "Rooms/BlueRoomTwo.h"
+#include "Rooms/BlueRoomThree.h"
+#include "Rooms/BlueRoomFour.h"
+#include "Rooms/BlueRoomFive.h"
 
 
 AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *pTable);
@@ -125,8 +151,34 @@ Room *newRoomFactory(itemLocation location, ItemTable *pTable) {
         case G_ROOM1_SIDE1:
         case G_ROOM1_SIDE2:
             return new GreenRoomOne("greenRoomOne", pTable, true);
+        case G_ROOM2_BUCKET :
+            return new GreenRoomTwo("greenRoomTwo", pTable, true);
+        case G_ROOM3_BASIN :
+            return new GreenRoomThree("greenRoomThree", pTable, true);
+        case G_ROOM4_KID :
+            return new GreenRoomFour("greenRoomFour", pTable, true);
         case THREE_KEY_ROOM :
             return new ThreeKeyRoom("keyroom",pTable, true);
+        case W_ROOM1 :
+            return new WhiteRoomOne("whiteRoomOne", pTable, true);
+        case W_ROOM2 :
+            return new WhiteRoomTwo("whiteRoomTwo", pTable, true);
+        case W_ROOM3 :
+            return new WhiteRoomThree("whiteRoomThree", pTable, true);
+        case W_ROOM4 :
+            return new WhiteRoomFour("whiteRoomFour", pTable, true);
+        case W_ROOM5 :
+            return new WhiteRoomFive("whiteRoomFinal", pTable, true);
+        case B_ROOM1 :
+            return new BlueRoomOne("blueRoomOne", pTable, true);
+        case B_ROOM2 :
+            return new BlueRoomTwo("blueRoomTwo", pTable, true);
+        case B_ROOM3 :
+            return new BlueRoomThree("blueRoomThree", pTable, true);
+        case B_ROOM4 :
+            return new BlueRoomFour("blueRoomFour", pTable, true);
+        case B_ROOM5 :
+            return new BlueRoomFive("blueRoomFinal", pTable, true);
         default:
             assert(false);
             break;
@@ -138,10 +190,36 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
         case G_ROOM1_SIDE1:
         case G_ROOM1_SIDE2:
             return new GreenRoomOneAction(iTable);
+        case G_ROOM2_BUCKET:
+            return new GreenRoomTwoAction(iTable);
+        case G_ROOM3_BASIN :
+            return new GreenRoomThreeAction(iTable);
+        case G_ROOM4_KID :
+            return new GreenRoomFourAction(iTable);
         case THREE_KEY_ROOM :
             return new ThreeKeyRoomAction(iTable);
+        case W_ROOM1 :
+            return new WhiteRoomOneAction(iTable);
+        case W_ROOM2 :
+            return new WhiteRoomTwoAction(iTable);
+        case W_ROOM3 :
+            return new WhiteRoomThreeAction(iTable);
+        case W_ROOM4 :
+            return new WhiteRoomFourAction(iTable);
+        case W_ROOM5 :
+            return new WhiteRoomFiveAction(iTable);
+        case B_ROOM1 :
+            return new BlueRoomOneAction(iTable);
+        case B_ROOM2 :
+            return new BlueRoomTwoAction(iTable);
+        case B_ROOM3 :
+            return new BlueRoomThreeAction(iTable);
+        case B_ROOM4 :
+            return new BlueRoomFourAction(iTable);
+        case B_ROOM5 :
+            return new BlueRoomFiveAction(iTable);
         default:
-            return new ThreeKeyRoomAction(iTable);
+            assert(false);
     }
     assert(false);
 }

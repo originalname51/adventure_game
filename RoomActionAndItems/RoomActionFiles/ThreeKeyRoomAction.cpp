@@ -24,13 +24,13 @@ ActionResults  *      ThreeKeyRoomAction::Go(){
             }
         case EAST:
             if (isDoorOpen(WHITE_KEY)) {
-                return new ActionResults(G_ROOM1_SIDE1, "You move into the White Room.");
+                return new ActionResults(W_ROOM1, "You move into the White Room.");
             }
             else {return new ActionResults(CURRENT,"You can not move forward without a key.");
             }
         case NORTH:
             if (isDoorOpen(BLUE_KEY)) {
-                return new ActionResults(G_ROOM1_SIDE1, "You move into the Blue Room.");
+                return new ActionResults(B_ROOM1, "You move into the Blue Room.");
             }
             else {return new ActionResults(CURRENT,"You can not move forward without a key.");
             }
@@ -68,7 +68,7 @@ void ThreeKeyRoomAction::pickUpItem(const itemType &item, std::string &informati
 }
 
 bool ThreeKeyRoomAction::hasAKey() const {
-    return itemList->getValue(GREEN_KEY)->getLocation() != BACKPACK
+    return !(itemList->getValue(GREEN_KEY)->getLocation() != BACKPACK
            && itemList->getValue(WHITE_KEY)->getLocation() != BACKPACK
-           && itemList->getValue(BLUE_KEY)->getLocation() != BACKPACK;
+           && itemList->getValue(BLUE_KEY)->getLocation() != BACKPACK);
 }
