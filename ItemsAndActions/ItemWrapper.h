@@ -13,16 +13,14 @@ enum itemLocation {
 
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
 
-    G_ROOM1_SIDE1, G_ROOM1_SIDE2,
+    //Green Rooms
+    G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM2_BUCKET, G_ROOM3_BASIN, G_ROOM4_KID,
 
-    G_ROOM2_BUCKET,
-
-    G_ROOM3_BASIN,
-
-    G_ROOM4_KID,
-
+    //White Rooms
     W_ROOM1, W_ROOM2,
 
+    //Blue Rooms
+    B_ROOM1, B_ROOM2, B_ROOM3, B_ROOM4,
 
     BACKPACK, CURRENT };
 
@@ -50,6 +48,7 @@ public:
     Action  getDefaultAction();
     itemState getState();
     void setState(itemState s);
+    Item getItem();
 };
 
 

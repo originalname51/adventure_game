@@ -56,11 +56,10 @@ ActionResults  *    ThreeKeyRoomAction::Pick(){
             } else {
                 information = "Can only have one key at a time.";
             }
-            break;
+            return new ActionResults(CURRENT,information);
         default:
             return AbstractRoomAction::Pick();
     }
-    return new ActionResults(CURRENT,information);
 }
 
 void ThreeKeyRoomAction::pickUpItem(const itemType &item, std::string &information) const {
@@ -73,4 +72,3 @@ bool ThreeKeyRoomAction::hasAKey() const {
            && itemList->getValue(WHITE_KEY)->getLocation() != BACKPACK
            && itemList->getValue(BLUE_KEY)->getLocation() != BACKPACK;
 }
-//ActionResults  * ThreeKeyRoom::Nothing();

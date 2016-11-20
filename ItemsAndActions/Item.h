@@ -34,6 +34,9 @@ enum itemType {
     //BLUE - Ice Room
     BALL, PIPE,
 
+    //BLUE TORCH
+    TORCH,
+
     //BLUE - Dark Room
     TABLET, STATUE,
 
@@ -44,7 +47,7 @@ enum itemType {
     NORTH_WALL, EAST_WALL, WEST_WALL,
     
     //WHITE - PILLAR room
-    DISCUS, POWER_CRYSTAL, TORCH, LIGHT_PILLAR, LADDER,
+    DISCUS, POWER_CRYSTAL, LIGHT_PILLAR, LADDER,
 
     //WHITE - Table Room
     PITCHER, BOWL, LIGHT
@@ -53,11 +56,11 @@ enum itemType {
 
 class Item {
 private:
-    const std::string description;
+    const std::string name;
     const itemType item;
 public:
     Item(std::string d, itemType type);
-    std::string getDescription();
+    std::string getName();
     itemType getItemType();
 };
 

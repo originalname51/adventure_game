@@ -115,7 +115,7 @@ ActionResults * AbstractRoomAction::Pick() {
         case BEAN_TOKEN :
             if (!hasAToken() && itemInRoom(commands->getMainItem())) {
                 information = "You pick up the the " +
-                              itemList->getValue(commands->getMainItem())->getItemName();
+                              itemList->getValue(commands->getMainItem())->getItem().getName();
                 itemList->getValue(commands->getMainItem())->setLocation(BACKPACK);
             } else {
                 information = "Only one token allowed to be picked up at a time.";

@@ -28,7 +28,11 @@ void ItemTable::populateMap(){
     GreenRoomTwo();
     GreenRoomThree();
     GreenRoomFour();
+    BlueRoomOne();
+    BlueRoomTwo();
+    BlueRoomThree();
     WhiteRoomOne();
+
 }
 
 void ItemTable::ThreeKeyRoom() {
@@ -93,6 +97,31 @@ void ItemTable::WhiteRoomOne() {
     items[LADDER] = Ladder;
 }
 
+void ItemTable::BlueRoomOne() {
+    ItemWrapper * Torch = new ItemWrapper(Item("A Torch", TORCH), HIDDEN);
+    items[TORCH] = Torch;
+}
+
+void ItemTable::BlueRoomTwo() {
+
+    ItemWrapper * BabbleFish    = new ItemWrapper(Item("BabbleFish", FISH), B_ROOM2);
+    ItemWrapper * Ceiling       = new ItemWrapper(Item("Cieling", CEILING), B_ROOM2);
+    ItemWrapper * Glpyhs        = new ItemWrapper(Item("Glyphs", GLYPHS), B_ROOM2);
+
+    items[FISH] = BabbleFish;
+    items[CEILING] = Ceiling;
+    items[GLYPHS] = Glpyhs;
+}
+
+void ItemTable::BlueRoomThree() {
+
+    ItemWrapper * Pipes         = new ItemWrapper(Item("PIPES", PIPE), B_ROOM3);
+    ItemWrapper * Ball          = new ItemWrapper(Item("BALL", BALL),  B_ROOM3 );
+
+    items[PIPE] = Pipes;
+    items[BALL] = Ball;
+
+}
 
 ItemTable::~ItemTable(){
     for(auto i : items){

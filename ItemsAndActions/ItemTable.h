@@ -29,6 +29,11 @@ public:
     ItemWrapper*  getValue(itemType const &value);
     ~ItemTable();
 
+    void BlueRoomOne();
+
+    void BlueRoomTwo();
+
+    void BlueRoomThree();
 };
 
 
