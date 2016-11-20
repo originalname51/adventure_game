@@ -34,6 +34,8 @@ public:
     void BlueRoomTwo();
 
     void BlueRoomThree();
+
+    void BlueRoomFour();
 };
 
 

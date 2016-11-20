@@ -31,6 +31,7 @@ void ItemTable::populateMap(){
     BlueRoomOne();
     BlueRoomTwo();
     BlueRoomThree();
+    BlueRoomFour();
     WhiteRoomOne();
 
 }
@@ -120,6 +121,18 @@ void ItemTable::BlueRoomThree() {
 
     items[PIPE] = Pipes;
     items[BALL] = Ball;
+
+}
+
+void ItemTable::BlueRoomFour() {
+
+    ItemWrapper *        Rope = new ItemWrapper(Item("Rope", ROPE), B_ROOM4);
+    ItemWrapper * WhitePillar = new ItemWrapper(Item("White Pillar", WHITE_PILLAR), B_ROOM4);
+    ItemWrapper * BlackPillar = new ItemWrapper(Item("Black Pillar", BLACK_PILLAR), B_ROOM4);
+
+    items[ROPE] = Rope;
+    items[WHITE_PILLAR] = WhitePillar;
+    items[BLACK_PILLAR] = BlackPillar;
 
 }
 
