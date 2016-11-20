@@ -23,19 +23,18 @@ private:
     void GreenRoomFour();
     void ThreeKeyRoom();
     void WhiteRoomOne();
+    void BlueRoomOne();
+    void BlueRoomTwo();
+    void BlueRoomThree();
+    void BlueRoomFour();
+    void BlueRoomFive();
 
 public:
     ItemTable();
     ItemWrapper*  getValue(itemType const &value);
     ~ItemTable();
 
-    void BlueRoomOne();
 
-    void BlueRoomTwo();
-
-    void BlueRoomThree();
-
-    void BlueRoomFour();
 };
 
 

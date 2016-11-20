@@ -20,7 +20,7 @@ enum itemLocation {
     W_ROOM1, W_ROOM2,
 
     //Blue Rooms
-    B_ROOM1, B_ROOM2, B_ROOM3, B_ROOM4,
+    B_ROOM1, B_ROOM2, B_ROOM3, B_ROOM4, B_ROOM5,
 
     BACKPACK, CURRENT };
 

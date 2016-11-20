@@ -38,7 +38,7 @@ enum itemType {
     TORCH,
 
     //BLUE - Dark Room
-    TABLET, STATUE,
+    TABLET, STATUE, BOX,
 
     //BLUE - Mirror Room
     ROPE, WHITE_PILLAR, BLACK_PILLAR,
