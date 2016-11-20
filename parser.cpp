@@ -77,11 +77,12 @@ Command* parser::parse(string commandIn) {
                 break;
             }
         }
+
+        if(validObject == 1){
+            return new Command(NO_ACTION,NOTHING);
+        }
     }
 
-    if(validObject == 1){
-        return new Command(NO_ACTION,NOTHING);
-    }
 
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);

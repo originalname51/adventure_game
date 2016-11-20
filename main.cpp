@@ -60,6 +60,7 @@ int main() {
 
         parser *commandObj = new parser;
         command = commandObj->parse(playerCommand);
+        graphics.displayText(commandObj->subject);
 
         if(command->getAction() == NO_ACTION){
             graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
