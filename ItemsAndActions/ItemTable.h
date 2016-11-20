@@ -23,6 +23,7 @@ private:
     void GreenRoomFour();
     void ThreeKeyRoom();
     void WhiteRoomOne();
+    void WhiteRoomTwo();
     void BlueRoomOne();
     void BlueRoomTwo();
     void BlueRoomThree();

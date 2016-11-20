@@ -34,6 +34,7 @@ void ItemTable::populateMap(){
     BlueRoomFour();
     BlueRoomFive();
     WhiteRoomOne();
+    WhiteRoomTwo();
 
 }
 
@@ -98,6 +99,21 @@ void ItemTable::WhiteRoomOne() {
     items[LIGHT_PILLAR] = LPiller;
     items[LADDER] = Ladder;
 }
+
+void ItemTable::WhiteRoomTwo() {
+    ItemWrapper * PowerCrystal    = new ItemWrapper(Item("PowerCrystal", POWER_CRYSTAL), W_ROOM2);
+    ItemWrapper * northWall       = new ItemWrapper(Item("North Wall", NORTH_WALL), W_ROOM2);
+    ItemWrapper * eastWall        = new ItemWrapper(Item("East Wall", EAST_WALL), W_ROOM2);
+    ItemWrapper * westWall        = new ItemWrapper(Item("West Wall", WEST_WALL), W_ROOM2);
+
+    items[POWER_CRYSTAL] = PowerCrystal;
+    items[NORTH_WALL]   = northWall;
+    items[EAST_WALL]    = eastWall;
+    items[WEST_WALL]    = westWall;
+
+}
+
+
 
 void ItemTable::BlueRoomOne() {
     ItemWrapper * Torch = new ItemWrapper(Item("A Torch", TORCH), HIDDEN);
