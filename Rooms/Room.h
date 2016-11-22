@@ -36,7 +36,7 @@ protected:
 public:
     Room();
     Room(std::string, ItemTable *iList, bool f);
-    virtual std::string getDescription()=0;
+    virtual std::string getDescription(bool longform)=0;
     std::string getRoomName();
 };
 

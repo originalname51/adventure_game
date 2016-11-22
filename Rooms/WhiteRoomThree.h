@@ -14,6 +14,6 @@ private:
     std::string testing();
 public:
     WhiteRoomThree(std::string, ItemTable *iList, bool f);
-    std::string getDescription();
+    std::string getDescription(bool longform);
 };
 #endif //ITEM_TEST_WHITEROOMTHREE_H

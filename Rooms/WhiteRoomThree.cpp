@@ -12,7 +12,7 @@ WhiteRoomThree::WhiteRoomThree(std::string rn, ItemTable *iList, bool sld) {
         parseData();
 }
 
-std::string WhiteRoomThree::getDescription(){
+std::string WhiteRoomThree::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

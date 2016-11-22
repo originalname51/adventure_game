@@ -68,7 +68,7 @@ int main() {
 //    graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
-    std::cout << room->getDescription();
+    std::cout << room->getDescription(false);
 //    graphics.setRoom(room->getRoomName());
 //    graphics.displayText(room->getDescription());
 
@@ -117,7 +117,7 @@ int main() {
 
          //   graphics.setRoom(room->getRoomName());
          //   graphics.displayText(room->getDescription());
-            std::cout<< room->getDescription();
+            std::cout<< room->getDescription(false);
         }
         else {
             // Room not changed, inform user of status of his action.

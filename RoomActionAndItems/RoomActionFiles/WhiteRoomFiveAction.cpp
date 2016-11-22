@@ -38,6 +38,7 @@ ActionResults *WhiteRoomFiveAction::Use() {
 ActionResults *WhiteRoomFiveAction::Go() {
 
         if(roomWon) {
+            itemList->getValue(WHITE_KEY)->setLocation(HIDDEN);
             return new ActionResults(THREE_KEY_ROOM, "You find yourself in the key room");
         }
         else if(commands->getMainItem() == SOUTH) {
@@ -45,5 +46,4 @@ ActionResults *WhiteRoomFiveAction::Go() {
         } else {
             return new ActionResults(CURRENT, "You can't go that way");
         }
-
 }

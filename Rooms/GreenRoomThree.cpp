@@ -12,7 +12,7 @@ GreenRoomThree::GreenRoomThree(std::string rn, ItemTable *iList, bool f) {
     parseData();
 }
 
-std::string GreenRoomThree::getDescription() {
+std::string GreenRoomThree::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

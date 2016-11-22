@@ -12,7 +12,7 @@ BlueRoomFour::BlueRoomFour(std::string rn, ItemTable *iList, bool f) {
     parseData();
 }
 
-std::string BlueRoomFour::getDescription() {
+std::string BlueRoomFour::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

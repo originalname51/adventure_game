@@ -12,7 +12,7 @@ ThreeKeyRoom::ThreeKeyRoom(std::string rn, ItemTable *iList, bool sld) {
 
 }
 
-std::string ThreeKeyRoom::getDescription(){
+std::string ThreeKeyRoom::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

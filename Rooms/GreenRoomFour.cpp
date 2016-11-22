@@ -11,7 +11,7 @@ GreenRoomFour::GreenRoomFour(std::string rn, ItemTable *iList, bool f) {
     parseData();
 }
 
-std::string GreenRoomFour::getDescription() {
+std::string GreenRoomFour::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

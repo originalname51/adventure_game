@@ -11,7 +11,7 @@ WhiteRoomOneAction::WhiteRoomOneAction(ItemTable *iTable) : AbstractRoomAction(i
 }
 
 ActionResults * WhiteRoomOneAction::Use() {
-    if(commands->getMainItem() == DISCUS && commands->getActedOnItem() == LIGHT_PILLAR) {
+    if(commands->getMainItem() == DISCUS && commands->getActedOnItem() == LIGHT) {
         itemList->getValue(LADDER)->setLocation(W_ROOM1); //unhide ladder
         return new ActionResults(CURRENT, "You solved it! A Ladder appears", FIREWORKS);
     } else {

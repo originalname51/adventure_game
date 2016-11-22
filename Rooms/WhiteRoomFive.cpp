@@ -12,7 +12,7 @@ WhiteRoomFive::WhiteRoomFive(std::string rn, ItemTable *iList, bool sld) {
     parseData();
 }
 
-std::string WhiteRoomFive::getDescription(){
+std::string WhiteRoomFive::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

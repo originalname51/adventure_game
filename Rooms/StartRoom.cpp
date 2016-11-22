@@ -12,7 +12,7 @@ StartRoom::StartRoom(std::string rn, ItemTable *iList, bool sld) {
 
 }
 
-std::string StartRoom::getDescription(){
+std::string StartRoom::getDescription(bool longform) {
     return testing();
 }
 

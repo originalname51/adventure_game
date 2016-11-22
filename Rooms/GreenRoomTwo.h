@@ -14,7 +14,7 @@ private:
     std::string testing();
 public:
     GreenRoomTwo(std::string, ItemTable *iList, bool f);
-    std::string getDescription();
+    std::string getDescription(bool longform);
 };
 
 

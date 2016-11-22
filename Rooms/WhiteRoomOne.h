@@ -14,7 +14,7 @@ private:
     std::string testing();
 public:
     WhiteRoomOne(std::string, ItemTable *iList, bool f);
-    std::string getDescription();
+    std::string getDescription(bool longform);
 };
 
 

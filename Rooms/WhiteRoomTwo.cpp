@@ -13,7 +13,7 @@ WhiteRoomTwo::WhiteRoomTwo(std::string rn, ItemTable *iList, bool sld) {
 
 }
 
-std::string WhiteRoomTwo::getDescription(){
+std::string WhiteRoomTwo::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

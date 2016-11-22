@@ -211,7 +211,7 @@ void parser::getVerb() {
 void parser::getSubject() {
 
     if(verb == "go"){
-        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south")
+        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder");
             subject = cmdVector[1];
         return;
     }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {

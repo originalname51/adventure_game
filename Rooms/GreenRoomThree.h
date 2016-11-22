@@ -13,7 +13,7 @@ private:
     std::string testing();
 public:
     GreenRoomThree(std::string, ItemTable *iList, bool f);
-    std::string getDescription();
+    std::string getDescription(bool longform);
 };
 
 #endif //ITEM_TEST_GREENROOMTHREE_H

@@ -14,7 +14,7 @@ class GreenRoomOne : public Room {
     std::string testing();
     public:
     GreenRoomOne(std::string, ItemTable *iList, bool f);
-    std::string getDescription();
+    std::string getDescription(bool longform);
 };
 
 

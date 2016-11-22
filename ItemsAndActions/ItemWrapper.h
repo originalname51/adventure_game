@@ -22,7 +22,7 @@ enum itemLocation {
     //Blue Rooms
     B_ROOM1, B_ROOM2, B_ROOM3, B_ROOM4, B_ROOM5,
 
-    BACKPACK, CURRENT };
+    BACKPACK, CURRENT, NRTH, STH, EST, WST };
 
 
 

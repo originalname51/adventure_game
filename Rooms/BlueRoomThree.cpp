@@ -12,8 +12,8 @@ BlueRoomThree::BlueRoomThree(std::string rn, ItemTable *iList, bool f) {
     parseData();
 }
 
-std::string BlueRoomThree::getDescription() {
-    if(showLongDescription){
+std::string BlueRoomThree::getDescription(bool longform) {
+    if(longform){
         return rstate0;
     }
     return rstate1;
