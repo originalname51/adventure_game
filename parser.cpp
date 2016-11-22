@@ -44,7 +44,7 @@ Command* parser::parse(string commandIn) {
     {
         if(verb == "go" || verb == "look" || verb == "examine" || verb == "rest" || verb == "help"){
             act = actionMap.at(verb);
-            if(itemMap.at(subject)){
+            if((subject.size() != 0)){
                 item1 = itemMap.at(subject);
                 return new Command(act, item1);
             }

@@ -19,7 +19,7 @@ void AbstractRoomAction::setCommands(Command * com) {
 ActionResults * AbstractRoomAction::Use() {
     std::string information;
 
-    information = "You contemplate using " + itemList->getValue(commands->getMainItem())->getItemName() + " but do not see the use."
+    information = "You contemplate using " + itemList->getValue(commands->getMainItem())->getItemName() + " but do not see the use. "
                                                                                                                   "Perhaps you should do or use something else.";
     return new ActionResults(CURRENT, information);
 }
