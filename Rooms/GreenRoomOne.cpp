@@ -12,7 +12,7 @@ GreenRoomOne::GreenRoomOne(std::string rn, ItemTable *iList, bool sld) {
 
 }
 
-std::string GreenRoomOne::getDescription(){
+std::string GreenRoomOne::getDescription(bool longform) {
     if(showLongDescription){
         return rstate0;
     }

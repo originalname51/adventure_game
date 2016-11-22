@@ -3,8 +3,8 @@
 //
 
 #include "Item.h"
-Item::Item(std::string d, itemType t) : description(d), item(t) {};
-std::string Item::getDescription(){return description;};
+Item::Item(std::string d, itemType t) : name(d), item(t) {};
+std::string Item::getName(){return name;};
 itemType Item::getItemType(){
     return item;
 };

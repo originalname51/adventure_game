@@ -18,12 +18,28 @@ private:
     static const ItemTable gameItems;
     void populateMap();
     void GreenRoomOne();
+    void GreenRoomTwo();
+    void GreenRoomThree();
+    void GreenRoomFour();
     void ThreeKeyRoom();
+    void WhiteRoomOne();
+    void WhiteRoomTwo();
+    void WhiteRoomThree();
+    void WhiteRoomFour();
+    void WhiteRoomFive();
+    void BlueRoomOne();
+    void BlueRoomTwo();
+    void BlueRoomThree();
+    void BlueRoomFour();
+    void BlueRoomFive();
 
 public:
     ItemTable();
     ItemWrapper*  getValue(itemType const &value);
     ~ItemTable();
+
+
+
 };
 
 

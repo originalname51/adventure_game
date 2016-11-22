@@ -5,8 +5,17 @@
 #ifndef ITEM_TEST_GREENROOMTWOACTION_H
 #define ITEM_TEST_GREENROOMTWOACTION_H
 
+#include "../../Command.h"
+#include "../AbstractRoomAction.h"
+class GreenRoomTwoAction : public AbstractRoomAction {
 
-class GreenRoomTwoAction {
+public:
+    GreenRoomTwoAction(ItemTable *iList, Command *commands);
+    GreenRoomTwoAction(ItemTable *iList);
+
+private:
+    ActionResults  *      Go();
+
 
 };
 

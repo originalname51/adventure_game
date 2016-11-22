@@ -9,13 +9,20 @@
 
 enum itemLocation {
 
-    THREE_KEY_ROOM, HIDDEN,
+    THREE_KEY_ROOM, HIDDEN, UNLOCKED,
 
     PODIUM_ROOM, WATER_ROOM_UNDERWATER, GO_NORTH,
 
-    G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM1_TOKEN_DOOR,
+    //Green Rooms
+    G_ROOM1_SIDE1, G_ROOM1_SIDE2, G_ROOM2_BUCKET, G_ROOM3_BASIN, G_ROOM4_KID,
 
-    BACKPACK,CURRENT };
+    //White Rooms
+    W_ROOM1, W_ROOM2, W_ROOM3, W_ROOM4, W_ROOM5,
+
+    //Blue Rooms
+    B_ROOM1, B_ROOM2, B_ROOM3, B_ROOM4, B_ROOM5,
+
+    BACKPACK, CURRENT, NRTH, STH, EST, WST };
 
 
 
@@ -41,6 +48,7 @@ public:
     Action  getDefaultAction();
     itemState getState();
     void setState(itemState s);
+    Item getItem();
 };
 
 

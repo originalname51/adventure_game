@@ -20,10 +20,13 @@ enum itemType {
     GREEN_KEY, WHITE_KEY, BLUE_KEY,
 
     //GREEN Hospital room
-    BLOOD_BUCKET,
+    BLOOD_BUCKET, CLEAN_BUCKET,
 
     //Basin Room and //Kid-key room
-    WATER,
+    WATER, BASIN,
+
+    //Kid-key room
+    KID,
 
     //BLUE - Misty Room
     GLYPHS, FISH, CEILING,
@@ -31,8 +34,11 @@ enum itemType {
     //BLUE - Ice Room
     BALL, PIPE,
 
+    //BLUE TORCH
+    TORCH,
+
     //BLUE - Dark Room
-    TABLET, STATUE,
+    TABLET, STATUE, BOX,
 
     //BLUE - Mirror Room
     ROPE, WHITE_PILLAR, BLACK_PILLAR,
@@ -41,7 +47,7 @@ enum itemType {
     NORTH_WALL, EAST_WALL, WEST_WALL,
     
     //WHITE - PILLAR room
-    DISCUS, POWER_CRYSTAL, TORCH, LIGHT_PILLAR,
+    DISCUS, POWER_CRYSTAL, LIGHT_PILLAR, LADDER, DOOR_W1,
 
     //WHITE - Table Room
     PITCHER, BOWL, LIGHT
@@ -50,11 +56,11 @@ enum itemType {
 
 class Item {
 private:
-    const std::string description;
+    const std::string name;
     const itemType item;
 public:
     Item(std::string d, itemType type);
-    std::string getDescription();
+    std::string getName();
     itemType getItemType();
 };
 
