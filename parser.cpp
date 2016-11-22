@@ -42,8 +42,15 @@ Command* parser::parse(string commandIn) {
 
     if(cmdVector.size() == 1)
     {
-        act = actionMap.at(verb);
-        return new Command(act, NOTHING);
+        if(verb == "go" || verb == "look" || verb == "examine" || verb == "rest" || verb == "help"){
+            act = actionMap.at(verb);
+            if((subject.size() != 0)){
+                item1 = itemMap.at(subject);
+                return new Command(act, item1);
+            }
+            return new Command(act, NOTHING);
+        }
+
     }else getSubject();
 
     if(cmdVector.size() <= 0 || verb == "help") {
@@ -205,6 +212,12 @@ void parser::getVerb() {
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
 //    cout << "Setting verb value to " << cmdVector[0] << endl;
+    if(cmdVector[0] == "north" || cmdVector[0] == "south" || cmdVector[0] == "east" || cmdVector[0] == "west" || cmdVector[0] == "ladder"){
+        verb = "go";
+        subject = cmdVector[0];
+        return;
+    }
+
     verb = cmdVector[0];
     return;
 }

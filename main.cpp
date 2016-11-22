@@ -83,7 +83,7 @@ int main() {
 //        playerCommand = graphics.getInput();
 
         if(playerCommand.empty()){
-            std::cout << "No Command Entered. YOu've got to give me something to go on.\n";
+            std::cout << "No Command Entered. You've got to give me something to go on.\n";
   //          graphics.displayText(room->getDescription());
   //          graphics.displayText("No command was entered. You've got to give me something to go on.");
             //std::cout << "No command entered." << endl;
@@ -96,6 +96,12 @@ int main() {
         if(command->getAction() == NO_ACTION){
             std::cout << "I didn't understand the command\n";
 //            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
+            continue;
+        }
+
+        if(command->getAction() == LOOK && command->getMainItem() == NOTHING){
+            std::cout << "Looking around, you see the long form room description.\n";
+            //graphics.displayText(room->getDescription());
             continue;
         }
 
