@@ -15,8 +15,13 @@ public:
     WhiteRoomOneAction(ItemTable *iTable);
 
 private:
-    ActionResults * Go();
     ActionResults * Use();
+    ActionResults * Touch();
+    ActionResults * Go();
+    ActionResults * Pick();
+    ActionResults * Drop();
+    ActionResults * Throw();
+
 };
 
 

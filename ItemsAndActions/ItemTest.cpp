@@ -7,11 +7,11 @@ int main() {
 
     ItemTest makeTest = ItemTest();
     makeTest.itemClassTest();
-    std::cout << "Basic Item Class Unit Test Passed." << "\n\n";
+//    std::cout << "Basic Item Class Unit Test Passed." << "\n\n";
     makeTest.itemWrapperTest();
-    std::cout << "ItemWrapper Unit Test Passed." << "\n\n";
+//    std::cout << "ItemWrapper Unit Test Passed." << "\n\n";
     makeTest.itemTableTest();
-    std::cout << "Item Table Unit Test Passed." << "\n\n";
+//    std::cout << "Item Table Unit Test Passed." << "\n\n";
 
     return 0;
 }

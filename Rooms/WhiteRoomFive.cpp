@@ -6,14 +6,14 @@
 
 WhiteRoomFive::WhiteRoomFive(std::string rn, ItemTable *iList, bool sld) {
     table = iList;
-    displayName = "Fox, Goose, and Bean Puzzle Room";
+    displayName = "The Darkness of Light";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();
 }
 
 std::string WhiteRoomFive::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
     }
     return rstate1;

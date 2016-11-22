@@ -22,8 +22,9 @@ private:
     ActionResults * Go();
     ActionResults * Use();
     ActionResults * Look();
-
-
+    ActionResults * Pick();
+    ActionResults * Drop();
+    ActionResults * Rest();
 };
 
 

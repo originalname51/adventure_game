@@ -5,7 +5,7 @@
 #include "WhiteRoomOne.h"
 WhiteRoomOne::WhiteRoomOne(std::string rn, ItemTable *iList, bool sld) {
     table = iList;
-    displayName = "Fox, Goose, and Bean Puzzle Room";
+    displayName = "Shadows and Reflections";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();
@@ -13,7 +13,7 @@ WhiteRoomOne::WhiteRoomOne(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomOne::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
     }
     return rstate1;

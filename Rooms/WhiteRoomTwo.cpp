@@ -6,7 +6,7 @@
 
 WhiteRoomTwo::WhiteRoomTwo(std::string rn, ItemTable *iList, bool sld) {
     table = iList;
-    displayName = "Fox, Goose, and Bean Puzzle Room";
+    displayName = "A World of Color";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = sld;
     parseData();
@@ -14,7 +14,7 @@ WhiteRoomTwo::WhiteRoomTwo(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomTwo::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
     }
     return rstate1;

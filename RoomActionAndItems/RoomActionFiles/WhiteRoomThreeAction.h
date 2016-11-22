@@ -19,6 +19,8 @@ private:
     ActionResults * Go();
     ActionResults * Use();
     ActionResults * Look();
+    ActionResults * Touch();
+    ActionResults * Pick();
 
 
 };

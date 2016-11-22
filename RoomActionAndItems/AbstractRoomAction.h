@@ -22,17 +22,17 @@ public:
     AbstractRoomAction(ItemTable * iTable, Command * command);
     AbstractRoomAction(ItemTable * iTable);
     virtual ActionResults * Action();
-    virtual ActionResults  * Throw();
-    virtual ActionResults   *  Go() =0;
-    virtual ActionResults  *  Look();
+    virtual ActionResults * Throw();
+    virtual ActionResults * Go() = 0;
+    virtual ActionResults *  Look();
     ActionResults * Help();
-    virtual ActionResults    * Rest();
-    virtual ActionResults    * Touch();
-    virtual ActionResults    * Pick();
-    virtual ActionResults    * Drop();
-    virtual ActionResults    * Use();
-    virtual ActionResults    * Open();
-    virtual ActionResults    * Close();
+    virtual ActionResults * Rest();
+    virtual ActionResults * Touch();
+    virtual ActionResults * Pick();
+    virtual ActionResults * Drop();
+    virtual ActionResults * Use();
+    virtual ActionResults * Open();
+    virtual ActionResults * Close();
     void setCommands(Command * com);
 
 

@@ -18,6 +18,8 @@ private:
     ActionResults * Go();
     ActionResults * Action();
     ActionResults * Drop();
+    ActionResults * Pick();
+    ActionResults * Throw();
 };
 
 
