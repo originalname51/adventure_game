@@ -10,8 +10,10 @@ GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList) : AbstractRoomAction(iL
 
 ActionResults *GreenRoomOneAction::Go() {
 
-    if (commands->getMainItem() == WEST) {
+    if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == NOT_WON) {
         return new ActionResults(CURRENT, "The path is blocked.\n");
+    } else if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == WON){
+
     }
     return new ActionResults(CURRENT,"You can't go there.");
 }
@@ -38,8 +40,17 @@ ActionResults *GreenRoomOneAction::Use() {
             break;
         default:
            return AbstractRoomAction::Use();        }
+    if (isRoomWon()) {
+        itemList->getValue(G_ROOM_STATE)->setLocation(WON);
+        information = "With the final token dropped on the floor the door unlocks. You can now go west!";
+    }
     return new ActionResults(CURRENT, information);
     }
+
+bool GreenRoomOneAction::isRoomWon() const {
+    return itemList->getValue(GOOSE_TOKEN)->getLocation() == G_ROOM1_SIDE2 && itemList->getValue(BEAN_TOKEN)->getLocation() == G_ROOM1_SIDE2 &&
+           itemList->getValue(FOX_TOKEN)->getLocation() == G_ROOM1_SIDE2;
+}
 
 
 void GreenRoomOneAction::takeBoat() const {

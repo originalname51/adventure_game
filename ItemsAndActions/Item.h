@@ -14,7 +14,7 @@ enum itemType {
     SHIH_TZU, NON_EXIST,
 
     //Items in "Green Room One"
-    FOX_TOKEN, BEAN_TOKEN, G_BOAT, GOOSE_TOKEN, TOKEN_DOOR,
+    FOX_TOKEN, BEAN_TOKEN, G_BOAT, GOOSE_TOKEN, TOKEN_DOOR, G_ROOM_STATE,
 
     //Three Key Room Items
     GREEN_KEY, WHITE_KEY, BLUE_KEY,
