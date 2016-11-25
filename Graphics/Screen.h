@@ -8,6 +8,7 @@
 #include <string>
 #include <curses.h>
 #include <unistd.h>
+#include <vector>
 
 #define MAX_INPUT_LENGTH 100
 
@@ -18,7 +19,11 @@ private:
     std::string currentRoom;
     std::string score;
     std::string currentText;
+    std::vector<std::string> textFragments;
+    int currentFragment;
     int colorCounter;
+    int textMaxLength;
+    int currPosition;
 
     WINDOW *infoScreen;
     WINDOW *textScreen;
@@ -30,6 +35,8 @@ private:
     bool clearWindow(WINDOW *window);
     void updateInfo();
     void refreshInput();
+    void updateTextMaxLength();
+    void indicateMoreText();
 
 public:
     // Constructors
