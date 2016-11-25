@@ -13,7 +13,9 @@ ActionResults *GreenRoomOneAction::Go() {
     if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == NOT_WON) {
         return new ActionResults(CURRENT, "The path is blocked.\n");
     } else if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == WON){
-
+        return new ActionResults(G_ROOM2_BUCKET, "You move to the green room 2");
+    } else if (commands->getMainItem() == EAST) {
+        return new ActionResults(CURRENT, "You can't go back, the door is locked.");
     }
     return new ActionResults(CURRENT,"You can't go there.");
 }

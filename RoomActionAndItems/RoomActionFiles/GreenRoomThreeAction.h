@@ -16,6 +16,7 @@ public:
 private:
     ActionResults * Use();
     ActionResults * Go();
+    ActionResults *Look();
 };
 
 

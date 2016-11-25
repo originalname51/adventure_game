@@ -42,9 +42,63 @@ ActionResults * AbstractRoomAction::Throw() {
 
 
 ActionResults * AbstractRoomAction::Look() {
+    itemType typeArray [] = {
+            //Basic Types of "Items" needed.
+            PLAYER, NORTH, SOUTH, EAST, WEST, NOTHING, INVENTORY,
 
+            //Items not used for anything currently.
+            SHIH_TZU, NON_EXIST,
+
+            //Items in "Green Room One"
+            FOX_TOKEN, BEAN_TOKEN, G_BOAT, GOOSE_TOKEN, TOKEN_DOOR, G_ROOM_STATE,
+
+            //Three Key Room Items
+            GREEN_KEY, WHITE_KEY, BLUE_KEY,
+
+            //GREEN Hospital room
+            BLOOD_BUCKET, CLEAN_BUCKET, CHAIR,
+
+            //Basin Room and //Kid-key room
+            WATER, BASIN,
+
+            //Kid-key room
+            KID,
+
+            //BLUE - Misty Room
+            GLYPHS, FISH, CEILING,
+
+            //BLUE - Ice Room
+            BALL, PIPE,
+
+            //BLUE TORCH
+            TORCH,
+
+            //BLUE - Dark Room
+            TABLET, STATUE, BOX,
+
+            //BLUE - Mirror Room
+            ROPE, WHITE_PILLAR, BLACK_PILLAR,
+
+            //WHITE - Room 2
+            NORTH_WALL, EAST_WALL, WEST_WALL,
+
+            //WHITE - PILLAR room
+            DISCUS, POWER_CRYSTAL, LIGHT_PILLAR, LADDER, DOOR_W1,
+
+            //WHITE - Table Room
+            PITCHER, BOWL, LIGHT
+
+    };
     std::string information;
-
+    if (commands->getMainItem() == INVENTORY) {
+    information = "Items in inventory are: ";
+    for (itemType item : typeArray) {
+               if (itemList->getValue(item)->getLocation() == BACKPACK) {
+            information = itemList->getValue(item)->getItemName() + " ";
+        }
+    }
+    return new ActionResults(CURRENT, information);
+}
     if (itemInRoom(commands->getMainItem()) ||
         itemList->getValue(commands->getMainItem())->getLocation()
         != BACKPACK) {
@@ -236,3 +290,5 @@ ActionResults * AbstractRoomAction::Help() {
 
     return new ActionResults(CURRENT,info);
 }
+
+

@@ -134,7 +134,6 @@ int main() {
         free(command);
         free(actionResults);
         free(commandObj);
-
         /*
          * Here we will have logic to see if end game conditions have been met.
          * */

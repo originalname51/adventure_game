@@ -10,6 +10,14 @@ GreenRoomThreeAction::GreenRoomThreeAction(ItemTable *iList) : AbstractRoomActio
 
 }
 
+
+ActionResults * GreenRoomThreeAction::Look() {
+    if(commands->getMainItem() == BASIN) {
+        return new ActionResults(CURRENT, "The basin looks clean.")
+    }
+
+}
+
 ActionResults *GreenRoomThreeAction::Use() {
 
     if(itemList->getValue(commands->getMainItem())->getLocation() != BACKPACK || itemList->getValue(commands->getMainItem())->getLocation() != G_ROOM3_BASIN)
@@ -39,10 +47,10 @@ ActionResults *GreenRoomThreeAction::Go() {
         return new ActionResults(G_ROOM2_BUCKET, "You go north.\n");
     }
     if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(CURRENT, "You can't go south, you can only go north.\n");
+        return new ActionResults(CURRENT, "There is a wall, you can only go north.\n");
     }
     if (commands->getMainItem() == EAST) {
-        return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");
+        return new ActionResults(CURRENT, "You you can only go north.\n");
     }
     if (commands->getMainItem() == WEST) {
         return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");

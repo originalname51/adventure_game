@@ -161,7 +161,8 @@ void parser::loadItemMap() {
             {"stonepitcher", PITCHER},
             {"northwall", NORTH_WALL},
             {"eastwall", EAST_WALL},
-            {"westwall", WEST_WALL}
+            {"westwall", WEST_WALL},
+            {"backpack", INVENTORY}
     };
 }
 void parser::loadActionMap() {
