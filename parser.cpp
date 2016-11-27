@@ -161,7 +161,8 @@ void parser::loadItemMap() {
             {"stonepitcher", PITCHER},
             {"northwall", NORTH_WALL},
             {"eastwall", EAST_WALL},
-            {"westwall", WEST_WALL}
+            {"westwall", WEST_WALL},
+            {"stairs", STAIRS}
     };
 }
 void parser::loadActionMap() {
@@ -212,7 +213,7 @@ void parser::getVerb() {
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
 //    cout << "Setting verb value to " << cmdVector[0] << endl;
-    if(cmdVector[0] == "north" || cmdVector[0] == "south" || cmdVector[0] == "east" || cmdVector[0] == "west" || cmdVector[0] == "ladder"){
+    if(cmdVector[0] == "north" || cmdVector[0] == "south" || cmdVector[0] == "east" || cmdVector[0] == "west" || cmdVector[0] == "ladder" || cmdVector[0] == "stairs"){
         verb = "go";
         subject = cmdVector[0];
         return;
@@ -224,7 +225,7 @@ void parser::getVerb() {
 void parser::getSubject() {
 
     if(verb == "go"){
-        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder");
+        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder" || cmdVector[1] == "stairs");
             subject = cmdVector[1];
         return;
     }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {
