@@ -20,24 +20,18 @@ ActionResults *BlueRoomTwoAction::Look() {
     {
         case GLYPHS:
             if (itemList->getValue(FISH)->getLocation() == BACKPACK) {
-                information = "The glyphs seem to shimmer for a moment, but then you are looking at"
-                        " perfectly clear and legible English. The wall admonishes you to \"GET A TORCH. WE'RE NOT KIDDING. LOOK AT THE TORCHES IN THE"
-                        " PREVIOUS ROOM AND YOU SHOULD BE ABLE TO FIND ONE THAT IS NOT SECURED. THAT IS ALL.\" Funny that they (whoever) bothered to write \"That is all…\"";
+                information = "The glyphs seem to shimmer for a moment, but then you are looking at perfectly clear and legible English. The wall admonishes you to \"GET A TORCH. WE'RE NOT KIDDING. LOOK AT THE TORCHES IN THE PREVIOUS ROOM AND YOU SHOULD BE ABLE TO FIND ONE THAT IS NOT SECURED. THAT IS ALL.\" Funny that they (whoever) bothered to write \"That is all…\"";
             } else {
-                information = "The glyphs seem ancient to you, but honestly, "
-                        "you wouldn't be able to tell if they were written last year. Oh look, that shape looks like a fish!";
+                information = "The glyphs seem ancient to you, but honestly, you wouldn't be able to tell if they were written last year. Oh look, that shape looks like a fish!";
             }
             break;
 
         case CEILING:
                 if (itemList->getValue(FISH)->getLocation() == HIDDEN) {
-                    information = "You look up at what appears to be a window covered by water."
-                            " The longer you stare at it, the more reflective it becomes. "
-                            "Suddenly you can make out your own reflection, and beside it in the image is a small, fish.";
+                    information = "You look up at what appears to be a window covered by water.  The longer you stare at it, the more reflective it becomes. Suddenly you can make out your own reflection, and beside it in the image is a small, fish.";
                     itemList->getValue(FISH)->setLocation(B_ROOM2);
                 } else {
-                    information = "\"You look up at what appears to be a window covered by water.\"\n"
-                            "                            \" The longer you stare at it, the more reflective it becomes. \"";
+                    information = "You look up at what appears to be a window covered by water. The longer you stare at it, the more reflective it becomes.";
                 }
             break;
         default:
@@ -56,6 +50,7 @@ ActionResults * BlueRoomTwoAction::Pick() {
         case FISH:
             if(itemList->getValue(FISH)->getLocation() == B_ROOM2){
                 information = "You bend down and grasp the fish. As soon as you do, you feel as if you have more information available to you and the mist thins out to reveal a door to the North.";
+                itemList->getValue(FISH)->setLocation(BACKPACK);
             }
             break;
         case GLYPHS:

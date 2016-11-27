@@ -144,12 +144,14 @@ void ItemTable::WhiteRoomFive() {
 
 void ItemTable::BlueRoomOne() {
     ItemWrapper * Torch = new ItemWrapper(Item("A Torch", TORCH), HIDDEN);
+    ItemWrapper * Stairs = new ItemWrapper(Item("Stairs", STAIRS), HIDDEN);
     items[TORCH] = Torch;
+    items[STAIRS] = Stairs;
 }
 
 void ItemTable::BlueRoomTwo() {
 
-    ItemWrapper * BabbleFish    = new ItemWrapper(Item("BabbleFish", FISH), B_ROOM2);
+    ItemWrapper * BabbleFish    = new ItemWrapper(Item("BabbleFish", FISH), HIDDEN);
     ItemWrapper * Ceiling       = new ItemWrapper(Item("Ceiling", CEILING), B_ROOM2);
     ItemWrapper * Glpyhs        = new ItemWrapper(Item("Glyphs", GLYPHS), B_ROOM2);
 

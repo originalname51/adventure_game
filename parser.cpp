@@ -94,15 +94,15 @@ Command* parser::parse(string commandIn) {
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);
     if(!(object.empty())){
+        if(object == "stairs" || object == "ladder"){
+            return new Command(act, item1);
+        }
         item2 = itemMap.at(object);
         return new Command(act, item1, item2);
     }else{
 
         return new Command(act, item1);
     }
-
-
-
 }
 
 
@@ -249,21 +249,12 @@ void parser::getObject() {
         object = "";
         return;
     }else if(cmdVector[2] == "on"){
-        if (cmdVector[3] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
-            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            //cout << "setting subject value to " << cmdVector[4] << endl;
-            object = cmdVector[4];
-            return;
-        }
         object = cmdVector[3];
         return;
+    }else if(cmdVector[2] == "stairs" || cmdVector[2] == "ladder"){
+        object = cmdVector[2];
+        return;
     }else if(cmdVector[3] == "on") {
-        if (cmdVector[4] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
-            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            //cout << "setting subject value to " << cmdVector[4] << endl;
-            object = cmdVector[5];
-            return;
-        }
         object = cmdVector[4];
         return;
     }

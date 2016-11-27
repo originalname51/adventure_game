@@ -62,8 +62,12 @@ ActionResults * BlueRoomOneAction::Open() {
 
 ActionResults * BlueRoomOneAction::Go() {
 
+    if(commands->getMainItem() == NORTH && itemList->getValue(STAIRS)->getLocation() == B_ROOM1){
+        return new ActionResults(B_ROOM2, "You head down the stairs to the North. Seems to be getting colder.");
+    }
+
     if (commands->getMainItem() == NORTH) {
-        return new ActionResults(B_ROOM2, "You go north down the stairs. It seems to be getting colder.");
+        return new ActionResults(CURRENT, "The door seems closed pretty firmly and you can't phaseshift, maybe try opening it?");
     }
     if (commands->getMainItem() == SOUTH) {
         return new ActionResults(CURRENT, "You can't go back through the door. It's locked. You must find a new way out.");
@@ -76,6 +80,9 @@ ActionResults * BlueRoomOneAction::Go() {
     }
     if (commands->getMainItem() == STAIRS && itemList->getValue(STAIRS)->getLocation() == B_ROOM1) {
         return new ActionResults(B_ROOM2, "You head down the stairs to the North. Seems to be getting colder.");
+    }
+    if (commands->getMainItem() == STAIRS && itemList->getValue(STAIRS)->getLocation() == HIDDEN) {
+        return new ActionResults(CURRENT, "No stairs are currently visible.");
     }
     return new ActionResults(CURRENT,"You can't go there.");
 
