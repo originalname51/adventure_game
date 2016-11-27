@@ -192,7 +192,6 @@ void ItemTable::BlueRoomFive() {
     items[STATUE] = statue;
     items[BOX]    = box;
 
-
 }
 
 ItemTable::~ItemTable(){

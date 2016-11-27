@@ -68,7 +68,15 @@ ActionResults *BlueRoomFourAction::Pick() {
     }
 }
 
-ActionResults *BlueRoomFourAction::Use() {
+ActionResults * BlueRoomFourAction::Throw() {
+    if(commands->getMainItem() == ROPE && itemList->getValue(ROPE)->getLocation() != HIDDEN){
+        return new ActionResults(CURRENT, "You comically try and toss the rope as far as you can. Being attached to the floor, it doesn't work well.");
+    } else {
+        return AbstractRoomAction::Throw();
+    }
+}
+
+ActionResults * BlueRoomFourAction::Use() {
     std::string information;
     switch(commands->getMainItem()) {
         case ROPE :
