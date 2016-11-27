@@ -20,6 +20,7 @@ ActionResults * BlueRoomOneAction::Pick() {
     if(commands->getMainItem() == TORCH && itemList->getValue(TORCH)->getLocation() == BACKPACK){
         return new ActionResults(CURRENT, "You already have a torch. You double check that you haven't dropped it and are extremely releived.");
     }else if(commands->getMainItem() == TORCH){
+        itemList->getValue(TORCH)->setLocation(BACKPACK);
         return new ActionResults(CURRENT, "You grab the torch from the box missing a panel and hold on to it. You feel confident, almost as if you should try opening the door.");
     } else {
         return AbstractRoomAction::Pick();
@@ -50,11 +51,9 @@ ActionResults * BlueRoomOneAction::Touch(){
 }
 
 ActionResults * BlueRoomOneAction::Open() {
-    if(commands->getMainItem() == DOOR_W1 && itemList->getValue(TORCH)->getLocation() == BACKPACK) {
+    if(commands->getMainItem() == DOOR_W1) {
         itemList->getValue(STAIRS)->setLocation(B_ROOM1);
         return new ActionResults(CURRENT, "You reach for the door and attempt to slide it open. Your attempt is successful. Some stairs are revealed when you open the door.");
-    } else if(commands->getMainItem() == DOOR_W1 && itemList->getValue(TORCH)->getLocation() != BACKPACK){
-        return new ActionResults(CURRENT, "You have failed to open this door. Maybe you should check things out around those torch boxes again?");
     } else {
         return AbstractRoomAction::Open();
     }

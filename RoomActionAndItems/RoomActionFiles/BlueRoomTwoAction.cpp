@@ -47,10 +47,42 @@ ActionResults *BlueRoomTwoAction::Look() {
     return new ActionResults(CURRENT, information);
 }
 
+ActionResults * BlueRoomTwoAction::Pick() {
+
+    std::string information;
+
+    switch (commands->getMainItem()){
+
+        case FISH:
+            if(itemList->getValue(FISH)->getLocation() == B_ROOM2){
+                information = "You bend down and grasp the fish. As soon as you do, you feel as if you have more information available to you and the mist thins out to reveal a door to the North.";
+            }
+            break;
+        case GLYPHS:
+            information = "Not really sure of yourself, you try and pry off some of the glyphs. They are part of the wall. You fail.";
+            break;
+        default:
+            return AbstractRoomAction::Pick();
+    }
+    return new ActionResults(CURRENT, information);
+
+}
+
+ActionResults * BlueRoomTwoAction::Drop() {
+    if(commands->getMainItem() == FISH && itemList->getValue(FISH)->getLocation() == BACKPACK){
+        return new ActionResults(CURRENT, "You drop the fish. It's glassy eyes stare up at you in what you read as betrayal. Oh well.");
+    } else {
+        return AbstractRoomAction::Drop();
+    }
+}
+
 ActionResults * BlueRoomTwoAction::Go() {
 
-    if (commands->getMainItem() == NORTH) {
-        return new ActionResults(CURRENT, "You can't go north, you can only go south.\n");
+    if (commands->getMainItem() == NORTH && (itemList->getValue(FISH)->getLocation() == HIDDEN || itemList->getValue(FISH)->getLocation() == B_ROOM2)) {
+        return new ActionResults(CURRENT, "You can't see anything that would allow you to go north, you can only go south.\n");
+    }
+    if (commands->getMainItem() == NORTH && (itemList->getValue(FISH)->getLocation() == BACKPACK)){
+        return new ActionResults(CURRENT, "The newly present door opens easily and you head to the next room.");
     }
     if (commands->getMainItem() == SOUTH) {
         return new ActionResults(B_ROOM1, "You go back to the torch room.\n");
