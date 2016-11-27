@@ -82,7 +82,7 @@ ActionResults * BlueRoomTwoAction::Go() {
         return new ActionResults(CURRENT, "You can't see anything that would allow you to go north, you can only go south.\n");
     }
     if (commands->getMainItem() == NORTH && (itemList->getValue(FISH)->getLocation() == BACKPACK)){
-        return new ActionResults(CURRENT, "The newly present door opens easily and you head to the next room.");
+        return new ActionResults(B_ROOM3, "The newly present door opens easily and you head to the next room.");
     }
     if (commands->getMainItem() == SOUTH) {
         return new ActionResults(B_ROOM1, "You go back to the torch room.\n");

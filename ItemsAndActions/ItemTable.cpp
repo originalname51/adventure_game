@@ -150,7 +150,7 @@ void ItemTable::BlueRoomOne() {
 void ItemTable::BlueRoomTwo() {
 
     ItemWrapper * BabbleFish    = new ItemWrapper(Item("BabbleFish", FISH), B_ROOM2);
-    ItemWrapper * Ceiling       = new ItemWrapper(Item("Cieling", CEILING), B_ROOM2);
+    ItemWrapper * Ceiling       = new ItemWrapper(Item("Ceiling", CEILING), B_ROOM2);
     ItemWrapper * Glpyhs        = new ItemWrapper(Item("Glyphs", GLYPHS), B_ROOM2);
 
     items[FISH] = BabbleFish;
