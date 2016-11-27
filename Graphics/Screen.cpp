@@ -15,6 +15,7 @@ Screen::Screen() {
     score = "0";
     currentRoom = " ";
     colorCounter = 0;
+    currentFragment = 0;
 
     // Initialize the ncurses screen
     initscr();
@@ -28,7 +29,7 @@ Screen::Screen() {
     // Create the windows for the program
     infoScreen = newwin(3, getScreenSizeX(), 0, 0);
     textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
-    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
+    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
 
     // Turn off animation mode
     animationMode = false;
@@ -41,6 +42,7 @@ Screen::Screen(int startScore, std::string startRoom) {
     score = std::to_string(startScore);
     currentRoom = startRoom;
     colorCounter = 0;
+    currentFragment = 0;
 
     // Initialize the ncurses screen
     initscr();
@@ -54,7 +56,7 @@ Screen::Screen(int startScore, std::string startRoom) {
     // Create the windows for the program
     infoScreen = newwin(3, getScreenSizeX(), 0, 0);
     textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
-    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
+    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
 
     // Turn off animation mode
     animationMode = false;
@@ -93,6 +95,9 @@ void Screen::setRoom(std::string roomName) {
 }
 
 bool Screen::displayText(std::string text) {
+    int i;
+    std::vector<std::string> textFragments;
+
     if(!animationMode){
         // Update the info area
         updateInfo();
@@ -100,14 +105,39 @@ bool Screen::displayText(std::string text) {
         // Remove any unwanted text
         clearWindow(textScreen);
 
-        // Save the message
-        currentText = text;
-
         // Print the message
-        wprintw(textScreen, currentText.c_str());
+        if (text.length() > (unsigned int)textMaxLength){
+            currPosition = 0;
+            while((unsigned int)currPosition < text.length()){
+                textFragments.push_back(text.substr((unsigned long)currPosition, (unsigned long)(currPosition + textMaxLength)));
+                currPosition += textMaxLength;
+            }
 
-        // Display the message
-        wrefresh(textScreen);
+            for(i = currentFragment; (unsigned int)i < textFragments.size(); i++, currentFragment++){
+                wclear(textScreen);
+                wprintw(textScreen, textFragments[i].c_str());
+                wrefresh(textScreen);
+
+                // Reset the counter
+                if((unsigned int)i == textFragments.size() - 1){
+                    currentFragment = 0;
+                    refreshInput();
+                    continue;
+                }
+                else {
+                    indicateMoreText();
+                }
+            }
+        }
+        else {
+            currentText = text;
+            wprintw(textScreen, currentText.c_str());
+
+            // Display the message
+            wrefresh(textScreen);
+        }
+
+
 
         return true;
     }
@@ -233,6 +263,7 @@ void Screen::updateScreenSize() {
     // Check for a changed screen size
     int screenSizeY = getmaxy(stdscr);
     int screenSizeX = getmaxx(stdscr);
+    updateTextMaxLength();
 
     if(screenSize[0] != screenSizeY || screenSize[1] != screenSizeX){
         getScreenSizeY();
@@ -266,7 +297,7 @@ void Screen::updateScreenSize() {
 
             if(inputScreen){
                 delwin(inputScreen);
-                inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 6), 0);
+                inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
                 refreshInput();
             }
         }
@@ -307,5 +338,27 @@ void Screen::refreshInput() {
 
     // Move the cursor to the correct location
     mvwprintw(inputScreen, 1, 1, "> ");
+}
+
+void Screen::updateTextMaxLength() {
+    textMaxLength = getmaxx(textScreen) * (getmaxy(textScreen) - 1);
+}
+
+void Screen::indicateMoreText() {
+    std::string formattedInput;
+    char inputText[MAX_INPUT_LENGTH];
+    inputText[0] = '\0';
+
+    // Clear the input area
+    clearWindow(inputScreen);
+    wrefresh(inputScreen);
+
+    // Move the cursor to the correct location
+    mvwprintw(inputScreen, 1, 1, "> ");
+    wattron(inputScreen, A_ITALIC);
+    wprintw(inputScreen, "[MORE TEXT, PRESS ENTER]");
+    wattroff(inputScreen, A_ITALIC);
+    // Get a string of console input
+    wgetstr(inputScreen, inputText);
 }
 
