@@ -38,18 +38,21 @@ ActionResults *BlueRoomFourAction::Go() {
     }
 
 if (commands->getMainItem() == NORTH) {
-return new ActionResults(CURRENT, "You go north.\n");
+return new ActionResults(CURRENT, "You don't see anything to the north. Maybe you should explore these pillars a bit more.");
+}
+if (commands->getMainItem() == NORTH && (blackPillarRope == true) && (whitePillarRope == true)) {
+    return new ActionResults(B_ROOM5, "The walls shifted around and revealed a door on the north wall that you now use, heading north.");
 }
 if (commands->getMainItem() == SOUTH) {
-return new ActionResults(B_ROOM3, "You can't go back through the door. It's locked. You must find a new way out.\n");
+return new ActionResults(B_ROOM3, "You can't go back through the door. It's locked. You must find a new way out.");
 }
 if (commands->getMainItem() == EAST) {
-return new ActionResults(CURRENT, "You can't go west, you can only go south..\n");
+return new ActionResults(CURRENT, "You can't go west, you can only go south...");
 }
 if (commands->getMainItem() == WEST) {
-return new ActionResults(CURRENT, "You can't go west, you can only go south..\n");
+return new ActionResults(CURRENT, "You can't go west, you can only go south...");
 }
-return new ActionResults(CURRENT,"You can't go there.\n");
+return new ActionResults(CURRENT,"You can't go there.");
 
 }
 
@@ -71,11 +74,26 @@ ActionResults *BlueRoomFourAction::Use() {
     switch(commands->getMainItem()) {
         case ROPE :
             if (commands->getActedOnItem() == WHITE_PILLAR) {
+                if(blackPillarRope == true){
+                    whitePillarRope = true;
+                    information = "You tie the other end of the rope to the other pillar. "
+                    "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
+                    "The walls have shifted and reveal a door to the north.";
+                    break;
+                }
+
                 whitePillarRope = true;
-                information = "You tie the rope to the white pillar";
+                information = "You tie the rope to the hook on the white pillar";
             } else if (commands->getActedOnItem() == BLACK_PILLAR) {
+                if(whitePillarRope == true){
+                    blackPillarRope = true;
+                    information = "You tie the other end of the rope to the other pillar. "
+                            "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
+                            "The walls have shifted and reveal a door to the north.";
+                    break;
+                }
                 blackPillarRope = true;
-                information = "You tie the rope to the black pillar";
+                information = "You tie the rope to hook on the black pillar";
             } else {
                 information= "You can't use the rope on that.";
             }
