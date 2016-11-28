@@ -24,12 +24,14 @@ ActionResults  *      ThreeKeyRoomAction::Go(){
             }
         case EAST:
             if (isDoorOpen(WHITE_KEY)) {
+                itemList->getValue(PLAYER)->setLocation(W_ROOM1);
                 return new ActionResults(W_ROOM1, "You move into the White Room.");
             }
             else {return new ActionResults(CURRENT,"You can not move forward without a key.");
             }
         case NORTH:
             if (isDoorOpen(BLUE_KEY)) {
+                itemList->getValue(PLAYER)->setLocation(B_ROOM1);
                 return new ActionResults(B_ROOM1, "You move into the Blue Room.");
             }
             else {return new ActionResults(CURRENT,"You can not move forward without a key.");

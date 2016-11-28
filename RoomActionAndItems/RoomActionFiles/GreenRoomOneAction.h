@@ -29,6 +29,8 @@ private:
     void takeBoat() const;
 
     bool isRoomWon() const;
+
+    ActionResults *Drop();
 };
 
 

@@ -18,7 +18,3 @@ std::string ThreeKeyRoom::getDescription(bool longform) {
     }
     return rstate1;
 }
-
-std::string ThreeKeyRoom::testing(){
-    return "I am in testing";
-}

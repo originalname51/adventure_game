@@ -99,12 +99,11 @@ ActionResults * AbstractRoomAction::Look() {
     }
     return new ActionResults(CURRENT, information);
 }
-    if (itemInRoom(commands->getMainItem()) ||
-        itemList->getValue(commands->getMainItem())->getLocation()
-        != BACKPACK) {
+    if ((!(itemInRoom(commands->getMainItem()))) &&
+            (!(itemList->getValue(commands->getMainItem())->getLocation() == BACKPACK))) {
         information = "You can not look at an  item that you do not currently "
                 "have in your backpack and is not"
-                "in the room.";
+                " in the room.";
         return new ActionResults(CURRENT, information);
 
     }

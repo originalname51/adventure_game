@@ -62,12 +62,14 @@ void ItemTable::GreenRoomOne(){
     ItemWrapper *     gooseToken = new ItemWrapper(Item("Goose Token", GOOSE_TOKEN), G_ROOM1_SIDE1);
     ItemWrapper * gRoomTokenDoor = new ItemWrapper(Item("Token Door", TOKEN_DOOR), HIDDEN);
     ItemWrapper * gRoomOne       = new ItemWrapper(Item("GreenRoomOne", G_ROOM_STATE), NOT_WON);
+    ItemWrapper * boat = new ItemWrapper(Item("old Boat", G_BOAT), G_ROOM1_SIDE1);
 
     items[FOX_TOKEN]   = foxToken;
     items[BEAN_TOKEN]  = beanToken;
     items[GOOSE_TOKEN] = gooseToken;
     items[TOKEN_DOOR]  = gRoomTokenDoor;
     items[G_ROOM_STATE] = gRoomOne;
+    items[G_BOAT] = boat;
 }
 
 void ItemTable::GreenRoomTwo() {

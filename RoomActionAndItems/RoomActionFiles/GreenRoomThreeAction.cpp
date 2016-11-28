@@ -22,7 +22,7 @@ ActionResults * GreenRoomThreeAction::Look() {
 
 ActionResults *GreenRoomThreeAction::Use() {
 
-    if(itemList->getValue(commands->getMainItem())->getLocation() != BACKPACK || itemList->getValue(commands->getMainItem())->getLocation() != G_ROOM3_BASIN)
+    if(!(itemList->getValue(commands->getMainItem())->getLocation() == BACKPACK || itemList->getValue(PLAYER)->getLocation() == itemList->getValue(commands->getMainItem())->getLocation()))
     {
         return new ActionResults(CURRENT, "No item to use here");
     }
