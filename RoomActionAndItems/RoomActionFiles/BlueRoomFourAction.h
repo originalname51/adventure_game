@@ -20,6 +20,7 @@ private:
     ActionResults *   Go();
     ActionResults * Pick();
     ActionResults *  Use();
+    ActionResults * Throw();
 
 };
 

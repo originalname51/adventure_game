@@ -6,7 +6,7 @@
 
 BlueRoomOne::BlueRoomOne(std::string rn, ItemTable *iList, bool f) {
     table = iList;
-    displayName = "GreenRoomFour";
+    displayName = "Torched Arrays";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = f;
     parseData();
