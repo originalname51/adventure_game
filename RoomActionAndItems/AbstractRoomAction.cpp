@@ -264,7 +264,6 @@ ActionResults * AbstractRoomAction::Action() {
      //       action = Nothing();
         case HELP:
             return Help();
-            break;
         default:
             assert(false); //blow up program is no relevant action.
             break;
