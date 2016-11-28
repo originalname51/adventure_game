@@ -6,7 +6,7 @@
 
 BlueRoomTwo::BlueRoomTwo(std::string rn, ItemTable *iList, bool f) {
     table = iList;
-    displayName = "GreenRoomFour";
+    displayName = "Mist and Mirrors";
     roomName = std::string(RESOURCES_PATH) + rn;
     showLongDescription = f;
     parseData();

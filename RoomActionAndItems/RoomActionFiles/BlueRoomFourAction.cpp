@@ -36,20 +36,22 @@ ActionResults *BlueRoomFourAction::Go() {
     if(itemList->getValue(ROPE)->getLocation() != HIDDEN) {
         return new ActionResults(CURRENT, "You can't go anywhere, you're too disoriented. You need something to hold on to.");
     }
-
-if (commands->getMainItem() == NORTH) {
-return new ActionResults(CURRENT, "You go north.\n");
-}
-if (commands->getMainItem() == SOUTH) {
-return new ActionResults(B_ROOM3, "You can't go back through the door. It's locked. You must find a new way out.\n");
-}
-if (commands->getMainItem() == EAST) {
-return new ActionResults(CURRENT, "You can't go west, you can only go south..\n");
-}
-if (commands->getMainItem() == WEST) {
-return new ActionResults(CURRENT, "You can't go west, you can only go south..\n");
-}
-return new ActionResults(CURRENT,"You can't go there.\n");
+    if (commands->getMainItem() == NORTH && (blackPillarRope == true) && (whitePillarRope == true)) {
+        return new ActionResults(B_ROOM5, "The walls shifted around and revealed a door on the north wall that you now use, heading north.");
+    }
+    if (commands->getMainItem() == NORTH && ((blackPillarRope == false) || (whitePillarRope == false))) {
+        return new ActionResults(CURRENT, "You don't see anything to the north. Maybe you should explore these pillars a bit more.");
+    }
+    if (commands->getMainItem() == SOUTH) {
+        return new ActionResults(B_ROOM3, "You can't go back through the door. It's locked. You must find a new way out.");
+    }
+    if (commands->getMainItem() == EAST) {
+        return new ActionResults(CURRENT, "You can't go west, you can only go south...");
+    }
+    if (commands->getMainItem() == WEST) {
+        return new ActionResults(CURRENT, "You can't go west, you can only go south...");
+    }
+    return new ActionResults(CURRENT,"You can't go there.");
 
 }
 
@@ -66,16 +68,41 @@ ActionResults *BlueRoomFourAction::Pick() {
     }
 }
 
-ActionResults *BlueRoomFourAction::Use() {
+ActionResults * BlueRoomFourAction::Throw() {
+    if(commands->getMainItem() == ROPE && itemList->getValue(ROPE)->getLocation() != HIDDEN){
+        return new ActionResults(CURRENT, "You comically try and toss the rope as far as you can. Being attached to the floor, it doesn't work well.");
+    } else {
+        return AbstractRoomAction::Throw();
+    }
+}
+
+ActionResults * BlueRoomFourAction::Use() {
     std::string information;
     switch(commands->getMainItem()) {
         case ROPE :
             if (commands->getActedOnItem() == WHITE_PILLAR) {
+                if(blackPillarRope == true){
+                    whitePillarRope = true;
+                    itemList->getValue(ROPE)->setLocation(HIDDEN);
+                    information = "You tie the other end of the rope to the other pillar. "
+                    "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
+                    "The walls have shifted and reveal a door to the north.";
+                    break;
+                }
+
                 whitePillarRope = true;
-                information = "You tie the rope to the white pillar";
+                information = "You tie the rope to the hook on the white pillar";
             } else if (commands->getActedOnItem() == BLACK_PILLAR) {
+                if(whitePillarRope == true){
+                    blackPillarRope = true;
+                    itemList->getValue(ROPE)->setLocation(HIDDEN);
+                    information = "You tie the other end of the rope to the other pillar. "
+                            "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
+                            "The walls have shifted and reveal a door to the north.";
+                    break;
+                }
                 blackPillarRope = true;
-                information = "You tie the rope to the black pillar";
+                information = "You tie the rope to hook on the black pillar";
             } else {
                 information= "You can't use the rope on that.";
             }

@@ -35,7 +35,7 @@ enum itemType {
     BALL, PIPE,
 
     //BLUE TORCH
-    TORCH,
+    TORCH, STAIRS,
 
     //BLUE - Dark Room
     TABLET, STATUE, BOX,

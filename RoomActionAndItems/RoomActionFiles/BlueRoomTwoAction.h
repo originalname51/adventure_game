@@ -16,7 +16,9 @@ public:
 
 private:
     ActionResults * Look();
-    ActionResults *   Go();
+    ActionResults * Go();
+    ActionResults * Drop();
+    ActionResults * Pick();
 
 };
 

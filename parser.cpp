@@ -94,15 +94,15 @@ Command* parser::parse(string commandIn) {
     act = actionMap.at(verb);
     item1 = itemMap.at(subject);
     if(!(object.empty())){
+        if(object == "stairs" || object == "ladder"){
+            return new Command(act, item1);
+        }
         item2 = itemMap.at(object);
         return new Command(act, item1, item2);
     }else{
 
         return new Command(act, item1);
     }
-
-
-
 }
 
 
@@ -162,7 +162,8 @@ void parser::loadItemMap() {
             {"northwall", NORTH_WALL},
             {"eastwall", EAST_WALL},
             {"westwall", WEST_WALL},
-            {"backpack", INVENTORY}
+            {"backpack", INVENTORY},
+            {"stairs", STAIRS}
     };
 }
 void parser::loadActionMap() {
@@ -213,7 +214,7 @@ void parser::getVerb() {
 //            "Go, Look, Help, Rest, Touch, Pick-Up\n"
 //            "Drop, Use, Open, Close";
 //    cout << "Setting verb value to " << cmdVector[0] << endl;
-    if(cmdVector[0] == "north" || cmdVector[0] == "south" || cmdVector[0] == "east" || cmdVector[0] == "west" || cmdVector[0] == "ladder"){
+    if(cmdVector[0] == "north" || cmdVector[0] == "south" || cmdVector[0] == "east" || cmdVector[0] == "west" || cmdVector[0] == "ladder" || cmdVector[0] == "stairs"){
         verb = "go";
         subject = cmdVector[0];
         return;
@@ -225,7 +226,7 @@ void parser::getVerb() {
 void parser::getSubject() {
 
     if(verb == "go"){
-        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder");
+        if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder" || cmdVector[1] == "stairs");
             subject = cmdVector[1];
         return;
     }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {
@@ -249,21 +250,12 @@ void parser::getObject() {
         object = "";
         return;
     }else if(cmdVector[2] == "on"){
-        if (cmdVector[3] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
-            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            //cout << "setting subject value to " << cmdVector[4] << endl;
-            object = cmdVector[4];
-            return;
-        }
         object = cmdVector[3];
         return;
+    }else if(cmdVector[2] == "stairs" || cmdVector[2] == "ladder"){
+        object = cmdVector[2];
+        return;
     }else if(cmdVector[3] == "on") {
-        if (cmdVector[4] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
-            //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
-            //cout << "setting subject value to " << cmdVector[4] << endl;
-            object = cmdVector[5];
-            return;
-        }
         object = cmdVector[4];
         return;
     }
