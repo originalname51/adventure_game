@@ -123,6 +123,13 @@ ActionResults * AbstractRoomAction::Look() {
             information = "A giant black bean adorns this token.";
             break;
         }
+        case BUCKET : {
+            if(itemList->getValue(CLEAN_BUCKET)->getLocation() == ACTIVE) {
+                information = "You see a shiney and clean bucket.";
+            } else {
+                information = "The bucket is dirty and smells awful";
+            }
+        }
         default : {
             information = "You look at the  " + itemList->getValue(commands->getMainItem())->getItemName() + ". "
                     "It looks nice.";

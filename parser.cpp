@@ -125,7 +125,7 @@ void parser::loadItemMap() {
             {"greenkey", GREEN_KEY},
             {"whitekey", WHITE_KEY},
             {"bluekey", BLUE_KEY},
-            {"bucket", BLOOD_BUCKET},
+            {"bucket", BUCKET},
             {"bloodbucket", BLOOD_BUCKET},
             {"cleanbucket", CLEAN_BUCKET},
             {"ladder", LADDER},

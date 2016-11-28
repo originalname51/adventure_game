@@ -71,11 +71,13 @@ void ItemTable::GreenRoomOne(){
 }
 
 void ItemTable::GreenRoomTwo() {
-    ItemWrapper *      Bucket = new ItemWrapper(Item("Bucket", BLOOD_BUCKET), G_ROOM2_BUCKET);
-    ItemWrapper * CleanBucket = new ItemWrapper(Item("Clean Bucket", CLEAN_BUCKET) , HIDDEN);
+    ItemWrapper *      Bucket  = new ItemWrapper(Item("Bucket", BLOOD_BUCKET), ACTIVE);
+    ItemWrapper * CleanBucket  = new ItemWrapper(Item("Clean Bucket", CLEAN_BUCKET) , INACTIVE);
+    ItemWrapper *      aBucket = new ItemWrapper(Item("Bucket", BUCKET), G_ROOM2_BUCKET);
 
     items[BLOOD_BUCKET] = Bucket;
     items[CLEAN_BUCKET] = CleanBucket;
+    items[BUCKET]       = aBucket;
 }
 
 void ItemTable::GreenRoomThree() {

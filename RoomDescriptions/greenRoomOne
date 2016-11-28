@@ -1,11 +1,19 @@
-This is a green room. There is a river of poison water.
+This is a green room. There is a river of poison water. You see a boat, it looks like you could *use* it to get to the other side of the river.
 
-You see a fox, goose, and bean on the ground.
+There is a door on the other side of the room. Underneath the door there are decorations on the ground of a fox, goose, and a bean. You feel
+
+You notice there are three medium sized tokens on the ground. The thought of picking both up at the same time immediately fills your stomach with dread. You know
+
+you must bring them to the other side of the room, but can sense leaving some tokens with each other is a bad idea (the otherside of the room has a depiction of a fox
+
+preying on a goose with a boat 1/2 way across the poison river.
+
 
 #ROOM_STATE_1#
 
-The fox token, goose token, and bean token are on the ground.
+The fox, goose, and bean token sit inert, ready to be moved to the other side of the room. There is a boat that you can use, as well as a door to the west.
+
 
 #ROOM_STATE_2#
 
-The fox , goose, and bean token have succesfully been placed on the ground. You beat the puzzle. Go get a beer!
+The fox , goose, and bean token have succesfully been placed on the ground. You beat the puzzle. Go get a beer! Exit to the West.

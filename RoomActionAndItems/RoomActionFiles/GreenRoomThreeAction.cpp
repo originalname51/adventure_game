@@ -13,7 +13,9 @@ GreenRoomThreeAction::GreenRoomThreeAction(ItemTable *iList) : AbstractRoomActio
 
 ActionResults * GreenRoomThreeAction::Look() {
     if(commands->getMainItem() == BASIN) {
-        return new ActionResults(CURRENT, "The basin looks clean.")
+        return new ActionResults(CURRENT, "The basin looks clean. You feel you can clean anything here.");
+    } else {
+        return AbstractRoomAction::Look();
     }
 
 }
@@ -25,11 +27,11 @@ ActionResults *GreenRoomThreeAction::Use() {
         return new ActionResults(CURRENT, "No item to use here");
     }
 
-    if((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&
-            (commands->getMainItem() == BLOOD_BUCKET || commands->getActedOnItem() == BLOOD_BUCKET)) {
+    if((commands->getMainItem() == BUCKET && commands->getActedOnItem() == BASIN) ||
+            (commands->getMainItem() == BASIN && commands->getActedOnItem() == BUCKET)) {
 
-        itemList->getValue(BLOOD_BUCKET)->setLocation(HIDDEN);
-        itemList->getValue(CLEAN_BUCKET)->setLocation(BACKPACK);
+        itemList->getValue(BLOOD_BUCKET)->setLocation(INACTIVE);
+        itemList->getValue(CLEAN_BUCKET)->setLocation(ACTIVE);
         return new ActionResults(CURRENT, "You cleaned the bloody bucket! You now have a clean bucket filled with water!");
     }
     else if ((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&

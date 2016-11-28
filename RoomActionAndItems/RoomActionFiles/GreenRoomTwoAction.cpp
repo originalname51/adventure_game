@@ -9,9 +9,12 @@ GreenRoomTwoAction::GreenRoomTwoAction(ItemTable * iList, Command *commands) : A
 
 ActionResults * GreenRoomTwoAction::Look() {
 
-    if(commands->getMainItem() == BLOOD_BUCKET) {
+    if(commands->getMainItem() == BUCKET && itemList->getValue(BLOOD_BUCKET)->getLocation() == ACTIVE) {
         return new ActionResults (CURRENT, "The bucket is disgusting, filled with old blood and with a sick smell.");
-    }else if(commands->getMainItem() == CHAIR) {
+    } else if (commands->getMainItem() == BUCKET && itemList->getValue(BLOOD_BUCKET)->getLocation() == INACTIVE){
+        return new ActionResults (CURRENT, "The bucket is surgically clean.");
+    }
+    else if(commands->getMainItem() == CHAIR) {
         return new ActionResults (CURRENT, "The chair has been used and is well worn. You notice the bucket next to the chair"
                 "has caught the blood of whoever was on it. There is nothing else of importance here.");
     } else {
