@@ -10,8 +10,6 @@
 
 class GreenRoomOne : public Room {
 
-    private:
-    std::string testing();
     public:
     GreenRoomOne(std::string, ItemTable *iList, bool f);
     std::string getDescription(bool longform);

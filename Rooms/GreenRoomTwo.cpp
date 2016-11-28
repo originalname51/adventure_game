@@ -12,12 +12,11 @@ GreenRoomTwo::GreenRoomTwo(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string GreenRoomTwo::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
-    }
+    } else if (table->getValue(BLOOD_BUCKET)->getLocation() == ACTIVE)
     return rstate1;
-}
-
-std::string GreenRoomTwo::testing(){
-    return "I am in testing";
+    else {
+        return rstate2;
+    }
 }

@@ -8,10 +8,32 @@ GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList, Command *commands) : Ab
 
 GreenRoomOneAction::GreenRoomOneAction(ItemTable *iList) : AbstractRoomAction(iList) {}
 
+
+ActionResults * GreenRoomOneAction::Drop() {
+    std::string information;
+    if(commands->getMainItem() == GOOSE_TOKEN) {
+        itemList->getValue(GOOSE_TOKEN)->setLocation(itemList->getValue(PLAYER)->getLocation());
+        if (isRoomWon()) {
+            itemList->getValue(G_ROOM_STATE)->setLocation(WON);
+            information = "With the final token dropped on the floor the door unlocks. You can now go west!";
+            return new ActionResults(CURRENT, information);
+        } else {
+            return new ActionResults(CURRENT,"You drop the goose token");
+        }
+    }else {
+        return AbstractRoomAction::Drop();
+    }
+}
+
 ActionResults *GreenRoomOneAction::Go() {
 
-    if (commands->getMainItem() == WEST) {
+    if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == NOT_WON) {
         return new ActionResults(CURRENT, "The path is blocked.\n");
+    } else if (commands->getMainItem() == WEST && itemList->getValue(G_ROOM_STATE)->getLocation() == WON){
+        itemList->getValue(PLAYER)->setLocation(G_ROOM2_BUCKET);
+        return new ActionResults(G_ROOM2_BUCKET, "You move to the green room 2");
+    } else if (commands->getMainItem() == EAST) {
+        return new ActionResults(CURRENT, "You can't go back, the door is locked.");
     }
     return new ActionResults(CURRENT,"You can't go there.");
 }
@@ -38,8 +60,14 @@ ActionResults *GreenRoomOneAction::Use() {
             break;
         default:
            return AbstractRoomAction::Use();        }
+
     return new ActionResults(CURRENT, information);
     }
+
+bool GreenRoomOneAction::isRoomWon() const {
+    return itemList->getValue(GOOSE_TOKEN)->getLocation() == G_ROOM1_SIDE2 && itemList->getValue(BEAN_TOKEN)->getLocation() == G_ROOM1_SIDE2 &&
+           itemList->getValue(FOX_TOKEN)->getLocation() == G_ROOM1_SIDE2;
+}
 
 
 void GreenRoomOneAction::takeBoat() const {

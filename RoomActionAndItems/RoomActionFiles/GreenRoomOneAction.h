@@ -27,6 +27,10 @@ private:
     void resetTokens() const;
 
     void takeBoat() const;
+
+    bool isRoomWon() const;
+
+    ActionResults *Drop();
 };
 
 

@@ -10,18 +10,28 @@ GreenRoomThreeAction::GreenRoomThreeAction(ItemTable *iList) : AbstractRoomActio
 
 }
 
+
+ActionResults * GreenRoomThreeAction::Look() {
+    if(commands->getMainItem() == BASIN) {
+        return new ActionResults(CURRENT, "The basin looks clean. You feel you can clean anything here.");
+    } else {
+        return AbstractRoomAction::Look();
+    }
+
+}
+
 ActionResults *GreenRoomThreeAction::Use() {
 
-    if(itemList->getValue(commands->getMainItem())->getLocation() != BACKPACK || itemList->getValue(commands->getMainItem())->getLocation() != G_ROOM3_BASIN)
+    if(!(itemList->getValue(commands->getMainItem())->getLocation() == BACKPACK || itemList->getValue(PLAYER)->getLocation() == itemList->getValue(commands->getMainItem())->getLocation()))
     {
         return new ActionResults(CURRENT, "No item to use here");
     }
 
-    if((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&
-            (commands->getMainItem() == BLOOD_BUCKET || commands->getActedOnItem() == BLOOD_BUCKET)) {
+    if((commands->getMainItem() == BUCKET && commands->getActedOnItem() == BASIN) ||
+            (commands->getMainItem() == BASIN && commands->getActedOnItem() == BUCKET)) {
 
-        itemList->getValue(BLOOD_BUCKET)->setLocation(HIDDEN);
-        itemList->getValue(CLEAN_BUCKET)->setLocation(BACKPACK);
+        itemList->getValue(BLOOD_BUCKET)->setLocation(INACTIVE);
+        itemList->getValue(CLEAN_BUCKET)->setLocation(ACTIVE);
         return new ActionResults(CURRENT, "You cleaned the bloody bucket! You now have a clean bucket filled with water!");
     }
     else if ((commands->getMainItem() == BASIN || commands->getActedOnItem() == BASIN) &&
@@ -39,10 +49,10 @@ ActionResults *GreenRoomThreeAction::Go() {
         return new ActionResults(G_ROOM2_BUCKET, "You go north.\n");
     }
     if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(CURRENT, "You can't go south, you can only go north.\n");
+        return new ActionResults(CURRENT, "There is a wall, you can only go north.\n");
     }
     if (commands->getMainItem() == EAST) {
-        return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");
+        return new ActionResults(CURRENT, "You you can only go north.\n");
     }
     if (commands->getMainItem() == WEST) {
         return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");

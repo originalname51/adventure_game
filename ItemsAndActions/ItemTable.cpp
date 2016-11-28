@@ -61,19 +61,25 @@ void ItemTable::GreenRoomOne(){
     ItemWrapper *      beanToken = new ItemWrapper(Item("Bean Token", BEAN_TOKEN), G_ROOM1_SIDE1);
     ItemWrapper *     gooseToken = new ItemWrapper(Item("Goose Token", GOOSE_TOKEN), G_ROOM1_SIDE1);
     ItemWrapper * gRoomTokenDoor = new ItemWrapper(Item("Token Door", TOKEN_DOOR), HIDDEN);
+    ItemWrapper * gRoomOne       = new ItemWrapper(Item("GreenRoomOne", G_ROOM_STATE), NOT_WON);
+    ItemWrapper * boat = new ItemWrapper(Item("old Boat", G_BOAT), G_ROOM1_SIDE1);
 
     items[FOX_TOKEN]   = foxToken;
     items[BEAN_TOKEN]  = beanToken;
     items[GOOSE_TOKEN] = gooseToken;
     items[TOKEN_DOOR]  = gRoomTokenDoor;
+    items[G_ROOM_STATE] = gRoomOne;
+    items[G_BOAT] = boat;
 }
 
 void ItemTable::GreenRoomTwo() {
-    ItemWrapper *      Bucket = new ItemWrapper(Item("Bucket", BLOOD_BUCKET), G_ROOM2_BUCKET);
-    ItemWrapper * CleanBucket = new ItemWrapper(Item("Clean Bucket", CLEAN_BUCKET) , HIDDEN);
+    ItemWrapper *      Bucket  = new ItemWrapper(Item("Bucket", BLOOD_BUCKET), ACTIVE);
+    ItemWrapper * CleanBucket  = new ItemWrapper(Item("Clean Bucket", CLEAN_BUCKET) , INACTIVE);
+    ItemWrapper *      aBucket = new ItemWrapper(Item("Bucket", BUCKET), G_ROOM2_BUCKET);
 
     items[BLOOD_BUCKET] = Bucket;
     items[CLEAN_BUCKET] = CleanBucket;
+    items[BUCKET]       = aBucket;
 }
 
 void ItemTable::GreenRoomThree() {

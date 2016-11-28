@@ -68,13 +68,20 @@ int main() {
 //    graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
-    std::cout << room->getDescription(false);
+    std::cout << room->getDescription(true); //long form.
 //    graphics.setRoom(room->getRoomName());
-//    graphics.displayText(room->getDescription());
+//    graphics.displayText(room->getDescription(true));
 
     roomAction = new ThreeKeyRoomAction(items);
 
     std::string input;
+
+    itemLocation rooms[15]; // 16 rooms
+    for(int i = 0; i < 15; i++) {
+        rooms[i] = INACTIVE;
+    }
+
+    rooms[0] = THREE_KEY_ROOM;
 
     while(!endGame) {
 
@@ -100,7 +107,7 @@ int main() {
         }
 
         if(command->getAction() == LOOK && command->getMainItem() == NOTHING){
-            std::cout << "Looking around, you see the long form room description.\n";
+            std::cout << room->getDescription(true);
             //graphics.displayText(room->getDescription());
             continue;
         }
@@ -121,9 +128,23 @@ int main() {
                 room   = newRoomFactory(actionResults->getRoom(), items);
             roomAction = getNewRoomAction(actionResults->getRoom(), items);
 
-         //   graphics.setRoom(room->getRoomName());
-         //   graphics.displayText(room->getDescription());
-            std::cout<< room->getDescription(false);
+
+            bool longDescription = true;
+            for(itemLocation loc : rooms) {
+                if(loc == actionResults->getRoom()){
+                    longDescription = false;
+                }
+            }
+            for (int i=0;i < 15;i++) {
+                if(rooms[i] == INACTIVE) {
+                    rooms[i] = actionResults->getRoom();
+                    break;
+                }
+            }
+
+            std::cout<< room->getDescription(longDescription);
+            //   graphics.setRoom(room->getRoomName()); //recompile
+            //   graphics.displayText(room->getDescription(longDescription));
         }
         else {
             // Room not changed, inform user of status of his action.
@@ -134,7 +155,6 @@ int main() {
         free(command);
         free(actionResults);
         free(commandObj);
-
         /*
          * Here we will have logic to see if end game conditions have been met.
          * */

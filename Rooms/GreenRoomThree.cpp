@@ -13,8 +13,11 @@ GreenRoomThree::GreenRoomThree(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string GreenRoomThree::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
+    }
+    if(table->getValue(CLEAN_BUCKET)->getLocation() == ACTIVE) {
+        return rstate2;
     }
     return rstate1;
 }

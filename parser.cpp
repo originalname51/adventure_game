@@ -125,7 +125,7 @@ void parser::loadItemMap() {
             {"greenkey", GREEN_KEY},
             {"whitekey", WHITE_KEY},
             {"bluekey", BLUE_KEY},
-            {"bucket", BLOOD_BUCKET},
+            {"bucket", BUCKET},
             {"bloodbucket", BLOOD_BUCKET},
             {"cleanbucket", CLEAN_BUCKET},
             {"ladder", LADDER},
@@ -162,6 +162,7 @@ void parser::loadItemMap() {
             {"northwall", NORTH_WALL},
             {"eastwall", EAST_WALL},
             {"westwall", WEST_WALL},
+            {"backpack", INVENTORY},
             {"stairs", STAIRS}
     };
 }

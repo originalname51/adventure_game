@@ -13,12 +13,11 @@ GreenRoomOne::GreenRoomOne(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string GreenRoomOne::getDescription(bool longform) {
-    if(showLongDescription){
-        return rstate0;
+    if(table->getValue(G_ROOM_STATE)->getLocation() == WON) {
+        return rstate2;
     }
+    if(longform){
+        return rstate0;
+    } else
     return rstate1;
-}
-
-std::string GreenRoomOne::testing(){
-    return "I am in testing";
 }

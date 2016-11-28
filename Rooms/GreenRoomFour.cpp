@@ -12,8 +12,11 @@ GreenRoomFour::GreenRoomFour(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string GreenRoomFour::getDescription(bool longform) {
-    if(showLongDescription){
+    if(longform){
         return rstate0;
+    }
+    if(table->getValue(KID)->getLocation() == HIDDEN) {
+        return rstate2;
     }
     return rstate1;
 }

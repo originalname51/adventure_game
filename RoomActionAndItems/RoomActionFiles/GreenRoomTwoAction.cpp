@@ -7,6 +7,30 @@
 GreenRoomTwoAction::GreenRoomTwoAction(ItemTable * iList) : AbstractRoomAction(iList) {}
 GreenRoomTwoAction::GreenRoomTwoAction(ItemTable * iList, Command *commands) : AbstractRoomAction(iList, commands) {}
 
+ActionResults * GreenRoomTwoAction::Look() {
+
+    if(commands->getMainItem() == BUCKET && itemList->getValue(BLOOD_BUCKET)->getLocation() == ACTIVE) {
+        return new ActionResults (CURRENT, "The bucket is disgusting, filled with old blood and with a sick smell.");
+    } else if (commands->getMainItem() == BUCKET && itemList->getValue(BLOOD_BUCKET)->getLocation() == INACTIVE){
+        return new ActionResults (CURRENT, "The bucket is surgically clean.");
+    }
+    else if(commands->getMainItem() == CHAIR) {
+        return new ActionResults (CURRENT, "The chair has been used and is well worn. You notice the bucket next to the chair"
+                "has caught the blood of whoever was on it. There is nothing else of importance here.");
+    } else {
+        return AbstractRoomAction::Look();
+    }
+}
+
+
+ActionResults * GreenRoomTwoAction::Pick() {
+    if (commands->getMainItem() == CHAIR) {
+        return new ActionResults(CURRENT, "There is no way you can carry that chair around.");
+    } else {
+        return AbstractRoomAction::Pick();
+    }
+}
+
 
 ActionResults *GreenRoomTwoAction::Go() {
 
@@ -17,10 +41,10 @@ ActionResults *GreenRoomTwoAction::Go() {
         return new ActionResults(G_ROOM3_BASIN, "You go south.\n");
     }
     if (commands->getMainItem() == EAST) {
-        return new ActionResults(G_ROOM1_SIDE2, "You go east.\n");
+        return new ActionResults(G_ROOM1_SIDE2, "You go back to the boat room.\n");
     }
     if (commands->getMainItem() == WEST) {
-        return new ActionResults(CURRENT, "Why are you interested in .\n");
+        return new ActionResults(CURRENT, "There is a wall, you can't go that way.\n");
     }
     return new ActionResults(CURRENT,"You can't go there.\n");
 }
