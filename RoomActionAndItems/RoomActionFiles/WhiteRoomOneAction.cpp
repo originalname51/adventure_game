@@ -18,6 +18,9 @@ ActionResults * WhiteRoomOneAction::Use() {
     } else if(commands->getMainItem() == DISCUS && itemList->getValue(DISCUS)->getLocation() != BACKPACK && commands->getActedOnItem() == LIGHT) {
         return new ActionResults(CURRENT, "Hmm... you seem to be fresh out of discuses, but there is one on the floor in front of you.");
     }
+    else if (commands->getMainItem() == LADDER && itemList->getValue(LADDER)->getLocation() != HIDDEN){
+        return new ActionResults(W_ROOM2, "You climb down the ladder");
+    }
     else {
         return AbstractRoomAction::Use();
     }
