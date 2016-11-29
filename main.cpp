@@ -45,11 +45,11 @@ void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
 void initializeScreenResizingHandler();
 
 
-// Graphics graphics(0, std::string(""));
+ Graphics graphics(0, std::string(""));
 
 int main() {
     /* DO NOT DELETE THIS SIGNAL HANDLER */
-//    initializeScreenResizingHandler();
+    initializeScreenResizingHandler();
 
     //initialize game.
     bool endGame = false;
@@ -58,19 +58,18 @@ int main() {
     parser  * parsingTool = new parser();
     AbstractRoomAction * roomAction;
     Command *command;
-//    Graphics graphics;
     std::string playerCommand;
     ActionResults *actionResults;
     //int score = 0;
 
 
     // Display Game Title animation
-//    graphics.animation(std::string("GameTitle"));
+    graphics.animation(std::string("GameTitle"));
 
     // Display beginning text prompt
-    std::cout << room->getDescription(true); //long form.
-//    graphics.setRoom(room->getRoomName());
-//    graphics.displayText(room->getDescription(true));
+//    std::cout << room->getDescription(true); //long form.
+    graphics.setRoom(room->getRoomName());
+    graphics.displayText(room->getDescription(true));
 
     roomAction = new ThreeKeyRoomAction(items);
 
@@ -86,13 +85,12 @@ int main() {
     while(!endGame) {
 
         // Get input from the player
-        std::getline (std::cin,playerCommand);
-//        playerCommand = graphics.getInput();
+//        std::getline (std::cin,playerCommand);
+        playerCommand = graphics.getInput();
 
         if(playerCommand.empty()){
-            std::cout << "No Command Entered. You've got to give me something to go on.\n";
-  //          graphics.displayText(room->getDescription());
-  //          graphics.displayText("No command was entered. You've got to give me something to go on.");
+//            std::cout << "No Command Entered. You've got to give me something to go on.\n";
+            graphics.displayText("No command was entered. You've got to give me something to go on.");
             //std::cout << "No command entered." << endl;
             continue;
         }
@@ -101,14 +99,14 @@ int main() {
         command = commandObj->parse(playerCommand);
 
         if(command->getAction() == NO_ACTION){
-            std::cout << "I didn't understand the command\n";
-//            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
+//            std::cout << "I didn't understand the command\n";
+            graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
             continue;
         }
 
         if(command->getAction() == LOOK && command->getMainItem() == NOTHING){
-            std::cout << room->getDescription(true);
-            //graphics.displayText(room->getDescription());
+//            std::cout << room->getDescription(true);
+            graphics.displayText(room->getDescription(true));
             continue;
         }
 
@@ -142,14 +140,14 @@ int main() {
                 }
             }
 
-            std::cout<< room->getDescription(longDescription);
-            //   graphics.setRoom(room->getRoomName()); //recompile
-            //   graphics.displayText(room->getDescription(longDescription));
+//            std::cout<< room->getDescription(longDescription);
+               graphics.setRoom(room->getRoomName()); //recompile
+               graphics.displayText(room->getDescription(longDescription));
         }
         else {
             // Room not changed, inform user of status of his action.
-         //   graphics.displayText(actionResults->getReturnDescription());
-            std::cout << actionResults->getReturnDescription() << std::endl;
+            graphics.displayText(actionResults->getReturnDescription());
+//            std::cout << actionResults->getReturnDescription() << std::endl;
         }
 
         free(command);
@@ -162,7 +160,7 @@ int main() {
     }
     //game over stuff goes here.
 
-//    graphics.animation(std::string("Fireworks"));
+    graphics.animation(std::string("Fireworks"));
 
     free(roomAction);
     free(room);
