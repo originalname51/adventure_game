@@ -229,7 +229,7 @@ void parser::getSubject() {
         if(cmdVector[1] == "north" || cmdVector[1] == "east" || cmdVector[1] == "west" || cmdVector[1] == "south" || cmdVector[1] == "ladder" || cmdVector[1] == "stairs");
             subject = cmdVector[1];
         return;
-    }else if((cmdVector[1] == "at" || cmdVector[1] == "green")) {
+    }else if((cmdVector[1] == "at" || cmdVector[1] == "on")) {
                 if (cmdVector[2] == "white" || cmdVector[2] == "sticky" || cmdVector[2] == "smelly" || cmdVector[2] == "black") {
                     //setup an ENUM with all of the descriptors (colors, adjectives, etc.)
                     //cout << "setting subject value to " << cmdVector[3] << endl;
@@ -249,7 +249,7 @@ void parser::getObject() {
     {
         object = "";
         return;
-    }else if(cmdVector[2] == "on"){
+    }else if(cmdVector[2] == "on" || cmdVector[2] == "at"){
         object = cmdVector[3];
         return;
     }else if(cmdVector[2] == "stairs" || cmdVector[2] == "ladder"){
