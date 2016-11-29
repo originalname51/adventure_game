@@ -169,7 +169,7 @@ void ItemTable::BlueRoomTwo() {
 void ItemTable::BlueRoomThree() {
 
     ItemWrapper * Pipes         = new ItemWrapper(Item("PIPES", PIPE), B_ROOM3);
-    ItemWrapper * Ball          = new ItemWrapper(Item("BALL", BALL),  B_ROOM3 );
+    ItemWrapper * Ball          = new ItemWrapper(Item("BALL", BALL),  B_ROOM3);
 
     items[PIPE] = Pipes;
     items[BALL] = Ball;

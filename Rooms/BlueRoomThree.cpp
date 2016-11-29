@@ -13,8 +13,11 @@ BlueRoomThree::BlueRoomThree(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string BlueRoomThree::getDescription(bool longform) {
+    if(table->getValue(PIPE)->getLocation() == WON) {
+        return rstate2;
+    }
     if(longform){
         return rstate0;
-    }
-    return rstate1;
+    } else
+        return rstate1;
 }

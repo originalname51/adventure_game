@@ -13,8 +13,11 @@ BlueRoomFive::BlueRoomFive(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string BlueRoomFive::getDescription(bool longform) {
-    if(showLongDescription){
-        return rstate0;
+    if(table->getValue(TABLET)->getLocation() == HIDDEN) {
+        return rstate2;
     }
-    return rstate1;
+    if(longform){
+        return rstate0;
+    } else
+        return rstate1;
 }

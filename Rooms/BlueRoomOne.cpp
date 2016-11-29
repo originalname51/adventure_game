@@ -13,8 +13,11 @@ BlueRoomOne::BlueRoomOne(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string BlueRoomOne::getDescription(bool longform) {
-    if(showLongDescription){
-        return rstate0;
+    if(table->getValue(STAIRS)->getLocation() == B_ROOM1) {
+        return rstate2;
     }
-    return rstate1;
+    if(longform){
+        return rstate0;
+    } else
+        return rstate1;
 }

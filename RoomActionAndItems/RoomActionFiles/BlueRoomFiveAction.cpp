@@ -98,6 +98,7 @@ ActionResults * BlueRoomFiveAction::Action() {
 ActionResults * BlueRoomFiveAction::Drop() {
     if (commands->getMainItem() == STATUE && commands->getActedOnItem() == TABLET) {
         itemList->getValue(BOX)->setLocation(B_ROOM5);
+        itemList->getValue(TABLET)->setLocation(HIDDEN);
         return new ActionResults(CURRENT, "You place the statue on the center of the tablet. The tablet begins to make a grinding sound and slowly rotates into the floor until all you can see is the statue. A moment later, you hear a loud clicking sound from the large stone box. You wonder what is inside.");
     } else if(commands->getMainItem() == STATUE){
         itemList->getValue(STATUE)->setLocation(B_ROOM5);
