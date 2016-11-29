@@ -33,7 +33,11 @@ void Room::parseData() {
             } else if (description == ROOM_STATE_1) {
                 rstate1 += line;
                 rstate1 += "\n";
+            } else if(description == ROOM_STATE_2) {
+                rstate2 += line;
+                rstate2 += "\n";
             }
         }
     }
+    myfile.close();
 }
