@@ -13,8 +13,11 @@ BlueRoomTwo::BlueRoomTwo(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string BlueRoomTwo::getDescription(bool longform) {
-    if(showLongDescription){
-        return rstate0;
+    if(table->getValue(FISH)->getLocation() != HIDDEN) {
+        return rstate2;
     }
-    return rstate1;
+    if(longform){
+        return rstate0;
+    } else
+        return rstate1;
 }

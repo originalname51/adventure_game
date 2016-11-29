@@ -12,6 +12,7 @@ ActionResults *BlueRoomThreeAction::Use() {
     if ((commands->getMainItem() == BALL && commands->getActedOnItem() == PIPE)
             || (commands->getMainItem() == PIPE && commands->getActedOnItem() == BALL)) {
         itemList->getValue(BALL)->setLocation(HIDDEN);
+        itemList->getValue(PIPE)->setLocation(WON);
         return new ActionResults(CURRENT, "The ball disappears into the pipes and you here a lot of clanking and finally a click as the door unlocks to the north.");
     } else {
         return AbstractRoomAction::Use();

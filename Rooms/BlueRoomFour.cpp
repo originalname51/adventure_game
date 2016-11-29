@@ -13,8 +13,11 @@ BlueRoomFour::BlueRoomFour(std::string rn, ItemTable *iList, bool f) {
 }
 
 std::string BlueRoomFour::getDescription(bool longform) {
-    if(showLongDescription){
-        return rstate0;
+    if(table->getValue(ROPE)->getLocation() == HIDDEN) {
+        return rstate2;
     }
-    return rstate1;
+    if(longform){
+        return rstate0;
+    } else
+        return rstate1;
 }
