@@ -19,7 +19,7 @@ ActionResults *WhiteRoomTwoAction::Go() {
     switch(commands->getMainItem()) {
         case LADDER :
             return new ActionResults(W_ROOM1, information);
-        case SOUTH  :
+        case NORTH  :
             if (westWallRead && northWallRead && eastWallRead) {
                 return new ActionResults(W_ROOM3, "You travel through to the next room");
             } else {
@@ -102,7 +102,7 @@ ActionResults *WhiteRoomTwoAction::Drop() {
     }
     else if (commands->getMainItem() == DISCUS && itemList->getValue(DISCUS)->getLocation() == BACKPACK) {
         itemList->getValue(DISCUS)->setLocation(W_ROOM2);
-        return new ActionResults(CURRENT, "Don't scratch it, you might loose your favorite song. It clangs to the floor in front of you.");
+        return new ActionResults(CURRENT, "Don't scratch it, you might lose your favorite song. It clangs to the floor in front of you.");
     }
     else {
         return AbstractRoomAction::Drop();

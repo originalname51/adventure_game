@@ -163,7 +163,8 @@ void parser::loadItemMap() {
             {"eastwall", EAST_WALL},
             {"westwall", WEST_WALL},
             {"backpack", INVENTORY},
-            {"stairs", STAIRS}
+            {"stairs", STAIRS},
+            {"chair", CHAIR}
     };
 }
 void parser::loadActionMap() {

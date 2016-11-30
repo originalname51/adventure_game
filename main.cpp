@@ -114,8 +114,8 @@ int main() {
         actionResults = roomAction->Action();
 
         //Display special effects as required.
-        if (actionResults->getSpecialEffect() != NONE) {
-            //Quick method that does a switch statement to figure out which special effect to call.
+        if(actionResults->getSpecialEffect() == FIREWORKS){
+            graphics.animation(std::string("Fireworks"));
         }
 
         if (actionResults->getRoom() != CURRENT) {

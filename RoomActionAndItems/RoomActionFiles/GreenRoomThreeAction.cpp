@@ -46,16 +46,16 @@ ActionResults *GreenRoomThreeAction::Use() {
 ActionResults *GreenRoomThreeAction::Go() {
 
     if (commands->getMainItem() == NORTH) {
-        return new ActionResults(G_ROOM2_BUCKET, "You go north.\n");
+        return new ActionResults(G_ROOM2_BUCKET, "You go north.");
     }
     if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(CURRENT, "There is a wall, you can only go north.\n");
+        return new ActionResults(CURRENT, "There is a wall, you can only go north.");
     }
     if (commands->getMainItem() == EAST) {
-        return new ActionResults(CURRENT, "You you can only go north.\n");
+        return new ActionResults(CURRENT, "You you can only go north.");
     }
     if (commands->getMainItem() == WEST) {
-        return new ActionResults(CURRENT, "You can't go west, you can only go north.\n");
+        return new ActionResults(CURRENT, "You can't go west, you can only go north.");
     }
-    return new ActionResults(CURRENT,"You can't go there.\n");
+    return new ActionResults(CURRENT,"You can't go there.");
 }
