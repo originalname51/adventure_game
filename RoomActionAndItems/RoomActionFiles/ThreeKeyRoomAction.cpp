@@ -58,7 +58,7 @@ ActionResults  *    ThreeKeyRoomAction::Pick(){
             } else {
                 information = "Can only have one key at a time.";
             }
-            return new ActionResults(CURRENT,information);
+            return new ActionResults(CURRENT,information,FIREWORKS);
         default:
             return AbstractRoomAction::Pick();
     }
