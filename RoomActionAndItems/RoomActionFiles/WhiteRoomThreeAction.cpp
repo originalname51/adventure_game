@@ -32,7 +32,7 @@ ActionResults *WhiteRoomThreeAction::Use() {
     if (commands->getMainItem() == DISCUS && commands->getActedOnItem() == ROPE) {
         discusUsedOnPillar = true;
         return new ActionResults(CURRENT, "You re-direct the light to the rope. If only you had a little more power you could break the rope and"
-                "move to the next room!", FIREWORKS);
+                "move to the next room!");
     } else if (commands->getMainItem() == POWER_CRYSTAL && commands->getActedOnItem() == ROPE && discusUsedOnPillar) {
         itemList->getValue(DOOR_W1)->setLocation(UNLOCKED);
         return new ActionResults(CURRENT, "The Rope breaks and the door opens.");
