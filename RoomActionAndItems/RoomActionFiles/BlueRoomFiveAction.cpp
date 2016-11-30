@@ -54,21 +54,18 @@ ActionResults *BlueRoomFiveAction::Go(){
 
 ActionResults *BlueRoomFiveAction::Use() {
     if(commands->getMainItem() == TORCH) {
-        torchUsed = true;
-        return new ActionResults(CURRENT, "You point the torch meaningfully and the room illuminates in front of you. The room indeed has a stonework floor. There is a stone tablet in the center, with a small statue suspended above it. There is a heavy stone box near the back of the room with no handle.", FIREWORKS);
+        return new ActionResults(CURRENT, "You've already used the torch.");
     }else if(commands->getMainItem() == STATUE){
         return new ActionResults(CURRENT, "The statue awaits your action. You attempt to trigger its innate action. Kind of a stand off I guess. Maybe try something else?");
-    }
-
-    else {
+    }else {
         return AbstractRoomAction::Use();
     }
 }
 
 ActionResults * BlueRoomFiveAction::Open() {
     if (commands->getMainItem() == BOX && itemList->getValue(BOX)->getLocation() != HIDDEN) {
-        return new ActionResults(THREE_KEY_ROOM, "You see a message inside the box that instructs you \"return and use a discus where this whole thing started.\""
-        "You suddenly look up and find yourself back in the starting room.");
+        return new ActionResults(CURRENT, "You see a message inside the box that instructs you \"return and use a discus where this whole thing started.\""
+        "You hear a strange voice announce that all paths lead to the center of existence. Just go.", FIREWORKS);
     }
     if(commands->getMainItem() == STATUE){
         return new ActionResults(CURRENT, "It doesn't open. No one was present to see you, but you feel like the statue looks more smug.");
@@ -89,8 +86,13 @@ ActionResults * BlueRoomFiveAction::Pick() {
 }
 
 ActionResults * BlueRoomFiveAction::Action() {
-    if(commands->getAction() != GO && torchUsed == false) {
+    if(commands->getMainItem() == TORCH && torchUsed == false){
+        torchUsed = true;
+        return new ActionResults(CURRENT, "You point the torch meaningfully and the room illuminates in front of you. The room indeed has a stonework floor. There is a stone tablet in the center, with a small statue suspended above it. There is a heavy stone box near the back of the room with no handle.", FIREWORKS);
+    }else if(commands->getAction() != GO && torchUsed == false) {
         return new ActionResults(CURRENT, "It's too dark to do anything here! You need to find a way to light the room!");
+    } else if(commands->getAction() == GO && itemList->getValue(BOX)->getLocation() != HIDDEN) {
+        return new ActionResults(THREE_KEY_ROOM, "You head back.");
     } else {
         return AbstractRoomAction::Action();
     }

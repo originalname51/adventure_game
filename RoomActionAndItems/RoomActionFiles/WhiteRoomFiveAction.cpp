@@ -58,7 +58,7 @@ ActionResults *WhiteRoomFiveAction::Drop() {
         roomWon = true;
         itemList->getValue(PITCHER)->setLocation(W_ROOM5);
         return new ActionResults (CURRENT, "You pour your pitcher full of mysterious liquid into the bowl. As you are doing this, the bright bowl starts to project a balanced light, "
-                "then sinks into the table. A message below the bowl says ‘Return the crystal to the three keys room. You feel light, and notice the wall behind you has changed to the "
+                "then sinks into the table. A message below the bowl says \"Return the crystal to the three keys room.\" You feel light, and notice the wall behind you has changed to the "
                 "room you woke up in.");
     }
     else if(commands->getMainItem() == PITCHER && itemList->getValue(PITCHER)->getLocation() == BACKPACK){

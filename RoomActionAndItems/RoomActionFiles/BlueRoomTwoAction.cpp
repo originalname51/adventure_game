@@ -20,7 +20,7 @@ ActionResults *BlueRoomTwoAction::Look() {
     {
         case GLYPHS:
             if (itemList->getValue(FISH)->getLocation() == BACKPACK) {
-                information = "The glyphs seem to shimmer for a moment, but then you are looking at perfectly clear and legible English. The wall admonishes you to \"GET A TORCH. WE'RE NOT KIDDING. LOOK AT THE TORCHES IN THE PREVIOUS ROOM AND YOU SHOULD BE ABLE TO FIND ONE THAT IS NOT SECURED. THAT IS ALL.\" Funny that they (whoever) bothered to write \"That is all…\"";
+                information = "The glyphs seem to shimmer for a moment, but then you are looking at perfectly clear and legible English. The wall admonishes you to \"GET A TORCH. WE'RE NOT KIDDING. LOOK AT THE TORCHES IN THE PREVIOUS ROOM AND YOU SHOULD BE ABLE TO FIND ONE THAT IS NOT SECURED. THAT IS ALL.\" Funny that they (whoever) bothered to write \"That is all.\"";
             } else {
                 information = "The glyphs seem ancient to you, but honestly, you wouldn't be able to tell if they were written last year. Oh look, that shape looks like a fish!";
             }
