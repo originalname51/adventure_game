@@ -255,7 +255,7 @@ void handle_winch(int sig)
     // itself with the new terminal dimensions.
     refresh();
 
-//    graphics.refreshScreen();
+    graphics.refreshScreen();
 }
 
 //  Signal Handling Initialization
