@@ -67,7 +67,8 @@ ActionResults *BlueRoomFiveAction::Use() {
 
 ActionResults * BlueRoomFiveAction::Open() {
     if (commands->getMainItem() == BOX && itemList->getValue(BOX)->getLocation() != HIDDEN) {
-        return new ActionResults(CURRENT, "You see a message inside the box that instructs you \"return and use a discus where this whole thing started.\"");
+        return new ActionResults(THREE_KEY_ROOM, "You see a message inside the box that instructs you \"return and use a discus where this whole thing started.\""
+        "You suddenly look up and find yourself back in the starting room.");
     }
     if(commands->getMainItem() == STATUE){
         return new ActionResults(CURRENT, "It doesn't open. No one was present to see you, but you feel like the statue looks more smug.");
