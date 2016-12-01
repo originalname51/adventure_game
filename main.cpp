@@ -284,14 +284,5 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
     assert(false);
 }
 
-void handle_winch(int sig)
-{
-    graphics.refreshScreen();
-}
-
-//  Signal Handling Initialization
-void initializeScreenResizingHandler(){
-    signal(SIGWINCH, handle_winch);
-}
 
 
