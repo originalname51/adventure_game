@@ -27,9 +27,7 @@ Screen::Screen() {
     initializeScreenSize();
 
     // Create the windows for the program
-    infoScreen = newwin(3, getScreenSizeX(), 0, 0);
-    textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
-    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
+    createWindows();
 
     // Turn off animation mode
     animationMode = false;
@@ -54,9 +52,7 @@ Screen::Screen(int startScore, std::string startRoom) {
     initializeScreenSize();
 
     // Create the windows for the program
-    infoScreen = newwin(3, getScreenSizeX(), 0, 0);
-    textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
-    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
+    createWindows();
 
     // Turn off animation mode
     animationMode = false;
@@ -67,10 +63,7 @@ Screen::Screen(int startScore, std::string startRoom) {
 
 Screen::~Screen() {
     // Delete the windows
-    delwin(infoScreen);
-    delwin(textScreen);
-    delwin(inputScreen);
-    delwin(animationScreen);
+    deleteWindows();
 
     // Delete the default window
     endwin();
@@ -173,14 +166,11 @@ std::string Screen::getInput() {
 }
 
 bool Screen::refreshScreen() {
-    updateScreenSize();
     wrefresh(animationScreen);
-
     return true;
 }
 
 bool Screen::clearScreen() {
-    updateScreenSize();
     wclear(animationScreen);
     return true;
 }
@@ -189,9 +179,6 @@ bool Screen::clearScreen() {
 // Functions for the Animation class
 
 bool Screen::startAnimation() {
-    // Get the current size of the screen
-    updateScreenSize();
-
     // Create the windows for the program
     animationScreen = newwin(getScreenSizeY(), getScreenSizeX(), 0, 0);
 
@@ -260,47 +247,29 @@ void Screen::initializeScreenSize() {
 }
 
 void Screen::updateScreenSize() {
-    // Check for a changed screen size
-    int screenSizeY = getmaxy(stdscr);
-    int screenSizeX = getmaxx(stdscr);
-    updateTextMaxLength();
+    getScreenSizeY();
+    getScreenSizeX();
 
-    if(screenSize[0] != screenSizeY || screenSize[1] != screenSizeX){
-        getScreenSizeY();
-        getScreenSizeX();
+    clearScreen();
 
-        clearScreen();
+    // The screen has been resized by the user,
+    // Delete the windows and reprint the information
+    deleteWindows();
+    deleteScreen();
+    recreateScreen();
+    createWindows();
 
-        // The screen has been resized by the user,
-        // Delete the windows and reprint the information
-        if(animationMode){
-            delwin(animationScreen);
+    if(animationMode){
+        wrefresh(animationScreen);
+    }
+    else {
+        updateInfo();
+        wrefresh(infoScreen);
 
-            animationScreen = newwin(getScreenSizeY(), getScreenSizeX(), 0, 0);
+        displayText(currentText);
+        wrefresh(textScreen);
 
-            wrefresh(animationScreen);
-        }
-        else{
-            if(infoScreen){
-                delwin(infoScreen);
-                infoScreen = newwin(3, getScreenSizeX(), 0, 0);
-                updateInfo();
-                wrefresh(infoScreen);
-            }
-
-            if(inputScreen){
-                delwin(textScreen);
-                textScreen = newwin((getScreenSizeY() - 6), getScreenSizeX() - 2, 3, 1);
-                displayText(currentText);
-                wrefresh(textScreen);
-            }
-
-            if(inputScreen){
-                delwin(inputScreen);
-                inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
-                refreshInput();
-            }
-        }
+        refreshInput();
     }
 }
 
@@ -359,3 +328,33 @@ void Screen::indicateMoreText() {
     wgetstr(inputScreen, inputText);
 }
 
+void Screen::deleteScreen() {
+    endwin();
+}
+
+void Screen::deleteWindows() {
+    if(animationScreen){
+        delwin(animationScreen);
+    }
+    if(infoScreen){
+        delwin(infoScreen);
+    }
+
+    if(textScreen){
+        delwin(textScreen);
+    }
+
+    if(inputScreen){
+        delwin(inputScreen);
+    }
+}
+
+void Screen::recreateScreen() {
+    refresh();
+}
+
+void Screen::createWindows() {
+    infoScreen = newwin(3, getScreenSizeX(), 0, 0);
+    textScreen = newwin( (getScreenSizeY() - 6), (getScreenSizeX() - 2), 3, 1);
+    inputScreen = newwin(3, getScreenSizeX(), (getScreenSizeY() - 3), 0);
+}

@@ -38,6 +38,12 @@ private:
     void updateTextMaxLength();
     void indicateMoreText();
 
+    // Methods for recreating the screen after resize
+    void deleteScreen();
+    void deleteWindows();
+    void recreateScreen();
+    void createWindows();
+
 public:
     // Constructors
     Screen();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <curses.h>
 #include <signal.h>
+#include <sys/types.h>
 #include <cstring>
 #include "Rooms/Room.h"
 #include "Rooms/ThreeKeyRoom.h"
@@ -42,10 +43,23 @@
 AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *pTable);
 Room *newRoomFactory(itemLocation location, ItemTable *pTable);
 void setPlayerLocation(ItemTable *items, ActionResults *actionResults);
-void initializeScreenResizingHandler();
 
+Graphics graphics(0, std::string(""));
 
- Graphics graphics(0, std::string(""));
+void handle_winch(int sig)
+{
+    graphics.refreshScreen();
+}
+
+//  Signal Handling Initialization
+void initializeScreenResizingHandler(){
+    struct sigaction newAction;
+
+    newAction.sa_handler = &handle_winch;
+    sigemptyset(&newAction.sa_mask);
+    newAction.sa_flags = 0;
+    sigaction(SIGWINCH, &newAction, NULL);
+}
 
 int main() {
     /* DO NOT DELETE THIS SIGNAL HANDLER */
@@ -272,11 +286,6 @@ AbstractRoomAction *getNewRoomAction(itemLocation location, ItemTable *iTable) {
 
 void handle_winch(int sig)
 {
-    endwin();
-    // Needs to be called after an endwin() so ncurses will initialize
-    // itself with the new terminal dimensions.
-    refresh();
-
     graphics.refreshScreen();
 }
 

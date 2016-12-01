@@ -22,6 +22,7 @@ private:
     // Menu saveMenu;
     std::vector<Animation *> animations;
     Screen screen;
+
 public:
     // Default Constructor
     Graphics();
@@ -38,6 +39,8 @@ public:
     bool displayText(std::string text);
     std::string getInput();
     void refreshScreen();
+
+
 };
 
 
