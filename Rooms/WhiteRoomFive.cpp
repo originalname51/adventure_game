@@ -13,10 +13,15 @@ WhiteRoomFive::WhiteRoomFive(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomFive::getDescription(bool longform) {
-    if(longform){
+    if(table->getValue(DOOR_W1)->getLocation() == UNLOCKED){
+        return rstate2;
+    }
+    else if(longform){
         return rstate0;
     }
-    return rstate1;
+    else {
+        return rstate1;
+    }
 }
 
 std::string WhiteRoomFive::testing(){

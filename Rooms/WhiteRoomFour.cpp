@@ -13,10 +13,15 @@ WhiteRoomFour::WhiteRoomFour(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomFour::getDescription(bool longform) {
-    if(longform){
+    if(table->getValue(TORCH)->getLocation() != BACKPACK){
+        return rstate2;
+    }
+    else if(longform){
         return rstate0;
     }
-    return rstate1;
+    else {
+        return rstate1;
+    }
 }
 
 std::string WhiteRoomFour::testing(){
