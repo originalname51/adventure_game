@@ -315,7 +315,6 @@ void Screen::updateInfo() {
     // Print out the score
     mvwprintw(infoScreen, 1, 1, scoreText.c_str());
     wprintw(infoScreen, score.c_str());
-    wprintw(infoScreen, "%%");
 
     // Print out the current room
     mvwprintw(infoScreen, 1, ( getScreenSizeX() / 2 ), roomText.c_str() );

@@ -60,7 +60,7 @@ int main() {
     Command *command;
     std::string playerCommand;
     ActionResults *actionResults;
-    //int score = 0;
+    int score = 1;
 
 
     // Display Game Title animation
@@ -113,7 +113,9 @@ int main() {
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
-        //Display special effects as required.
+       //Display special effects as required.
+      
+	 graphics.setScore(score++);
         if(actionResults->getSpecialEffect() == FIREWORKS){
             graphics.animation(std::string("Fireworks"));
         }
@@ -156,7 +158,6 @@ int main() {
         /*
          * Here we will have logic to see if end game conditions have been met.
          * */
-        grapics.setScore(score++);
         endGame = false;
     }
     //game over stuff goes here.
