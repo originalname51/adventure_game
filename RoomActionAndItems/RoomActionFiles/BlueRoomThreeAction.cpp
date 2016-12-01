@@ -19,6 +19,10 @@ ActionResults *BlueRoomThreeAction::Use() {
     }
 }
 
+ActionResults * BlueRoomThreeAction::Rest() {
+    return new ActionResults(CURRENT, "You look for a place to sit down that won't result in frostbite. You find a patch of \"warm-ish\" ice and sit for a while. Fun stuff.");
+}
+
 ActionResults * BlueRoomThreeAction::Go() {
 
     if (commands->getMainItem() == NORTH) {

@@ -42,7 +42,7 @@ Command* parser::parse(string commandIn) {
 
     if(cmdVector.size() == 1)
     {
-        if(verb == "go" || verb == "look" || verb == "examine" || verb == "rest" || verb == "help"){
+        if(verb == "go" || verb == "look" || verb == "examine" || verb == "rest" || verb == "help" || verb == "exit" || verb == "quit"){
             act = actionMap.at(verb);
             if((subject.size() != 0)){
                 item1 = itemMap.at(subject);
@@ -182,7 +182,9 @@ void parser::loadActionMap() {
             {"open", OPEN},
             {"close", OPEN},
             {"help", HELP},
-            {"", NO_ACTION}
+            {"", NO_ACTION},
+            {"quit", EXIT},
+            {"exit", EXIT}
     };
 }
 vector<string> parser::splitCommand() {

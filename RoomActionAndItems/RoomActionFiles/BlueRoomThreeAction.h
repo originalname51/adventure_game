@@ -21,6 +21,7 @@ private:
     ActionResults * Pick();
     ActionResults * Throw();
     ActionResults * Drop();
+    ActionResults * Rest();
 
 };
 
