@@ -13,10 +13,16 @@ WhiteRoomOne::WhiteRoomOne(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomOne::getDescription(bool longform) {
-    if(longform){
+    if(table->getValue(LADDER)->getLocation() != HIDDEN){
+        return rstate2;
+    }
+    else if(longform){
         return rstate0;
     }
-    return rstate1;
+    else {
+        return rstate1;
+    }
+
 }
 
 std::string WhiteRoomOne::testing(){

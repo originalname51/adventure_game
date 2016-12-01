@@ -14,11 +14,11 @@ WhiteRoomFiveAction::WhiteRoomFiveAction(ItemTable *iTable) : AbstractRoomAction
 
 ActionResults *WhiteRoomFiveAction::Pick() {
     if(commands->getMainItem() == BOWL) {
-        return new ActionResults(CURRENT, "You can't pick it up. Its stuck to the table!");
+        return new ActionResults(CURRENT, "You can't pick it up. It's stuck to the table!");
     }
     else if(commands->getMainItem() == PITCHER && itemList->getValue(PITCHER)->getLocation() != BACKPACK){
         itemList->getValue(PITCHER)->setLocation(BACKPACK);
-        return new ActionResults(CURRENT, "Cool... you can use this at your next party. It seems to be carrying some unknown, dark liquid");
+        return new ActionResults(CURRENT, "Cool... you can use this at your next party. It seems to be carrying some unknown, dark liquid.");
     }
     else {
         return AbstractRoomAction::Pick();
@@ -56,8 +56,8 @@ ActionResults *WhiteRoomFiveAction::Go() {
 ActionResults *WhiteRoomFiveAction::Drop() {
     if(commands->getMainItem() == PITCHER && itemList->getValue(PITCHER)->getLocation() == BACKPACK && commands->getActedOnItem() == BOWL){
         roomWon = true;
-        itemList->getValue(PITCHER)->setLocation(W_ROOM5);
-        return new ActionResults (CURRENT, "You pour your pitcher full of mysterious liquid into the bowl. As you are doing this, the bright bowl starts to project a balanced light, "
+        itemList->getValue(PITCHER)->setLocation(WON);
+        return new ActionResults (THREE_KEY_ROOM, "You pour your pitcher full of mysterious liquid into the bowl. As you are doing this, the bright bowl starts to project a balanced light, "
                 "then sinks into the table. A message below the bowl says \"Return the crystal to the three keys room.\" You feel light, and notice the wall behind you has changed to the "
                 "room you woke up in.");
     }

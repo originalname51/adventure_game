@@ -19,14 +19,20 @@ ActionResults *WhiteRoomTwoAction::Go() {
     switch(commands->getMainItem()) {
         case LADDER :
             return new ActionResults(W_ROOM1, information);
-        case NORTH  :
+        case SOUTH  :
             if (westWallRead && northWallRead && eastWallRead) {
                 return new ActionResults(W_ROOM3, "You travel through to the next room");
             } else {
-                return new ActionResults(W_ROOM3, "The large stone door on the south wall is locked. You might need to look around for something to unlock it.");
+                return new ActionResults(CURRENT, "The large stone door on the south wall is locked. You might need to look around for something to unlock it.");
             }
         default :
-            return new ActionResults(CURRENT, "You can't go that way");
+            if (roomLit){
+                return new ActionResults(CURRENT, "Is running into walls your thing?");
+            }
+            else {
+                return new ActionResults(CURRENT, "Unless you brought your night-vision goggles, it's probably not a good idea to grope around in the dark.");
+            }
+
     }
 }
 
@@ -42,6 +48,9 @@ ActionResults *WhiteRoomTwoAction::Use() {
                 "progress down this path.");
     } else if(commands->getMainItem() == DISCUS && itemList->getValue(DISCUS)->getLocation() == BACKPACK && commands->getActedOnItem() == LIGHT_PILLAR){
         return new ActionResults(CURRENT, "The reflected light reveals very reflective, although empty walls to the east, north, and west. Maybe white light isn't the best for this room's decor.");
+    }
+    else if (commands->getMainItem() == LADDER){
+        return new ActionResults(W_ROOM1, "You climb up the ladder");
     }
     else {
         return AbstractRoomAction::Use();
@@ -60,11 +69,11 @@ ActionResults *WhiteRoomTwoAction::Look() {
                 break;
             case WEST_WALL:
                 westWallRead = true;
-                information = "Two for the show...";
+                information = "Three to get ready...";
                 break;
             case NORTH_WALL:
                 northWallRead = true;
-                information = "Three to get ready...";
+                information = "Two for the show...";
                 break;
             default:
                 return AbstractRoomAction::Look();
