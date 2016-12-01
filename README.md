@@ -4,7 +4,7 @@ Installation instructions:
 	The best way to run the game is to clone the git repository into the desired flip folder and follow the instructions below:
 	
 
-git clone https://github.com/originalname51/adventure_game.git (or unzip the folder turned in)
+git clone https://github.com/originalname51/adventure_game.git
 
 “cmake build .”
 
