@@ -306,7 +306,7 @@ void Screen::updateScreenSize() {
 
 
 void Screen::updateInfo() {
-    std::string scoreText = "Puzzles solved: ";
+    std::string scoreText = "Moves: ";
     std::string roomText = "Room: ";
 
     // Clear the info window
@@ -315,7 +315,6 @@ void Screen::updateInfo() {
     // Print out the score
     mvwprintw(infoScreen, 1, 1, scoreText.c_str());
     wprintw(infoScreen, score.c_str());
-    wprintw(infoScreen, "%%");
 
     // Print out the current room
     mvwprintw(infoScreen, 1, ( getScreenSizeX() / 2 ), roomText.c_str() );
@@ -355,9 +354,7 @@ void Screen::indicateMoreText() {
 
     // Move the cursor to the correct location
     mvwprintw(inputScreen, 1, 1, "> ");
-    wattron(inputScreen, A_ITALIC);
     wprintw(inputScreen, "[MORE TEXT, PRESS ENTER]");
-    wattroff(inputScreen, A_ITALIC);
     // Get a string of console input
     wgetstr(inputScreen, inputText);
 }

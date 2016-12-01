@@ -60,7 +60,7 @@ int main() {
     Command *command;
     std::string playerCommand;
     ActionResults *actionResults;
-    //int score = 0;
+    int score = 1;
 
 
     // Display Game Title animation
@@ -113,7 +113,9 @@ int main() {
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
-        //Display special effects as required.
+       //Display special effects as required.
+      
+	 graphics.setScore(score++);
         if(actionResults->getSpecialEffect() == FIREWORKS){
             graphics.animation(std::string("Fireworks"));
         }
@@ -255,7 +257,7 @@ void handle_winch(int sig)
     // itself with the new terminal dimensions.
     refresh();
 
-//    graphics.refreshScreen();
+    graphics.refreshScreen();
 }
 
 //  Signal Handling Initialization
