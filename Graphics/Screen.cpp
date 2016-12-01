@@ -306,7 +306,7 @@ void Screen::updateScreenSize() {
 
 
 void Screen::updateInfo() {
-    std::string scoreText = "Puzzles solved: ";
+    std::string scoreText = "Moves: ";
     std::string roomText = "Room: ";
 
     // Clear the info window
