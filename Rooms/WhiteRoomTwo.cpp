@@ -14,10 +14,15 @@ WhiteRoomTwo::WhiteRoomTwo(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomTwo::getDescription(bool longform) {
-    if(longform){
+    if(table->getValue(POWER_CRYSTAL)->getLocation() == BACKPACK){
+        return rstate2;
+    }
+    else if(longform){
         return rstate0;
     }
-    return rstate1;
+    else {
+        return rstate1;
+    }
 }
 
 std::string WhiteRoomTwo::testing(){

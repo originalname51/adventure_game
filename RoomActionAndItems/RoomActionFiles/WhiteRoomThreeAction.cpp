@@ -13,13 +13,13 @@ WhiteRoomThreeAction::WhiteRoomThreeAction(ItemTable *iTable) : AbstractRoomActi
 }
 
 ActionResults *WhiteRoomThreeAction::Go() {
-    if (commands->getMainItem() == NORTH) {
+    if (commands->getMainItem() == EAST) {
         if(itemList->getValue(DOOR_W1)->getLocation() == UNLOCKED) {
             return new ActionResults(W_ROOM4, "You move to the fourth room.");
         } else {
             return new ActionResults(CURRENT, "The door is locked");
         }
-    } else if (commands->getMainItem() == SOUTH)
+    } else if (commands->getMainItem() == NORTH)
     {
         return new ActionResults(W_ROOM2, "Today must be backwards day, you backtrack to the previous room.");
     } else {
@@ -46,7 +46,7 @@ ActionResults *WhiteRoomThreeAction::Use() {
 
 ActionResults *WhiteRoomThreeAction::Look() {
     if (commands->getMainItem() == ROPE) {
-        return new ActionResults(CURRENT, "You see a rope connecting the two rooms. Hmm... if only you had a way to break it.");
+        return new ActionResults(CURRENT, "You see a rope connecting the large rock to ceiling. Hmm... if only you had a way to break it.");
     }
     return AbstractRoomAction::Look();
 }

@@ -13,13 +13,17 @@ WhiteRoomFourAction::WhiteRoomFourAction(ItemTable *iTable) : AbstractRoomAction
 }
 
 ActionResults *WhiteRoomFourAction::Go() {
-
-    if(commands->getMainItem() == SOUTH) {
-        return new ActionResults(W_ROOM3, "You travel back");
-    } else if (commands->getMainItem() == NORTH){
-        return new ActionResults(W_ROOM5, "You travel north");
-    } else {
-        return new ActionResults(CURRENT, "You can't go that way");
+    if(itemList->getValue(TORCH)->getLocation() == BACKPACK){
+        return new ActionResults(CURRENT, "Your blind, as in you can't see, as in no cheating, as in there is probably something in your backpack that you should drop.");
+    }
+    else {
+        if(commands->getMainItem() == WEST) {
+            return new ActionResults(W_ROOM3, "You travel back");
+        } else if (commands->getMainItem() == NORTH){
+            return new ActionResults(W_ROOM5, "You travel north");
+        } else {
+            return new ActionResults(CURRENT, "Ah, ah, ah, YOU DID'T SAY THE MAGIC WORD!");
+        }
     }
 }
 
@@ -34,7 +38,7 @@ ActionResults *WhiteRoomFourAction::Action() {
 ActionResults *WhiteRoomFourAction::Drop() {
     if (commands->getMainItem() == TORCH && itemList->getValue(TORCH)->getLocation() == BACKPACK) {
         itemList->getValue(TORCH)->setLocation(W_ROOM4);
-        return new ActionResults(CURRENT, "As the torch drops you feel you can see well enough to do any action you want."
+        return new ActionResults(CURRENT, "Yah, putting a lit torch into your backpack was probably not your finest moment."
                 "There is a door to the north that is wide open that you previously could not see.");
     }
     return AbstractRoomAction::Drop();
