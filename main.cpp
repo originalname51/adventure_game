@@ -156,6 +156,7 @@ int main() {
         /*
          * Here we will have logic to see if end game conditions have been met.
          * */
+        grapics.setScore(score++);
         endGame = false;
     }
     //game over stuff goes here.
