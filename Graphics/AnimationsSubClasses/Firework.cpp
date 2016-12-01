@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <cstdlib>
 #include "../Animation.h"
 #include "Firework.h"
 #define PI 3.14159265359
