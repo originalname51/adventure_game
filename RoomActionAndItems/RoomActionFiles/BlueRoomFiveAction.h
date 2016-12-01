@@ -15,6 +15,7 @@ public:
 
 private:
     bool torchUsed = false;
+    bool roomWon = false;
     ActionResults * Action();
     ActionResults *  Look();
     ActionResults *    Go();
@@ -23,6 +24,7 @@ private:
     ActionResults *   Pick();
     ActionResults *   Drop();
     ActionResults * Throw();
+    ActionResults * Examine();
 
 
 };

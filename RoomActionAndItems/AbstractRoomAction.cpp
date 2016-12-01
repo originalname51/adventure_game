@@ -274,6 +274,8 @@ ActionResults * AbstractRoomAction::Action() {
 ActionResults * AbstractRoomAction::Help() {
     std::string info = "Command options and structure  \n"
             "      _________________________________________________  \n"
+            "      When typing commands, please remove spaces in item descriptions,\n"
+            "      for example: green key = greenkey or white pillar = whitepillar.\n"
             "      GO _____ | ex: GO NORTH  \n"
             "      => takes you to the next room in that direction.  \n"
             "      LOOK (or) EXAMINE _____ | ex: LOOK TABLE  \n"
@@ -291,7 +293,9 @@ ActionResults * AbstractRoomAction::Help() {
             "      CLOSE _____ | ex: CLOSE DOOR  \n"
             "      => Attempts to close an item/object/feature  \n"
             "      HELP | ex: HELP  \n"
-            "      => Pretty sure you know what this one does...";
+            "      => Pretty sure you know what this one does...\n"
+            "      EXIT or QUITE | ex: QUIT \n"
+            "      => Again, this one speaks for itself...";
 
     return new ActionResults(CURRENT,info);
 }

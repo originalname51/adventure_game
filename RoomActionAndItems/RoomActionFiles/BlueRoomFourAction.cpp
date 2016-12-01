@@ -33,17 +33,15 @@ ActionResults *BlueRoomFourAction::Look() {
 }
 
 ActionResults *BlueRoomFourAction::Go() {
-    if(itemList->getValue(ROPE)->getLocation() != HIDDEN) {
-        return new ActionResults(CURRENT, "You can't go anywhere, you're too disoriented. You need something to hold on to.");
+
+    if (commands->getMainItem() == NORTH && (blackPillarRope) && (whitePillarRope)) {
+        return new ActionResults(B_ROOM5, "The walls have shifted around and revealed a door on the north wall that you now use, heading north.");
     }
-    if (commands->getMainItem() == NORTH && (blackPillarRope == true) && (whitePillarRope == true)) {
-        return new ActionResults(B_ROOM5, "The walls shifted around and revealed a door on the north wall that you now use, heading north.");
-    }
-    if (commands->getMainItem() == NORTH && ((blackPillarRope == false) || (whitePillarRope == false))) {
+    if (commands->getMainItem() == NORTH && (itemList->getValue(ROPE)->getLocation() != HIDDEN)) {
         return new ActionResults(CURRENT, "You don't see anything to the north. Maybe you should explore these pillars a bit more.");
     }
     if (commands->getMainItem() == SOUTH) {
-        return new ActionResults(B_ROOM3, "You can't go back through the door. It's locked. You must find a new way out.");
+        return new ActionResults(B_ROOM3, "You head back to the strange icy room.");
     }
     if (commands->getMainItem() == EAST) {
         return new ActionResults(CURRENT, "You can't go west, you can only go south...");
@@ -81,7 +79,7 @@ ActionResults * BlueRoomFourAction::Use() {
     switch(commands->getMainItem()) {
         case ROPE :
             if (commands->getActedOnItem() == WHITE_PILLAR) {
-                if(blackPillarRope == true){
+                if(blackPillarRope){
                     whitePillarRope = true;
                     itemList->getValue(ROPE)->setLocation(HIDDEN);
                     information = "You tie the other end of the rope to the other pillar. "
@@ -93,7 +91,7 @@ ActionResults * BlueRoomFourAction::Use() {
                 whitePillarRope = true;
                 information = "You tie the rope to the hook on the white pillar";
             } else if (commands->getActedOnItem() == BLACK_PILLAR) {
-                if(whitePillarRope == true){
+                if(whitePillarRope){
                     blackPillarRope = true;
                     itemList->getValue(ROPE)->setLocation(HIDDEN);
                     information = "You tie the other end of the rope to the other pillar. "

@@ -110,6 +110,15 @@ int main() {
             continue;
         }
 
+        if(command->getAction() == EXIT){
+            graphics.displayText("Thanks for playing! Better luck next time! Please hit enter to quit.");
+            free(command);
+            free(commandObj);
+            getchar();
+
+            exit(1);
+        }
+
         roomAction->setCommands(command);
         actionResults = roomAction->Action();
 
@@ -150,6 +159,17 @@ int main() {
             // Room not changed, inform user of status of his action.
             graphics.displayText(actionResults->getReturnDescription());
 //            std::cout << actionResults->getReturnDescription() << std::endl;
+        }
+
+        if(room->getRoomName() == "3 Keys." && (items->getValue(WHITE_KEY)->getLocation() == HIDDEN) && (items->getValue(BLUE_KEY)->getLocation() == HIDDEN) && (items->getValue(GREEN_KEY)->getLocation() == HIDDEN)){
+            graphics.animation("Fireworks");
+            graphics.displayText("Congratulations! You are the master of the three keys! Feel free to play again soon!");
+
+            free(command);
+            free(actionResults);
+            free(commandObj);
+
+            exit(1);
         }
 
         free(command);
