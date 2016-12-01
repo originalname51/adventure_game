@@ -2,7 +2,8 @@
 // Created by mpalmer on 11/10/2016.
 //
 
-#include <cmath>
+#include <math.h>
+#include <cstdlib>
 #include "../Animation.h"
 #include "Firework.h"
 #define PI 3.14159265359

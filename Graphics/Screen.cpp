@@ -247,17 +247,17 @@ void Screen::initializeScreenSize() {
 }
 
 void Screen::updateScreenSize() {
-    getScreenSizeY();
-    getScreenSizeX();
-
-    clearScreen();
-
     // The screen has been resized by the user,
     // Delete the windows and reprint the information
     deleteWindows();
     deleteScreen();
     recreateScreen();
     createWindows();
+
+    getScreenSizeY();
+    getScreenSizeX();
+
+    updateTextMaxLength();
 
     if(animationMode){
         wrefresh(animationScreen);
