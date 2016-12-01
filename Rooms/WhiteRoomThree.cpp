@@ -13,7 +13,7 @@ WhiteRoomThree::WhiteRoomThree(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomThree::getDescription(bool longform) {
-    if(table->getValue(TOKEN_DOOR)->getLocation() == UNLOCKED){
+    if(table->getValue(DOOR_W1)->getLocation() == UNLOCKED){
         return rstate2;
     }
     else if(longform){

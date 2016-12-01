@@ -14,7 +14,7 @@ WhiteRoomTwo::WhiteRoomTwo(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomTwo::getDescription(bool longform) {
-    if(table->getValue(POWER_CRYSTAL)->getLocation() == BACKPACK && table->getValue(DISCUS)->getLocation() == BACKPACK){
+    if(table->getValue(POWER_CRYSTAL)->getLocation() == BACKPACK){
         return rstate2;
     }
     else if(longform){

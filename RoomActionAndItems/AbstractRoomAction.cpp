@@ -164,7 +164,7 @@ ActionResults * AbstractRoomAction::Pick() {
     if (!itemInRoom(commands->getMainItem()) ||
         itemList->getValue(commands->getMainItem())->getLocation()
         == BACKPACK) {
-        information = "You can not pick up an item that is not in the room or in your backpack.";
+        information = "You can not pick up an item that is not in the room or is already in your backpack.";
         return new ActionResults(CURRENT, information);
 
     }
