@@ -101,12 +101,16 @@ int main() {
         if(command->getAction() == NO_ACTION){
 //            std::cout << "I didn't understand the command\n";
             graphics.displayText("I didn't understand that command. Type HELP if you need some ideas. Make sure you type each action and item as they appear.");
+            free(command);
+            free(commandObj);
             continue;
         }
 
         if(command->getAction() == LOOK && command->getMainItem() == NOTHING){
 //            std::cout << room->getDescription(true);
             graphics.displayText(room->getDescription(true));
+            free(command);
+            free(commandObj);
             continue;
         }
 
@@ -116,7 +120,7 @@ int main() {
             free(commandObj);
             getchar();
 
-            exit(1);
+            exit(0);
         }
 
         roomAction->setCommands(command);
@@ -169,7 +173,7 @@ int main() {
             free(actionResults);
             free(commandObj);
 
-            exit(1);
+            exit(0);
         }
 
         free(command);
