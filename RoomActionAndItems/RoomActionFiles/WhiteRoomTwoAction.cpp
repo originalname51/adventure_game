@@ -60,33 +60,63 @@ ActionResults *WhiteRoomTwoAction::Use() {
 ActionResults *WhiteRoomTwoAction::Look() {
     std::string information;
 
-    if(roomLit){
+    if(roomLit && !(westWallRead && eastWallRead && northWallRead)){
         switch(commands->getMainItem()) {
 
             case EAST_WALL:
-                information = "One for the money...";
+                if(northWallRead && westWallRead){
+                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                }
+                else{
+                    information = "One for the money...";
+                }
                 eastWallRead = true;
                 break;
             case WEST_WALL:
                 westWallRead = true;
-                information = "Three to get ready...";
+                if(northWallRead && eastWallRead){
+                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                }
+                else{
+                    information = "Three to get ready...";
+                }
+
                 break;
             case NORTH_WALL:
                 northWallRead = true;
-                information = "Two for the show...";
+                if(westWallRead && eastWallRead){
+                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                }
+                else{
+                    information = "Two for the show...";
+                }
+
                 break;
             default:
                 return AbstractRoomAction::Look();
         }
 
-        if(westWallRead && eastWallRead && northWallRead)
-        {
-            information = "Four, let's go! The south wall opens up revealing the room's exit.";
+        return new ActionResults(CURRENT, information);
+    }
+    else if(roomLit && (westWallRead && eastWallRead && northWallRead)){
+        switch(commands->getMainItem()) {
+
+            case EAST_WALL:
+
+            case WEST_WALL:
+
+            case NORTH_WALL:
+
+                information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                break;
+            default:
+                return AbstractRoomAction::Look();
         }
+
         return new ActionResults(CURRENT, information);
     }
     else {
-        return AbstractRoomAction::Look();
+        return new ActionResults(CURRENT, "It's dark. Really dark. As in you can't see. As in you need something to see.");
     }
 }
 
