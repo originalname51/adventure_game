@@ -294,7 +294,7 @@ ActionResults * AbstractRoomAction::Help() {
             "      => Attempts to close an item/object/feature  \n"
             "      HELP | ex: HELP  \n"
             "      => Pretty sure you know what this one does...\n"
-            "      EXIT or QUITE | ex: QUIT \n"
+            "      EXIT or QUIT | ex: QUIT \n"
             "      => Again, this one speaks for itself...";
 
     return new ActionResults(CURRENT,info);
