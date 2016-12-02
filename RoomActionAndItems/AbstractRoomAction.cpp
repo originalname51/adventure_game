@@ -130,7 +130,7 @@ ActionResults * AbstractRoomAction::Look() {
             }
         }
         default : {
-            information = "You look at the  " + itemList->getValue(commands->getMainItem())->getItemName() + ". "
+            information = "You look at the " + itemList->getValue(commands->getMainItem())->getItemName() + ". "
                     "It looks nice.";
         }
     }
@@ -186,7 +186,7 @@ ActionResults * AbstractRoomAction::Pick() {
                 itemList->getValue(commands->getMainItem())->setLocation(BACKPACK);
                 information = "You pick up the " + itemList->getValue(commands->getMainItem())->getItemName();
             } else {
-                information = "You cant pick up an item that isnt here.";
+                information = "You cant pick up an item that is not here.";
             }
             break;
     }
