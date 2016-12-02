@@ -13,7 +13,7 @@ WhiteRoomFive::WhiteRoomFive(std::string rn, ItemTable *iList, bool sld) {
 }
 
 std::string WhiteRoomFive::getDescription(bool longform) {
-    if(table->getValue(PITCHER)->getLocation() == WON){
+    if(table->getValue(WHITE_KEY)->getLocation() == HIDDEN){
         return rstate2;
     }
     else if(longform){
