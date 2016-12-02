@@ -264,9 +264,11 @@ void parser::getObject() {
         return;
     }else if(verb == "use"){
         object = cmdVector[2];
-    }
-    else if(cmdVector[3] == "on") {
+        return;
+    }else if(cmdVector[3] == "on") {
         object = cmdVector[4];
         return;
+    }else{
+        object = "nothing";
     }
 }
