@@ -173,6 +173,8 @@ int main() {
             free(actionResults);
             free(commandObj);
 
+            getchar();
+
             exit(0);
         }
 
