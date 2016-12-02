@@ -89,10 +89,10 @@ ActionResults * BlueRoomFiveAction::Pick() {
 }
 
 ActionResults * BlueRoomFiveAction::Action() {
-    if(commands->getMainItem() == TORCH && torchUsed == false){
+    if((commands->getMainItem() == TORCH) && ((commands->getAction() == USE) && (!torchUsed))){
         torchUsed = true;
         return new ActionResults(CURRENT, "You point the torch meaningfully and the room illuminates in front of you. The room indeed has a stonework floor. There is a stone tablet in the center, with a small statue suspended above it. There is a heavy stone box near the back of the room with no handle.", FIREWORKS);
-    }else if(commands->getAction() != GO && torchUsed == false) {
+    }else if(commands->getAction() != GO && !torchUsed) {
         return new ActionResults(CURRENT, "It's too dark to do anything here! You need to find a way to light the room!");
     } else if(commands->getAction() == GO && itemList->getValue(BOX)->getLocation() != HIDDEN) {
         return new ActionResults(THREE_KEY_ROOM, "You head back.");

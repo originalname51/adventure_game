@@ -18,7 +18,7 @@ ActionResults *BlueRoomOneAction::Look() {
 
 ActionResults * BlueRoomOneAction::Pick() {
     if(commands->getMainItem() == TORCH && itemList->getValue(TORCH)->getLocation() == BACKPACK){
-        return new ActionResults(CURRENT, "You already have a torch. You double check that you haven't dropped it and are extremely releived.");
+        return new ActionResults(CURRENT, "You already have a torch. You double check that you haven't dropped it and are extremely relieved.");
     }else if(commands->getMainItem() == TORCH){
         itemList->getValue(TORCH)->setLocation(BACKPACK);
         return new ActionResults(CURRENT, "You grab the torch from the box missing a panel and hold on to it. You feel confident, almost as if you should try opening the door.");

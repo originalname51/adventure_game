@@ -16,7 +16,7 @@ ActionResults * GreenRoomOneAction::Drop() {
         if (isRoomWon()) {
             itemList->getValue(G_ROOM_STATE)->setLocation(WON);
             information = "With the final token dropped on the floor the door unlocks. You can now go west!";
-            return new ActionResults(CURRENT, information);
+            return new ActionResults(CURRENT, information, FIREWORKS);
         } else {
             return new ActionResults(CURRENT,"You drop the goose token");
         }

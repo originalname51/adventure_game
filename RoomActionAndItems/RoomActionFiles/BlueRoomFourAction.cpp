@@ -34,7 +34,7 @@ ActionResults *BlueRoomFourAction::Look() {
 
 ActionResults *BlueRoomFourAction::Go() {
 
-    if (commands->getMainItem() == NORTH && (blackPillarRope) && (whitePillarRope)) {
+    if (commands->getMainItem() == NORTH && (itemList->getValue(BALL)->getLocation() == WON)) {
         return new ActionResults(B_ROOM5, "The walls have shifted around and revealed a door on the north wall that you now use, heading north.");
     }
     if (commands->getMainItem() == NORTH && (itemList->getValue(ROPE)->getLocation() != HIDDEN)) {
@@ -82,6 +82,7 @@ ActionResults * BlueRoomFourAction::Use() {
                 if(blackPillarRope){
                     whitePillarRope = true;
                     itemList->getValue(ROPE)->setLocation(HIDDEN);
+                    itemList->getValue(BALL)->setLocation(WON);
                     information = "You tie the other end of the rope to the other pillar. "
                     "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
                     "The walls have shifted and reveal a door to the north.";
@@ -94,6 +95,7 @@ ActionResults * BlueRoomFourAction::Use() {
                 if(whitePillarRope){
                     blackPillarRope = true;
                     itemList->getValue(ROPE)->setLocation(HIDDEN);
+                    itemList->getValue(BALL)->setLocation(WON);
                     information = "You tie the other end of the rope to the other pillar. "
                             "Suddenly the rope sinks into the ground, pulling the pillars to the center. "
                             "The walls have shifted and reveal a door to the north.";
