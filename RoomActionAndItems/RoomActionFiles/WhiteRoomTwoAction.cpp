@@ -78,7 +78,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
                     information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 }
                 else{
-                    information = "Three to get ready...";
+                    information = "Two for the show...";
                 }
 
                 break;
@@ -88,7 +88,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
                     information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 }
                 else{
-                    information = "Two for the show...";
+                    information = "Three to get ready...";
                 }
 
                 break;
