@@ -8,7 +8,7 @@ BlueRoomOneAction::BlueRoomOneAction(ItemTable *iTable, Command *command) : Abst
 BlueRoomOneAction::BlueRoomOneAction(ItemTable *iTable) : AbstractRoomAction(iTable) {}
 
 ActionResults *BlueRoomOneAction::Look() {
-    if (commands->getMainItem() == TORCH) {
+    if (commands->getMainItem() == TORCH && itemList->getValue(TORCH)->getLocation() != BACKPACK) {
         itemList->getValue(TORCH)->setLocation(W_ROOM1);
         return new ActionResults(CURRENT, "One of the glass cases appears to be missing a back panel."
                 "You think you might be able to get a torch.");
