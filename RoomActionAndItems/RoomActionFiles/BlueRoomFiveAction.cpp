@@ -67,6 +67,7 @@ ActionResults *BlueRoomFiveAction::Use() {
 ActionResults * BlueRoomFiveAction::Open() {
     if (commands->getMainItem() == BOX && itemList->getValue(BOX)->getLocation() != HIDDEN) {
         roomWon = true;
+        itemList->getValue(BLUE_KEY)->setLocation(HIDDEN);
         return new ActionResults(CURRENT, "You see a message inside the box that instructs you \"return and use a discus where this whole thing started.\""
         "You hear a strange voice announce that all paths lead to the center of existence. Just go.", FIREWORKS);
     }
