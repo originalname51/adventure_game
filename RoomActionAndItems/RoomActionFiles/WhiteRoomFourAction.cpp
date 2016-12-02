@@ -28,7 +28,7 @@ ActionResults *WhiteRoomFourAction::Go() {
 }
 
 ActionResults *WhiteRoomFourAction::Action() {
-    if(itemList->getValue(TORCH)->getLocation() == BACKPACK) {
+    if(itemList->getValue(TORCH)->getLocation() == BACKPACK && (commands->getAction() != DROP || commands->getAction() != GO)) {
         return new ActionResults(CURRENT, "It's too bright to do anything. You need to drop what is making light!(like a torch)");
     } else {
         return AbstractRoomAction::Action();
