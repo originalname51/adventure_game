@@ -26,7 +26,7 @@ ActionResults * BlueRoomThreeAction::Rest() {
 ActionResults * BlueRoomThreeAction::Go() {
 
     if (commands->getMainItem() == NORTH) {
-        if(itemList->getValue(BALL)->getLocation() == HIDDEN) {
+        if(itemList->getValue(BALL)->getLocation() == HIDDEN || itemList->getValue(BALL)->getLocation() == WON) {
             return new ActionResults(B_ROOM4, "Shaking your head at the ornate nature of the lock, you go north.");
         } else {
             return new ActionResults(CURRENT, "The door is locked in what looks like a mechanical way, with a series of pipes "

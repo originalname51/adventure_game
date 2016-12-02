@@ -72,6 +72,10 @@ Command* parser::parse(string commandIn) {
         return new Command(NO_ACTION,NOTHING);
     }
 
+    if(verb == "look" && (subject == "north" || subject == "east" || subject == "west" || subject == "south" )){
+        return new Command(LOOK, NOTHING);
+    }
+
     if((cmdVector.size()) > 2){
         getObject();
         for(auto itemIterator = itemMap.begin(); itemIterator != itemMap.end(); ++itemIterator){
