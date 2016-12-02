@@ -262,8 +262,13 @@ void parser::getObject() {
     }else if(cmdVector[2] == "stairs" || cmdVector[2] == "ladder"){
         object = cmdVector[2];
         return;
+    }else if(verb == "use"){
+        object = cmdVector[2];
+        return;
     }else if(cmdVector[3] == "on") {
         object = cmdVector[4];
         return;
+    }else{
+        object = "nothing";
     }
 }
