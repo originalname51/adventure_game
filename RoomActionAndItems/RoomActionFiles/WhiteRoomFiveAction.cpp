@@ -32,6 +32,7 @@ ActionResults *WhiteRoomFiveAction::Look() {
 ActionResults *WhiteRoomFiveAction::Use() {
     if (commands->getMainItem() == PITCHER && itemList->getValue(PITCHER)->getLocation() == BACKPACK && commands->getActedOnItem() == BOWL) {
         roomWon = true;
+        itemList->getValue(WHITE_KEY)->setLocation(HIDDEN);
         return new ActionResults (THREE_KEY_ROOM, "You pour your pitcher full of mysterious liquid into the bowl. As you are doing this, the bright bowl starts to project a balanced light, "
                 "then sinks into the table. A message below the bowl says ‘Return the crystal to the three keys room. You feel light, and notice the wall behind you has changed to the "
                 "room you woke up in.");

@@ -65,7 +65,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
 
             case EAST_WALL:
                 if(northWallRead && westWallRead){
-                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                    information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 }
                 else{
                     information = "One for the money...";
@@ -75,7 +75,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
             case WEST_WALL:
                 westWallRead = true;
                 if(northWallRead && eastWallRead){
-                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                    information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 }
                 else{
                     information = "Three to get ready...";
@@ -85,7 +85,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
             case NORTH_WALL:
                 northWallRead = true;
                 if(westWallRead && eastWallRead){
-                    information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                    information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 }
                 else{
                     information = "Two for the show...";
@@ -107,7 +107,7 @@ ActionResults *WhiteRoomTwoAction::Look() {
 
             case NORTH_WALL:
 
-                information = "Four, let's go! The south wall opens up revealing the room's exit.";
+                information = "Three, let's go! The south wall opens up revealing the room's exit.";
                 break;
             default:
                 return AbstractRoomAction::Look();
